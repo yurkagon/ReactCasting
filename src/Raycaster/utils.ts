@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import Scene from "../Scene";
 import Raycaster from "./Raycaster";
+import Ray from "./Ray";
 
 export const useGrid = () => {
   const [grid, setDataData] = useState<CellGrid>(null);
@@ -45,4 +46,24 @@ export const usePlayerPosition = () => {
   }, []);
 
   return playerPosition;
+};
+
+export const useRays = () => {
+  const [rays, setRays] = useState<Ray[]>([]);
+
+  useEffect(() => {
+    const scene = Scene.getInstance();
+
+    const raycaster = Raycaster.getInstance();
+
+    const subscriber = () => {
+      setRays(raycaster.rays);
+    };
+
+    scene.subscribe(subscriber);
+
+    return () => scene.unsubscribe(subscriber);
+  }, []);
+
+  return rays;
 };

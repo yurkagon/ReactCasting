@@ -1,3 +1,5 @@
+import { Angle } from "../../utils";
+
 import { GameObject } from "../../Scene";
 import Grid from "../Grid";
 
@@ -11,11 +13,11 @@ class Player extends GameObject {
   };
 
   public readonly walkSpeed = 1;
-  public readonly rotationSpeed = 2 * (Math.PI / 180);
+  public readonly rotationSpeed = Angle.toRad(2);
 
-  public radius = 8;
+  public readonly radius = 8;
 
-  private control = new Control();
+  private readonly control = new Control();
 
   public update() {
     const { rotateLeft, rotateRight, toForward, toBack } =

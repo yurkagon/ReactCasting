@@ -4,6 +4,7 @@ import cn from "classnames";
 import { useGrid } from "../../Raycaster";
 
 import PlayerMarker from "./PlayerMarker";
+import RayHits from "./RayHits";
 
 import "./style.scss";
 
@@ -21,24 +22,30 @@ const UiMap = () => {
   return (
     <div className="ui-map">
       <div className="cell-wrapper" style={{ width, height }}>
-        {grid.data.map((row, i) => (
-          <Fragment key={i}>
-            {row.map((cellType: Cell, j) => (
-              <div
-                className={cn("cell", { wall: cellType === 1 })}
-                style={{
-                  top: i * tilesSize,
-                  left: j * tilesSize,
-                  width: tilesSize,
-                  height: tilesSize,
-                }}
-                key={j}
-              />
-            ))}
-          </Fragment>
-        ))}
+        <RayHits />
 
         <PlayerMarker />
+
+        {grid.data.map((row, i) => (
+          <Fragment key={i}>
+            {row.map((cellType: Cell, j) => {
+              if (cellType === 0) return null;
+              // TODO: fix styles
+              return (
+                <div
+                  className={cn("cell", { wall: cellType === 1 })}
+                  style={{
+                    top: i * tilesSize,
+                    left: j * tilesSize,
+                    width: tilesSize,
+                    height: tilesSize,
+                  }}
+                  key={j}
+                />
+              );
+            })}
+          </Fragment>
+        ))}
       </div>
     </div>
   );
