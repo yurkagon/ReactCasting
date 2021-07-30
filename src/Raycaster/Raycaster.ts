@@ -5,7 +5,7 @@ import Player from "./Player";
 import { level1 } from "../levels";
 
 class Raycaster extends GameObject {
-  private player = new Player();
+  public player = new Player();
   public grid: CellGrid = null;
 
   public start() {

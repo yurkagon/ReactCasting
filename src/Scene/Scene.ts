@@ -6,7 +6,7 @@ class Scene {
   private subscribers: Subscriber[] = [];
 
   public init() {
-    setInterval(() => this.update(), 1000);
+    setInterval(() => this.update(), 10);
   }
 
   public update() {

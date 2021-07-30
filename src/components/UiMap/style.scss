@@ -13,5 +13,28 @@
         background-color: black;
       }
     }
+
+    .player-marker {
+      position: absolute;
+
+      .marker-body {
+        position: relative;
+        background-color: green;
+
+        border-radius: 50%;
+
+        &::after {
+          position: absolute;
+          content: "";
+
+          width: 10px;
+          height: 4px;
+          top: 6px;
+          left: 10px;
+
+          background-color: black;
+        }
+      }
+    }
   }
 }

@@ -3,6 +3,8 @@ import cn from "classnames";
 
 import { useGrid } from "../../Raycaster";
 
+import PlayerMarker from "./PlayerMarker";
+
 import "./style.scss";
 
 const UiMap = () => {
@@ -36,6 +38,8 @@ const UiMap = () => {
             ))}
           </Fragment>
         ))}
+
+        <PlayerMarker />
       </div>
     </div>
   );
