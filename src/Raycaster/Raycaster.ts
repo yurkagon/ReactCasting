@@ -1,17 +1,18 @@
 import { GameObject } from "../Scene";
 
 import Player from "./Player";
+import Grid from "./Grid";
 
 import { level1 } from "../levels";
 
 class Raycaster extends GameObject {
   public player = new Player();
-  public grid: CellGrid = null;
+  public grid: Grid = Grid.getInstance();
 
   public start() {
     super.start();
 
-    this.grid = level1;
+    this.grid.setData(level1);
   }
 
   public update() {

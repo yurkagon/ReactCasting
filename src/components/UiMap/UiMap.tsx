@@ -9,21 +9,19 @@ import "./style.scss";
 
 const UiMap = () => {
   const grid = useGrid();
-
   if (!grid) return null;
 
-  const tilesSize = 32;
-  const rows = grid.length;
-  const cols = grid[0].length;
+  const tilesSize = grid.tileSize;
+  const rows = grid.data.length;
+  const cols = grid.data[0].length;
 
   const width = cols * tilesSize;
   const height = rows * tilesSize;
 
-  console.log("render");
   return (
     <div className="ui-map">
       <div className="cell-wrapper" style={{ width, height }}>
-        {grid.map((row, i) => (
+        {grid.data.map((row, i) => (
           <Fragment key={i}>
             {row.map((cellType: Cell, j) => (
               <div

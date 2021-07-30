@@ -4,7 +4,8 @@ import Scene from "../Scene";
 import Raycaster from "./Raycaster";
 
 export const useGrid = () => {
-  const [grid, setGridData] = useState<CellGrid>(null);
+  const [grid, setDataData] = useState<CellGrid>(null);
+  const [tileSize, setTileSize] = useState<number>(null);
 
   useEffect(() => {
     const scene = Scene.getInstance();
@@ -12,7 +13,8 @@ export const useGrid = () => {
     const raycaster = Raycaster.getInstance();
 
     const subscriber = () => {
-      setGridData(raycaster.grid);
+      setDataData(raycaster.grid.data);
+      setTileSize(raycaster.grid.tileSize);
     };
 
     scene.subscribe(subscriber);
@@ -20,7 +22,9 @@ export const useGrid = () => {
     return () => scene.unsubscribe(subscriber);
   }, []);
 
-  return grid;
+  if (!grid) return null;
+
+  return { data: grid, tileSize };
 };
 
 export const usePlayerPosition = () => {

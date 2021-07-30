@@ -1,4 +1,5 @@
 import { GameObject } from "../../Scene";
+import Grid from "../Grid";
 
 import Control from "./Control";
 
@@ -32,16 +33,27 @@ class Player extends GameObject {
     if (toForward || toBack) {
       const multiplier = toForward ? 1 : -1;
 
-      this.position = {
-        ...this.position,
-        x:
-          this.position.x +
-          Math.cos(this.position.rotation) * this.walkSpeed * multiplier,
-        y:
-          this.position.y +
-          Math.sin(this.position.rotation) * this.walkSpeed * multiplier,
+      const vector = {
+        x: Math.cos(this.position.rotation) * this.walkSpeed * multiplier,
+        y: Math.sin(this.position.rotation) * this.walkSpeed * multiplier,
       };
+
+      this.moveBy(vector);
     }
+  }
+
+  public moveBy(vector: Position): void {
+    const grid = Grid.getInstance();
+
+    const newPosition = {
+      ...this.position,
+      x: this.position.x + vector.x,
+      y: this.position.y + vector.y,
+    };
+
+    if (grid.isCollision(newPosition)) return;
+
+    this.position = newPosition;
   }
 }
 
