@@ -1,38 +1,38 @@
 import { useState, useEffect, Fragment } from "react";
 import cn from "classnames";
 
-import Player from "../../Player";
+import Raycaster, { Subscriber } from "../../Raycaster";
 
 import "./style.scss";
 
 const UiMap = () => {
-  const [mapData, setMapData] = useState<CellMap>(null);
+  const [grid, setMapData] = useState<CellGrid>(null);
 
   useEffect(() => {
-    const player = Player.getInstance();
+    const raycaster = Raycaster.getInstance();
 
-    const subscriber = (map: CellMap) => {
-      setMapData(map);
+    const subscriber: Subscriber = ({ grid }) => {
+      setMapData(grid);
     };
 
-    player.subscribe(subscriber);
+    raycaster.subscribe(subscriber);
 
-    return () => player.unsubscribe(subscriber);
+    return () => raycaster.unsubscribe(subscriber);
   }, []);
 
-  if (!mapData) return null;
+  if (!grid) return null;
 
   const tilesSize = 32;
-  const rows = mapData.length;
-  const cols = mapData[0].length;
+  const rows = grid.length;
+  const cols = grid[0].length;
+
+  const width = cols * tilesSize;
+  const height = rows * tilesSize;
 
   return (
     <div className="ui-map">
-      <div
-        className="cell-wrapper"
-        style={{ width: cols * tilesSize, height: rows * tilesSize }}
-      >
-        {mapData.map((row, i) => (
+      <div className="cell-wrapper" style={{ width, height }}>
+        {grid.map((row, i) => (
           <Fragment key={i}>
             {row.map((cellType: Cell, j) => (
               <div

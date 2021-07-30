@@ -2,4 +2,4 @@
 
 declare type Cell = 1 | 0;
 
-declare type CellMap = Cell[][];
+declare type CellGrid = Cell[][];

@@ -1,13 +1,13 @@
 import { Component } from "react";
-import Player from "./Player";
+import Raycaster from "./Raycaster";
 
 import UiMap from "./components/UiMap";
 
 class App extends Component {
   componentDidMount() {
-    const player = Player.getInstance();
+    const raycaster = Raycaster.getInstance();
 
-    player.setup();
+    raycaster.setup();
   }
 
   render() {
