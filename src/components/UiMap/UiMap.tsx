@@ -19,6 +19,7 @@ const UiMap = () => {
   const width = cols * tilesSize;
   const height = rows * tilesSize;
 
+  console.log("render");
   return (
     <div className="ui-map">
       <div className="cell-wrapper" style={{ width, height }}>

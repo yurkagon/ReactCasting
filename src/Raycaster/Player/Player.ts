@@ -17,31 +17,31 @@ class Player extends GameObject {
   private control = new Control();
 
   public update() {
-    if (this.control.moveState.rotateLeft)
-      this.position = {
-        ...this.position,
-        rotation: this.position.rotation - this.rotationSpeed,
-      };
+    const { rotateLeft, rotateRight, toForward, toBack } =
+      this.control.moveState;
 
-    if (this.control.moveState.rotateRight)
-      this.position = {
-        ...this.position,
-        rotation: this.position.rotation + this.rotationSpeed,
-      };
+    if (rotateLeft || rotateRight) {
+      const multiplier = rotateRight ? 1 : -1;
 
-    if (this.control.moveState.toForward)
       this.position = {
         ...this.position,
-        x: this.position.x + Math.cos(this.position.rotation) * this.walkSpeed,
-        y: this.position.y + Math.sin(this.position.rotation) * this.walkSpeed,
+        rotation: this.position.rotation + this.rotationSpeed * multiplier,
       };
+    }
 
-    if (this.control.moveState.toBack)
+    if (toForward || toBack) {
+      const multiplier = toForward ? 1 : -1;
+
       this.position = {
         ...this.position,
-        x: this.position.x - Math.cos(this.position.rotation) * this.walkSpeed,
-        y: this.position.y - Math.sin(this.position.rotation) * this.walkSpeed,
+        x:
+          this.position.x +
+          Math.cos(this.position.rotation) * this.walkSpeed * multiplier,
+        y:
+          this.position.y +
+          Math.sin(this.position.rotation) * this.walkSpeed * multiplier,
       };
+    }
   }
 }
 
