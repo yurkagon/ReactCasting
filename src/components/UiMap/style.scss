@@ -1,0 +1,17 @@
+.ui-map {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  .cell-wrapper {
+    position: relative;
+
+    .cell {
+      position: absolute;
+
+      &.wall {
+        background-color: black;
+      }
+    }
+  }
+}
