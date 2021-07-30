@@ -1,37 +1,24 @@
+import { GameObject } from "../Scene";
+
+import Player from "./Player";
+
 import { level1 } from "../levels";
 
-import { Subscriber } from "./types";
+class Raycaster extends GameObject {
+  private player = new Player();
+  public grid: CellGrid = null;
 
-class Raycaster {
-  private grid: CellGrid;
+  public start() {
+    super.start();
 
-  private subscribers: Array<Subscriber> = [];
-
-  public setup() {
     this.grid = level1;
-
-    setInterval(() => this.update(), 500);
   }
 
-  private update() {
+  public update() {
     this.draw();
-
-    this.notifyUpdateDone();
-  }
-  private notifyUpdateDone() {
-    this.subscribers.forEach((func) => func({ grid: this.grid }));
   }
 
   private draw() {}
-
-  public subscribe(subscriber: Subscriber): void {
-    this.subscribers.push(subscriber);
-  }
-  public unsubscribe(subscriber: Subscriber) {
-    const index = this.subscribers.findIndex((el) => subscriber === el);
-
-    this.subscribers.splice(index, 1);
-  }
 
   private static instance: Raycaster;
 
