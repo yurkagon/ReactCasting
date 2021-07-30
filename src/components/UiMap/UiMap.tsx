@@ -1,28 +1,12 @@
-import { useState, useEffect, Fragment } from "react";
+import { Fragment } from "react";
 import cn from "classnames";
 
-import Scene from "../../Scene";
-import Raycaster from "../../Raycaster";
+import { useGrid } from "../../Raycaster";
 
 import "./style.scss";
 
 const UiMap = () => {
-  const [grid, setGridData] = useState<CellGrid>(null);
-
-  useEffect(() => {
-    const scene = Scene.getInstance();
-
-    const raycaster = Raycaster.getInstance();
-
-    const subscriber = () => {
-      // console.log(raycaster);
-      setGridData(raycaster.grid);
-    };
-
-    scene.subscribe(subscriber);
-
-    return () => scene.unsubscribe(subscriber);
-  }, []);
+  const grid = useGrid();
 
   if (!grid) return null;
 
