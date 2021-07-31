@@ -18,10 +18,13 @@ class Control {
     document.body.addEventListener("keydown", (event) => {
       const { code } = event;
 
-      if (code === "ArrowUp") this.moveState.toForward = true;
-      if (code === "ArrowDown") this.moveState.toBack = true;
-      if (code === "ArrowLeft") this.moveState.rotateLeft = true;
-      if (code === "ArrowRight") this.moveState.rotateRight = true;
+      if (code === "ArrowUp" || code === "KeyW")
+        this.moveState.toForward = true;
+      if (code === "ArrowDown" || code === "KeyS") this.moveState.toBack = true;
+      if (code === "ArrowLeft" || code === "KeyA")
+        this.moveState.rotateLeft = true;
+      if (code === "ArrowRight" || code === "KeyD")
+        this.moveState.rotateRight = true;
     });
   }
 
@@ -29,10 +32,14 @@ class Control {
     document.body.addEventListener("keyup", (event) => {
       const { code } = event;
 
-      if (code === "ArrowUp") this.moveState.toForward = false;
-      if (code === "ArrowDown") this.moveState.toBack = false;
-      if (code === "ArrowLeft") this.moveState.rotateLeft = false;
-      if (code === "ArrowRight") this.moveState.rotateRight = false;
+      if (code === "ArrowUp" || code === "KeyW")
+        this.moveState.toForward = false;
+      if (code === "ArrowDown" || code === "KeyS")
+        this.moveState.toBack = false;
+      if (code === "ArrowLeft" || code === "KeyA")
+        this.moveState.rotateLeft = false;
+      if (code === "ArrowRight" || code === "KeyD")
+        this.moveState.rotateRight = false;
     });
   }
 }

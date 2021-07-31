@@ -14,7 +14,7 @@ const DivRenderStrategyTextured = () => {
   const stripWidth = viewport.width / raycaster.raysCount;
 
   return (
-    <div className="div-render-strategy">
+    <div className="div-render-strategy-textured">
       {rays.map((ray, index) => {
         if (!ray.hit) return null;
 
@@ -32,9 +32,6 @@ const DivRenderStrategyTextured = () => {
               height,
               left: stripWidth * index,
               top: (viewport.height - height) / 2,
-              backgroundColor: `rgba(0, 0, ${
-                500 * (height / viewport.height)
-              })`,
             }}
             key={index}
           >

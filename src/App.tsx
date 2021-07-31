@@ -45,7 +45,9 @@ const App = () => {
             autoFocus={false}
           >
             {Settings.renderingStrategies.map((strategy) => (
-              <option value={strategy.name}>{strategy.name}</option>
+              <option value={strategy.name} key={strategy.name}>
+                {strategy.name}
+              </option>
             ))}
           </select>
         </div>
