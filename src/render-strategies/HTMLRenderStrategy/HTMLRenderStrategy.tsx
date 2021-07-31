@@ -1,4 +1,4 @@
-import Raycaster, { useRays } from "../../Raycaster";
+import Raycaster, { useRays, usePlayerPosition } from "../../Raycaster";
 
 import "./style.scss";
 
@@ -18,7 +18,11 @@ const HTMLRenderStrategy = () => {
       {rays.map((ray, index) => {
         if (!ray.hit) return null;
 
-        const height = windowHeight / ray.hitDistance;
+        const distance =
+          Math.cos(raycaster.player.position.rotation - ray.angle) *
+          ray.hitDistance;
+
+        const height = 10000 / distance;
 
         return (
           <div
@@ -28,6 +32,7 @@ const HTMLRenderStrategy = () => {
               height,
               left: stripWidth * index,
               top: (windowHeight - height) / 2,
+              backgroundColor: `rgba(0, 0, ${500 * (height / windowHeight)})`,
             }}
             key={index}
           />

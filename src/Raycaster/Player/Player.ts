@@ -7,8 +7,8 @@ import Control from "./Control";
 
 class Player extends GameObject {
   public position: Position = {
-    x: 100,
-    y: 50,
+    x: 150,
+    y: 150,
     rotation: Math.PI / 2,
   };
 
@@ -56,6 +56,15 @@ class Player extends GameObject {
     if (grid.isCollision(newPosition)) return;
 
     this.position = newPosition;
+  }
+
+  private static instance: Player;
+  public static getInstance(): Player {
+    if (this.instance) return this.instance;
+
+    this.instance = new Player();
+
+    return this.instance;
   }
 }
 

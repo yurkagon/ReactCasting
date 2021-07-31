@@ -10,9 +10,9 @@ import { level1 } from "../levels";
 
 class Raycaster extends GameObject {
   private FOV: number = Angle.toRad(60);
-  public raysCount: number = 320;
+  public raysCount: number = 160;
 
-  public player = new Player();
+  public player: Player = Player.getInstance();
   public grid: Grid = Grid.getInstance();
 
   public rays: Ray[] = [];
