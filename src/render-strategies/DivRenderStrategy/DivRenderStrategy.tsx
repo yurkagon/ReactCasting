@@ -31,7 +31,7 @@ const DivRenderStrategy = () => {
               height,
               left: stripWidth * index,
               top: (viewport.height - height) / 2,
-              backgroundColor: `rgba(0, 0, ${
+              backgroundColor: `rgba(0, ${(300 * height) / viewport.height}, ${
                 500 * (height / viewport.height)
               })`,
             }}
