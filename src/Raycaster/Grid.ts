@@ -8,18 +8,22 @@ class Grid {
     this.data = grid;
   }
 
-  public isCollision(position: Position): Boolean {
+  public isCollision(position: Position): null | Position {
     const gridPosition = this.convertPositionToGridPosition(position);
 
-    const cell = this.data?.[gridPosition.y]?.[gridPosition.x];
+    const cell =
+      this.data?.[Math.floor(gridPosition.y)]?.[Math.floor(gridPosition.x)];
 
-    return !(cell === 0);
+    const isCollisionExist = cell !== 0;
+    if (!isCollisionExist) return null;
+
+    return gridPosition;
   }
 
   private convertPositionToGridPosition(position: Position): Position {
     return {
-      x: Math.floor(position.x / this.tileSize),
-      y: Math.floor(position.y / this.tileSize),
+      x: position.x / this.tileSize,
+      y: position.y / this.tileSize,
     };
   }
 

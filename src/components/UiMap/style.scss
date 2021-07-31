@@ -1,17 +1,16 @@
 .ui-map {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
+
+  opacity: 0.8;
 
   .cell-wrapper {
     position: relative;
 
     .cell {
       position: absolute;
-
-      &.wall {
-        background-color: black;
-      }
+      background-color: black;
     }
 
     .player-marker {

@@ -1,9 +1,10 @@
 import { Component } from "react";
+import Settings from "./Settings";
 import Scene from "./Scene";
 
 import UiMap from "./components/UiMap";
 
-import HTMLRenderStrategy from "./render-strategies/HTMLRenderStrategy";
+import DivRenderStrategy from "./render-strategies/DivRenderStrategy";
 
 class App extends Component {
   componentDidMount() {
@@ -15,9 +16,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <UiMap />
+        <div
+          className="game-view-port"
+          style={{ width: Settings.windowWidth, height: Settings.windowHeight }}
+        >
+          <DivRenderStrategy />
 
-        <HTMLRenderStrategy />
+          <UiMap />
+        </div>
       </div>
     );
   }

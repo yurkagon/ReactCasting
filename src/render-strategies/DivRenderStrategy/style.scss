@@ -1,0 +1,23 @@
+.html-render {
+  position: relative;
+  background: rgb(9, 9, 121);
+  background: linear-gradient(
+    0deg,
+    rgba(9, 9, 121, 1) 0%,
+    rgba(0, 0, 0, 1) 53%,
+    rgba(0, 212, 255, 1) 79%
+  );
+
+  overflow: hidden;
+
+  .strip {
+    position: absolute;
+    image-rendering: pixelated;
+    overflow: hidden;
+
+    img {
+      position: relative;
+      height: 100%;
+    }
+  }
+}

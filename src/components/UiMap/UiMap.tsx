@@ -22,16 +22,16 @@ const UiMap = () => {
   return (
     <div className="ui-map">
       <div className="cell-wrapper" style={{ width, height }}>
-        <PlayerMarker />
+        <RayHits />
 
         {grid.data.map((row, i) => (
           <Fragment key={i}>
             {row.map((cellType: Cell, j) => {
               if (cellType === 0) return null;
-              // TODO: fix styles
+
               return (
                 <div
-                  className={cn("cell", { wall: cellType === 1 })}
+                  className="cell"
                   style={{
                     top: i * tilesSize,
                     left: j * tilesSize,
@@ -43,7 +43,7 @@ const UiMap = () => {
               );
             })}
 
-            <RayHits />
+            <PlayerMarker />
           </Fragment>
         ))}
       </div>
