@@ -12,7 +12,7 @@ const UiMap = () => {
   const grid = useGrid();
   if (!grid) return null;
 
-  const tilesSize = grid.tileSize;
+  const tilesSize = grid.tileSize / 2;
   const rows = grid.data.length;
   const cols = grid.data[0].length;
 

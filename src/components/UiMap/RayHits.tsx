@@ -16,7 +16,13 @@ const RayHits = () => {
 
         if (index % 20 !== 0) return null;
 
-        return <Line key={index} from={position} to={ray.hit} />;
+        return (
+          <Line
+            key={index}
+            from={{ x: position.x / 2, y: position.y / 2 }}
+            to={{ x: ray.hit.x / 2, y: ray.hit.y / 2 }}
+          />
+        );
       })}
     </Fragment>
   );
