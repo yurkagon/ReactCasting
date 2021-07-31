@@ -1,0 +1,11 @@
+.html-render {
+  position: relative;
+  background-color: gray;
+
+  overflow: hidden;
+
+  .strip {
+    position: absolute;
+    background-color: blue;
+  }
+}

@@ -1,3 +1,5 @@
+import { calculateDistance } from "../utils";
+
 import Grid from "./Grid";
 
 class Ray {
@@ -7,8 +9,8 @@ class Ray {
   public hit?: Position;
   public hitDistance?: number;
 
-  private readonly checkingDistance: number = 5;
-  private readonly maxDistance: number = 300;
+  private readonly checkingDistance: number = 1 / 10;
+  public readonly maxDistance: number = 300;
 
   private readonly grid: Grid = Grid.getInstance();
 
@@ -35,6 +37,7 @@ class Ray {
 
       if (this.grid.isCollision(rayPoint)) {
         this.hit = rayPoint;
+        this.hitDistance = calculateDistance(this.point, rayPoint);
 
         break;
       }

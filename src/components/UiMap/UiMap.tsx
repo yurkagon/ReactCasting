@@ -22,8 +22,6 @@ const UiMap = () => {
   return (
     <div className="ui-map">
       <div className="cell-wrapper" style={{ width, height }}>
-        <RayHits />
-
         <PlayerMarker />
 
         {grid.data.map((row, i) => (
@@ -44,6 +42,8 @@ const UiMap = () => {
                 />
               );
             })}
+
+            <RayHits />
           </Fragment>
         ))}
       </div>
