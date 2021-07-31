@@ -1,4 +1,4 @@
-import Settings from "../../Settings";
+import { useViewport } from "../../utils";
 
 import Raycaster, { useRays } from "../../Raycaster";
 // import wallTexture from "./wall.jpg";
@@ -9,12 +9,14 @@ const DivRenderStrategy = () => {
   const rays = useRays();
   const raycaster = Raycaster.getInstance();
 
-  const stripWidth = Settings.windowWidth / raycaster.raysCount;
+  const viewport = useViewport();
+
+  const stripWidth = viewport.width / raycaster.raysCount;
 
   return (
     <div
       className="html-render"
-      style={{ height: Settings.windowHeight, width: Settings.windowWidth }}
+      style={{ height: viewport.height, width: viewport.width }}
     >
       {rays.map((ray, index) => {
         if (!ray.hit) return null;
@@ -32,9 +34,9 @@ const DivRenderStrategy = () => {
               width: stripWidth,
               height,
               left: stripWidth * index,
-              top: (Settings.windowHeight - height) / 2,
+              top: (viewport.height - height) / 2,
               backgroundColor: `rgba(0, 0, ${
-                500 * (height / Settings.windowHeight)
+                500 * (height / viewport.height)
               })`,
             }}
             key={index}
