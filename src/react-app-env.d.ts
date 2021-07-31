@@ -9,3 +9,8 @@ declare type Position = {
   y: number;
   rotation?: number;
 };
+
+declare interface RenderStrategy {
+  name: string;
+  component: React.ComponentType<any>;
+}

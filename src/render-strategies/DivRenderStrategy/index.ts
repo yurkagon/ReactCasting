@@ -1,1 +1,1 @@
-export { default } from "./DivRenderStartegy";
+export { default } from "./DivRenderStrategy";

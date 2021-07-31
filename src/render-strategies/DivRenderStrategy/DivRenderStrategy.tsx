@@ -1,7 +1,6 @@
 import { useViewport } from "../../utils";
 
 import Raycaster, { useRays } from "../../Raycaster";
-// import wallTexture from "./wall.jpg";
 
 import "./style.scss";
 
@@ -14,10 +13,7 @@ const DivRenderStrategy = () => {
   const stripWidth = viewport.width / raycaster.raysCount;
 
   return (
-    <div
-      className="html-render"
-      style={{ height: viewport.height, width: viewport.width }}
-    >
+    <div className="div-render-strategy">
       {rays.map((ray, index) => {
         if (!ray.hit) return null;
 
@@ -40,16 +36,7 @@ const DivRenderStrategy = () => {
               })`,
             }}
             key={index}
-          >
-            {/* <img
-              src={wallTexture}
-              style={{
-                height,
-                width: height,
-                left: -(ray.hitPercent.x * height),
-              }}
-            /> */}
-          </div>
+          />
         );
       })}
     </div>

@@ -16,5 +16,10 @@
     position: absolute;
     image-rendering: pixelated;
     overflow: hidden;
+
+    img {
+      position: relative;
+      height: 100%;
+    }
   }
 }

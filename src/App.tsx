@@ -1,6 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useViewport } from "./utils";
+
+import Settings from "./Settings";
 
 import Scene from "./Scene";
 
@@ -9,6 +11,10 @@ import UiMap from "./components/UiMap";
 import DivRenderStrategy from "./render-strategies/DivRenderStrategy";
 
 const App = () => {
+  const [renderStrategy, setRenderStrategy] = useState<RenderStrategy>(
+    Settings.renderingStrategies[0]
+  );
+
   useEffect(() => {
     const scene = Scene.getInstance();
 
@@ -20,9 +26,29 @@ const App = () => {
   return (
     <div className="App">
       <div className="game-view-port" style={{ width, height }}>
-        <DivRenderStrategy />
+        {<renderStrategy.component />}
 
         <UiMap />
+      </div>
+
+      <div>
+        <div>
+          Rendering strategy:{" "}
+          <select
+            onChange={(event) => {
+              const strategy = Settings.renderingStrategies.find(
+                (strategy) => strategy.name === event.target.value
+              );
+              setRenderStrategy(strategy);
+            }}
+            value={renderStrategy.name}
+            autoFocus={false}
+          >
+            {Settings.renderingStrategies.map((strategy) => (
+              <option value={strategy.name}>{strategy.name}</option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   );
