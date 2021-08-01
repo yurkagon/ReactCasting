@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Raycasting-React/static/css/main.1657002c.chunk.css",
+    "main.js": "/Raycasting-React/static/js/main.1dc7b100.chunk.js",
+    "main.js.map": "/Raycasting-React/static/js/main.1dc7b100.chunk.js.map",
+    "runtime-main.js": "/Raycasting-React/static/js/runtime-main.a04f7cb5.js",
+    "runtime-main.js.map": "/Raycasting-React/static/js/runtime-main.a04f7cb5.js.map",
+    "static/js/2.4e5859b1.chunk.js": "/Raycasting-React/static/js/2.4e5859b1.chunk.js",
+    "static/js/2.4e5859b1.chunk.js.map": "/Raycasting-React/static/js/2.4e5859b1.chunk.js.map",
+    "static/js/3.803ce04b.chunk.js": "/Raycasting-React/static/js/3.803ce04b.chunk.js",
+    "static/js/3.803ce04b.chunk.js.map": "/Raycasting-React/static/js/3.803ce04b.chunk.js.map",
+    "index.html": "/Raycasting-React/index.html",
+    "service-worker.js": "/Raycasting-React/service-worker.js",
+    "service-worker.js.map": "/Raycasting-React/service-worker.js.map",
+    "static/css/main.1657002c.chunk.css.map": "/Raycasting-React/static/css/main.1657002c.chunk.css.map",
+    "static/js/2.4e5859b1.chunk.js.LICENSE.txt": "/Raycasting-React/static/js/2.4e5859b1.chunk.js.LICENSE.txt",
+    "static/media/wall.2598404c.jpg": "/Raycasting-React/static/media/wall.2598404c.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a04f7cb5.js",
+    "static/js/2.4e5859b1.chunk.js",
+    "static/css/main.1657002c.chunk.css",
+    "static/js/main.1dc7b100.chunk.js"
+  ]
+}
