@@ -64,6 +64,7 @@ const TextRenderStrategy = () => {
   }, [rays]);
 
   useEffect(() => {
+    console.log(`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`);
     console.log(renderedString);
   }, [renderedString]);
 
