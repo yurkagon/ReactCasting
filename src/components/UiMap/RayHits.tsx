@@ -1,4 +1,4 @@
-import { Fragment, Component } from "react";
+import { Fragment } from "react";
 import { useRays, usePlayerPosition } from "../../Raycaster";
 
 import Line from "./Line";
