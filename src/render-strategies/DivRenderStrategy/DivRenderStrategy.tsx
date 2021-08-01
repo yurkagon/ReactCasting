@@ -17,23 +17,17 @@ const DivRenderStrategy = () => {
       {rays.map((ray, index) => {
         if (!ray.hit) return null;
 
-        const distance =
-          Math.cos(raycaster.player.position.rotation - ray.angle) *
-          ray.hitDistance;
-
-        const height = 10000 / distance;
-
         return (
           <div
             className="strip"
             style={{
               width: stripWidth,
-              height,
+              height: ray.stripHeight,
               left: stripWidth * index,
-              top: (viewport.height - height) / 2,
-              backgroundColor: `rgba(0, ${(300 * height) / viewport.height}, ${
-                500 * (height / viewport.height)
-              })`,
+              top: (viewport.height - ray.stripHeight) / 2,
+              backgroundColor: `rgba(0, ${
+                (300 * ray.stripHeight) / viewport.height
+              }, ${500 * (ray.stripHeight / viewport.height)})`,
             }}
             key={index}
           />

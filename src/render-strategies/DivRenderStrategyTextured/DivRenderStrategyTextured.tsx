@@ -18,29 +18,23 @@ const DivRenderStrategyTextured = () => {
       {rays.map((ray, index) => {
         if (!ray.hit) return null;
 
-        const distance =
-          Math.cos(raycaster.player.position.rotation - ray.angle) *
-          ray.hitDistance;
-
-        const height = 10000 / distance;
-
         return (
           <div
             className="strip"
             style={{
               width: stripWidth,
-              height,
+              height: ray.stripHeight,
               left: stripWidth * index,
-              top: (viewport.height - height) / 2,
+              top: (viewport.height - ray.stripHeight) / 2,
             }}
             key={index}
           >
             <img
               src={wallTexture}
               style={{
-                height,
-                width: height,
-                left: -(ray.hitPercent.x * height),
+                height: ray.stripHeight,
+                width: ray.stripHeight,
+                left: -(ray.hitPercent.x * ray.stripHeight),
               }}
             />
           </div>

@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"2d-array-rotation@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/2d-array-rotation/-/2d-array-rotation-2.1.1.tgz#6d40cba6ffc6a8a497c4997c4f3ba85070c8b234"
+  integrity sha512-rJ8rp+8uzHzkbHwV1mgMxdZCGwtg91+QL77gD6PZUr2YXO2VbVcsd2zxxeAsC4Bvv9I0A4OrUOwgj89iSN0RHQ==
+
 "@babel/code-frame@7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"

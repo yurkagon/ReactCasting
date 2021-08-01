@@ -6,10 +6,16 @@ import Grid from "../Grid";
 import Control from "./Control";
 
 class Player extends GameObject {
+  // public position: Position = {
+  //   x: 150,
+  //   y: 150,
+  //   rotation: Math.PI / 2,
+  // };
+
   public position: Position = {
-    x: 150,
-    y: 150,
-    rotation: Math.PI / 2,
+    x: 155.15374267341303,
+    y: 141.63397544881818,
+    rotation: -1.8500490071139923,
   };
 
   public readonly walkSpeed = 1;

@@ -8,11 +8,26 @@ export const calculateDistance = (p1: Position, p2: Position): number => {
   return Math.sqrt((p2.x - p1.x) ** 2 + (p2.y - p1.y) ** 2);
 };
 
+export const getCharByStripHeight = (
+  height: number,
+  maxHeight: number
+): string => {
+  const charsSpectre = ",,:;I&&00%$@@#";
+
+  let key = Math.round((height / maxHeight) * charsSpectre.length);
+  if (key < 0) key = 0;
+  if (key >= charsSpectre.length) key = charsSpectre.length - 1;
+
+  const char = charsSpectre[key];
+
+  return charsSpectre[key];
+};
+
 export const useViewport = (): { width: number; height: number } => {
   const viewPort = useViewportCore();
 
   return {
-    width: viewPort.width * Settings.viewPortSizeMultiplier,
-    height: viewPort.height * Settings.viewPortSizeMultiplier,
+    width: Math.round(viewPort.width * Settings.viewPortSizeMultiplier),
+    height: Math.round(viewPort.height * Settings.viewPortSizeMultiplier),
   };
 };

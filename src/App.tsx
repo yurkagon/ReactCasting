@@ -8,11 +8,9 @@ import Scene from "./Scene";
 
 import UiMap from "./components/UiMap";
 
-import DivRenderStrategy from "./render-strategies/DivRenderStrategy";
-
 const App = () => {
   const [renderStrategy, setRenderStrategy] = useState<RenderStrategy>(
-    Settings.renderingStrategies[0]
+    Settings.renderingStrategies[2]
   );
 
   useEffect(() => {

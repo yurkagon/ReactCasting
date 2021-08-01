@@ -37,6 +37,10 @@ class Raycaster extends GameObject {
     }
   }
 
+  public setRaysCount(count: number) {
+    this.raysCount = count;
+  }
+
   private static instance: Raycaster;
   public static getInstance(): Raycaster {
     if (this.instance) return this.instance;
