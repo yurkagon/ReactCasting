@@ -6,6 +6,9 @@ import { getCharByStripHeight } from "../../utils";
 import Settings from "../../Settings";
 
 import Raycaster, { useRays } from "../../Raycaster";
+import { useViewport } from "../../utils";
+
+import devtoolsImg from "./devtools.jpeg";
 
 import "./style.scss";
 
@@ -16,13 +19,15 @@ const TextRenderStrategy = () => {
   const rays = useRays();
   const raycaster = Raycaster.getInstance();
 
+  const viewport = useViewport();
+
   useEffect(() => {
     setPreviousRaysCount(raycaster.raysCount);
 
     raycaster.setRaysCount(Settings.consoleRaysCount);
 
     return () => raycaster.setRaysCount(previousRaysCount);
-  }, []);
+  }, [previousRaysCount]);
 
   const height = Math.floor(Settings.consoleHeight);
 
@@ -64,11 +69,17 @@ const TextRenderStrategy = () => {
   }, [rays]);
 
   useEffect(() => {
-    console.log(`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`);
     console.log(renderedString);
   }, [renderedString]);
 
-  return null;
+  return (
+    <div className="console-render-strategy">
+      <div className="description">
+        <h3>Open browser console</h3>
+        <img src={devtoolsImg} width={viewport.width} />
+      </div>
+    </div>
+  );
 };
 
 export default TextRenderStrategy;
