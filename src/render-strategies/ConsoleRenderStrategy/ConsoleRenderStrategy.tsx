@@ -68,7 +68,7 @@ const ConsoleRenderStrategy = () => {
   }, [rays]);
 
   useEffect(() => {
-    console.log(renderedString);
+    if (renderedString) console.log(renderedString);
   }, [renderedString]);
 
   return (
