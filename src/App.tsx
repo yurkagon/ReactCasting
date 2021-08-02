@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 
-import { useViewport } from "./utils";
+import { useViewport, Angle } from "./utils";
 
 import Settings from "./Settings";
 
 import Scene from "./Scene";
+import Raycaster from "./Raycaster";
 
 import UiMap from "./components/UiMap";
 
 const App = () => {
+  const raycaster = Raycaster.getInstance();
+
+  const [fov, setFov] = useState<number>(raycaster.FOV);
+
   const [renderStrategy, setRenderStrategy] = useState<RenderStrategy>(
     Settings.renderingStrategies[0]
   );
@@ -18,6 +23,9 @@ const App = () => {
 
     scene.init();
   }, []);
+  useEffect(() => {
+    raycaster.FOV = fov;
+  }, [fov]);
 
   const { height, width } = useViewport();
 
@@ -48,6 +56,18 @@ const App = () => {
               </option>
             ))}
           </select>
+        </div>
+
+        <div>
+          FOV: {Math.round(Angle.toDeg(fov))}°
+          <input
+            type="range"
+            min="20"
+            max="150"
+            value={Angle.toDeg(fov)}
+            step="10"
+            onChange={(e) => setFov(Angle.toRad(Number(e.target.value)))}
+          />
         </div>
       </div>
     </div>
