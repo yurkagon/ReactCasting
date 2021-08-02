@@ -13,6 +13,7 @@ const App = () => {
   const raycaster = Raycaster.getInstance();
 
   const [fov, setFov] = useState<number>(raycaster.FOV);
+  const [rays, setRays] = useState<number>(raycaster.raysCount);
 
   const [renderStrategy, setRenderStrategy] = useState<RenderStrategy>(
     Settings.renderingStrategies[0]
@@ -26,6 +27,12 @@ const App = () => {
   useEffect(() => {
     raycaster.FOV = fov;
   }, [fov]);
+  useEffect(() => {
+    raycaster.raysCount = rays;
+  }, [rays]);
+  useEffect(() => {
+    setRays(raycaster.raysCount);
+  }, [renderStrategy, raycaster]);
 
   const { height, width } = useViewport();
 
@@ -57,9 +64,8 @@ const App = () => {
             ))}
           </select>
         </div>
-
         <div>
-          FOV: {Math.round(Angle.toDeg(fov))}°
+          FOV:{"  "}
           <input
             type="range"
             min="20"
@@ -68,7 +74,22 @@ const App = () => {
             step="10"
             onChange={(e) => setFov(Angle.toRad(Number(e.target.value)))}
           />
+          Value: {Math.round(Angle.toDeg(fov))}° (default: 60°)
         </div>
+        {renderStrategy.raysCountChangeAvailable && (
+          <div>
+            RAYS:
+            <input
+              type="range"
+              min="10"
+              max="500"
+              value={rays}
+              step="10"
+              onChange={(e) => setRays(Number(e.target.value))}
+            />
+            Value: {rays} (default: 160)
+          </div>
+        )}
       </div>
     </div>
   );

@@ -15,10 +15,15 @@ class Settings {
   public static readonly consoleHeight: number = 40;
 
   public static readonly renderingStrategies: RenderStrategy[] = [
-    { name: "HTML <div> Shaded", component: DivRenderStrategy },
+    {
+      name: "HTML <div> Shaded",
+      component: DivRenderStrategy,
+      raysCountChangeAvailable: true,
+    },
     {
       name: "HTML <div> Textured (works ugly)",
       component: DivRenderStrategyTextured,
+      raysCountChangeAvailable: true,
     },
     { name: "HTML <textarea> (Only chrome)", component: TextRenderStrategy },
     {

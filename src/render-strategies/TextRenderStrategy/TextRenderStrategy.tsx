@@ -16,6 +16,13 @@ const TextRenderStrategy = () => {
   const viewport = useViewport();
 
   useEffect(() => {
+    const previousRaysCount = raycaster.raysCount;
+
+    raycaster.setRaysCount(Settings.consoleRaysCount);
+
+    return () => raycaster.setRaysCount(previousRaysCount);
+  }, []);
+  useEffect(() => {
     raycaster.setRaysCount(
       Math.floor(viewport.width * Settings.viewportWidthToCharsScaleCoefficient)
     );
