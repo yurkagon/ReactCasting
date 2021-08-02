@@ -1,0 +1,16 @@
+.console-render-strategy {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 750px) {
+  .console-render-strategy .description {
+    display: none;
+  }
+}
+
+.console-render-strategy .description img {
+  width: 400px;
+  height: 200px;
+}
+/*# sourceMappingURL=style.css.map */

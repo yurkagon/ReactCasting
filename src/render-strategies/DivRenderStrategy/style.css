@@ -1,0 +1,20 @@
+.div-render-strategy {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #090979;
+  background: -webkit-gradient(linear, left bottom, left top, from(#6565a8), color-stop(53%, black), color-stop(79%, #045363));
+  background: linear-gradient(0deg, #6565a8 0%, black 53%, #045363 79%);
+  overflow: hidden;
+}
+
+.div-render-strategy .strip {
+  position: absolute;
+  -ms-interpolation-mode: nearest-neighbor;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: -o-pixelated;
+      image-rendering: pixelated;
+  overflow: hidden;
+}
+/*# sourceMappingURL=style.css.map */

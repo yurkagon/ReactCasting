@@ -18,6 +18,14 @@ const DivRenderStrategyTextured = () => {
       {rays.map((ray, index) => {
         if (!ray.hit) return null;
 
+        // TODO: handle textures in better way
+        const percent = ray.hitPercent.x;
+        // ray.hitPercent.x > ray.hitPercent.y
+        //   ? ray.hitPercent.y
+        //   : ray.hitPercent.x;
+
+        const textureMove = percent * ray.stripHeight;
+
         return (
           <div
             className="strip"
@@ -29,12 +37,23 @@ const DivRenderStrategyTextured = () => {
             }}
             key={index}
           >
-            <img
+            {/* <img
               src={wallTexture}
               style={{
                 height: ray.stripHeight,
                 width: ray.stripHeight,
-                left: -(ray.hitPercent.x * ray.stripHeight),
+                left: -textureMove,
+              }}
+            /> */}
+
+            <div
+              className="texture"
+              style={{
+                backgroundImage: `url(${wallTexture})`,
+                height: ray.stripHeight,
+                width: ray.stripHeight,
+                backgroundSize: "cover",
+                backgroundPositionX: -textureMove,
               }}
             />
           </div>
