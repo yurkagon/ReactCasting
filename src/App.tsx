@@ -10,7 +10,7 @@ import UiMap from "./components/UiMap";
 
 const App = () => {
   const [renderStrategy, setRenderStrategy] = useState<RenderStrategy>(
-    Settings.renderingStrategies[3]
+    Settings.renderingStrategies[0]
   );
 
   useEffect(() => {

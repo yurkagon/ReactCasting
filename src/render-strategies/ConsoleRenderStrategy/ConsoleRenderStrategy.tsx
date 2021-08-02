@@ -12,8 +12,7 @@ import devtoolsImg from "./devtools.jpeg";
 
 import "./style.scss";
 
-const TextRenderStrategy = () => {
-  const [previousRaysCount, setPreviousRaysCount] = useState<number>(null);
+const ConsoleRenderStrategy = () => {
   const [renderedString, setRenderedString] = useState<string>(null);
 
   const rays = useRays();
@@ -22,12 +21,12 @@ const TextRenderStrategy = () => {
   const viewport = useViewport();
 
   useEffect(() => {
-    setPreviousRaysCount(raycaster.raysCount);
+    const previousRaysCount = raycaster.raysCount;
 
     raycaster.setRaysCount(Settings.consoleRaysCount);
 
     return () => raycaster.setRaysCount(previousRaysCount);
-  }, [previousRaysCount]);
+  }, []);
 
   const height = Math.floor(Settings.consoleHeight);
 
@@ -82,4 +81,4 @@ const TextRenderStrategy = () => {
   );
 };
 
-export default TextRenderStrategy;
+export default ConsoleRenderStrategy;
