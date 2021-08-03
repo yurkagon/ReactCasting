@@ -16,7 +16,7 @@ const App = () => {
   const [rays, setRays] = useState<number>(raycaster.raysCount);
 
   const [renderStrategy, setRenderStrategy] = useState<RenderStrategy>(
-    Settings.renderingStrategies[1]
+    Settings.renderingStrategies[0]
   );
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const App = () => {
       <div className="game-view-port" style={{ width, height }}>
         {<renderStrategy.component />}
 
-        <UiMap />
+        {/* <UiMap /> */}
       </div>
 
       <div>

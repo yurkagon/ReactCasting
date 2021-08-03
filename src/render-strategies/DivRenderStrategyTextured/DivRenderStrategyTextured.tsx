@@ -1,4 +1,4 @@
-import { useViewport } from "../../utils";
+import { useViewport, limit } from "../../utils";
 
 import Raycaster, { useRays } from "../../Raycaster";
 
@@ -25,7 +25,7 @@ const DivRenderStrategyTextured = () => {
             ? ray.collision.floatPart.y
             : ray.collision.floatPart.x;
 
-        const textureMove = +float * ray.stripHeight;
+        const textureMove = float * ray.stripHeight;
 
         return (
           <div
@@ -35,18 +35,19 @@ const DivRenderStrategyTextured = () => {
               height: ray.stripHeight,
               left: stripWidth * index,
               top: (viewport.height - ray.stripHeight) / 2,
+              backgroundColor: `black`,
             }}
             key={index}
           >
             {/* <img
-              src={wallTexture}
+              src={wallData[ray.collision.cell]}
               style={{
                 height: ray.stripHeight,
                 width: ray.stripHeight,
                 left: -textureMove,
+                opacity: (ray.stripHeight * 2) / viewport.height,
               }}
             /> */}
-
             <div
               className="texture"
               style={{
@@ -55,6 +56,7 @@ const DivRenderStrategyTextured = () => {
                 width: ray.stripHeight,
                 backgroundSize: "cover",
                 backgroundPositionX: -textureMove,
+                opacity: (ray.stripHeight * 2) / viewport.height,
               }}
             />
           </div>
