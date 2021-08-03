@@ -16,7 +16,7 @@ const App = () => {
   const [rays, setRays] = useState<number>(raycaster.raysCount);
 
   const [renderStrategy, setRenderStrategy] = useState<RenderStrategy>(
-    Settings.renderingStrategies[1]
+    Settings.renderingStrategies[0]
   );
 
   useEffect(() => {

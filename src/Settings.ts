@@ -16,13 +16,13 @@ class Settings {
 
   public static readonly renderingStrategies: RenderStrategy[] = [
     {
-      name: "HTML <div> Shaded",
-      component: DivRenderStrategy,
+      name: "HTML <div> Textured",
+      component: DivRenderStrategyTextured,
       raysCountChangeAvailable: true,
     },
     {
-      name: "HTML <div> Textured (works ugly)",
-      component: DivRenderStrategyTextured,
+      name: "HTML <div> Shaded",
+      component: DivRenderStrategy,
       raysCountChangeAvailable: true,
     },
     { name: "HTML <textarea> (Only chrome)", component: TextRenderStrategy },
