@@ -1,4 +1,6 @@
-import { Collision } from "./types";
+import maxBy from "lodash/maxBy";
+
+import { Collision, Side } from "./types";
 
 class Grid {
   public data: CellGrid = null;
@@ -19,11 +21,28 @@ class Grid {
     const collisionExist = cell !== 0;
     if (!collisionExist) return null;
 
+    const floatPart = { x: gridPosition.x % 1, y: gridPosition.y % 1 };
+
+    const distanceTop = floatPart.y;
+    const distanceBottom = 1 - distanceTop;
+    const distanceLeft = floatPart.x;
+    const distanceRight = 1 - distanceLeft;
+
+    const distanceData: { side: Side; value: number }[] = [
+      { side: "top", value: distanceTop },
+      { side: "bottom", value: distanceBottom },
+      { side: "left", value: distanceLeft },
+      { side: "right", value: distanceRight },
+    ];
+
+    const { side } = maxBy(distanceData, "value");
+
     return {
       point: position,
       gridPosition,
-      floatPart: { x: gridPosition.x % 1, y: gridPosition.y % 1 },
+      floatPart,
       cell,
+      collisionSide: side,
     };
   }
 

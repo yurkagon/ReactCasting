@@ -16,7 +16,7 @@ const App = () => {
   const [rays, setRays] = useState<number>(raycaster.raysCount);
 
   const [renderStrategy, setRenderStrategy] = useState<RenderStrategy>(
-    Settings.renderingStrategies[0]
+    Settings.renderingStrategies[1]
   );
 
   useEffect(() => {
@@ -69,7 +69,7 @@ const App = () => {
           <input
             type="range"
             min="20"
-            max="150"
+            max="360"
             value={Angle.toDeg(fov)}
             step="10"
             onChange={(e) => setFov(Angle.toRad(Number(e.target.value)))}

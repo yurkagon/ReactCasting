@@ -18,13 +18,13 @@ const DivRenderStrategyTextured = () => {
       {rays.map((ray, index) => {
         if (!ray.collision) return null;
 
-        // TODO: handle textures in better way
-        const float = ray.collision.floatPart.x;
-        // ray.hitPercent.x > ray.hitPercent.y
-        //   ? ray.hitPercent.y
-        //   : ray.hitPercent.x;
+        const float =
+          ray.collision.collisionSide === "left" ||
+          ray.collision.collisionSide === "right"
+            ? ray.collision.floatPart.y
+            : ray.collision.floatPart.x;
 
-        const textureMove = float * ray.stripHeight;
+        const textureMove = +float.toFixed(2) * ray.stripHeight;
 
         return (
           <div
