@@ -1,4 +1,4 @@
-import { useViewport } from "../../utils";
+import { useViewport, limit } from "../../utils";
 
 import Raycaster, { useRays } from "../../Raycaster";
 
@@ -17,6 +17,14 @@ const DivRenderStrategy = () => {
       {rays.map((ray, index) => {
         if (!ray.collision) return null;
 
+        const rgbMax = 170;
+        const colorValue = limit(
+          (rgbMax * ray.stripHeight) / viewport.height,
+          rgbMax
+        );
+
+        const backgroundColor = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+
         return (
           <div
             className="strip"
@@ -25,9 +33,7 @@ const DivRenderStrategy = () => {
               height: ray.stripHeight,
               left: stripWidth * index,
               top: (viewport.height - ray.stripHeight) / 2,
-              backgroundColor: `rgba(0, ${
-                (300 * ray.stripHeight) / viewport.height
-              }, ${500 * (ray.stripHeight / viewport.height)})`,
+              backgroundColor,
             }}
             key={index}
           />

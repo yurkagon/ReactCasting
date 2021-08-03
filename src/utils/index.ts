@@ -31,3 +31,9 @@ export const useViewport = (): { width: number; height: number } => {
     height: Math.round(viewPort.height * Settings.viewPortSizeMultiplier),
   };
 };
+
+export const limit = (value: number, limit: number): number => {
+  if (value > limit) return limit;
+
+  return value;
+};
