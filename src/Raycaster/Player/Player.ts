@@ -59,7 +59,7 @@ class Player extends GameObject {
       y: this.position.y + vector.y,
     };
 
-    if (grid.isCollision(newPosition)) return;
+    if (grid.handleCollision(newPosition)) return;
 
     this.position = newPosition;
   }

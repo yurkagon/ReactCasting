@@ -15,7 +15,7 @@ const DivRenderStrategy = () => {
   return (
     <div className="div-render-strategy">
       {rays.map((ray, index) => {
-        if (!ray.hit) return null;
+        if (!ray.collision) return null;
 
         return (
           <div

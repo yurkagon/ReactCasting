@@ -1,3 +1,5 @@
+import { Collision } from "./types";
+
 class Grid {
   public data: CellGrid = null;
   public readonly tileSize: number = 32;
@@ -8,16 +10,21 @@ class Grid {
     this.data = grid;
   }
 
-  public isCollision(position: Position): null | Position {
+  public handleCollision(position: Position): Collision | null {
     const gridPosition = this.convertPositionToGridPosition(position);
 
     const cell =
       this.data?.[Math.floor(gridPosition.y)]?.[Math.floor(gridPosition.x)];
 
-    const isCollisionExist = cell !== 0;
-    if (!isCollisionExist) return null;
+    const collisionExist = cell !== 0;
+    if (!collisionExist) return null;
 
-    return gridPosition;
+    return {
+      point: position,
+      gridPosition,
+      floatPart: { x: gridPosition.x % 1, y: gridPosition.y % 1 },
+      cell,
+    };
   }
 
   private convertPositionToGridPosition(position: Position): Position {

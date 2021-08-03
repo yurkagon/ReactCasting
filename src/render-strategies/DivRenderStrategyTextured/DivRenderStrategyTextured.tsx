@@ -16,15 +16,15 @@ const DivRenderStrategyTextured = () => {
   return (
     <div className="div-render-strategy-textured">
       {rays.map((ray, index) => {
-        if (!ray.hit) return null;
+        if (!ray.collision) return null;
 
         // TODO: handle textures in better way
-        const percent = ray.hitPercent.x;
+        const float = ray.collision.floatPart.x;
         // ray.hitPercent.x > ray.hitPercent.y
         //   ? ray.hitPercent.y
         //   : ray.hitPercent.x;
 
-        const textureMove = percent * ray.stripHeight;
+        const textureMove = float * ray.stripHeight;
 
         return (
           <div

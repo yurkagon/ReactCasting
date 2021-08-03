@@ -3,13 +3,20 @@ import { calculateDistance } from "../utils";
 import Grid from "./Grid";
 import Player from "./Player";
 
+import { Collision } from "./types";
+
 class Ray {
   private readonly point: Position;
   public readonly angle: number;
 
-  public hit?: Position;
+  public isRayFacingDown: boolean;
+  public isRayFacingUp: boolean;
+  public isRayFacingRight: boolean;
+  public isRayFacingLeft: boolean;
+
+  public collision?: Collision;
   public hitDistance?: number;
-  public hitPercent?: Position;
+
   public stripHeight: number = 0;
 
   private readonly checkingDistance: number = 1 / 2;
@@ -20,6 +27,13 @@ class Ray {
   constructor(point: Position, angle: number) {
     this.angle = angle;
     this.point = point;
+
+    this.isRayFacingDown = this.angle > 0 && this.angle < Math.PI;
+    this.isRayFacingUp = !this.isRayFacingDown;
+
+    this.isRayFacingRight =
+      this.angle < 0.5 * Math.PI || this.angle > 1.5 * Math.PI;
+    this.isRayFacingLeft = !this.isRayFacingRight;
 
     this.cast();
   }
@@ -38,11 +52,10 @@ class Ray {
         y: this.point.y + vector.y,
       };
 
-      const collision = this.grid.isCollision(rayPoint);
+      const collision = this.grid.handleCollision(rayPoint);
 
       if (collision) {
-        this.hit = rayPoint;
-        this.hitPercent = { x: collision.x % 1, y: collision.y % 1 };
+        this.collision = collision;
         this.hitDistance = calculateDistance(this.point, rayPoint);
 
         this.stripHeight =
