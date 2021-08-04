@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Raycasting-React/static/css/main.d1c83d9f.chunk.css",
-    "main.js": "/Raycasting-React/static/js/main.d60eb724.chunk.js",
-    "main.js.map": "/Raycasting-React/static/js/main.d60eb724.chunk.js.map",
+    "main.js": "/Raycasting-React/static/js/main.4992b5b9.chunk.js",
+    "main.js.map": "/Raycasting-React/static/js/main.4992b5b9.chunk.js.map",
     "runtime-main.js": "/Raycasting-React/static/js/runtime-main.c249578f.js",
     "runtime-main.js.map": "/Raycasting-React/static/js/runtime-main.c249578f.js.map",
     "static/js/2.c22ff0f8.chunk.js": "/Raycasting-React/static/js/2.c22ff0f8.chunk.js",
@@ -23,6 +23,6 @@
     "static/js/runtime-main.c249578f.js",
     "static/js/2.c22ff0f8.chunk.js",
     "static/css/main.d1c83d9f.chunk.css",
-    "static/js/main.d60eb724.chunk.js"
+    "static/js/main.4992b5b9.chunk.js"
   ]
 }
