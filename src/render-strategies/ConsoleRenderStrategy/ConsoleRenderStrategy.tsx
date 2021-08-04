@@ -71,6 +71,10 @@ const ConsoleRenderStrategy = () => {
     if (renderedString) console.log(renderedString);
   }, [renderedString]);
 
+  useEffect(() => {
+    return () => console.clear();
+  }, []);
+
   return (
     <div className="console-render-strategy">
       <div className="description">

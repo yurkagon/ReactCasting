@@ -16,7 +16,8 @@ class Ray {
 
   public collision?: Collision;
   public hitDistance?: number;
-
+  public isVerticalCast: boolean = false;
+  public isHorizontalCast: boolean = false;
   public stripHeight: number = 0;
 
   public readonly maxDistance: number = 300;
@@ -34,11 +35,9 @@ class Ray {
     this.isRayFacingRight =
       this.angle < 0.5 * Math.PI || this.angle > 1.5 * Math.PI;
     this.isRayFacingLeft = !this.isRayFacingRight;
-
-    this.cast();
   }
 
-  private cast(): void {
+  public cast(): void {
     const horizontalCollision = this.castHorizontal();
     const verticalCollision = this.castVertical();
 
@@ -54,9 +53,11 @@ class Ray {
     if (horizontalDistance < verticalDistance) {
       this.collision = horizontalCollision;
       this.hitDistance = horizontalDistance;
+      this.isHorizontalCast = true;
     } else if (verticalDistance <= horizontalDistance) {
       this.collision = verticalCollision;
       this.hitDistance = verticalDistance;
+      this.isVerticalCast = true;
     }
 
     const wallCoefficient = 10000;

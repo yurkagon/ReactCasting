@@ -33,7 +33,11 @@ class Raycaster extends GameObject {
     for (let columnId = 0; columnId < this.raysCount; columnId++) {
       const angle = startAngle + anglePerRay * columnId;
 
-      this.rays.push(new Ray(this.player.position, angle));
+      const ray = new Ray(this.player.position, angle);
+
+      ray.cast();
+
+      this.rays.push(ray);
     }
   }
 

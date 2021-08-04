@@ -35,7 +35,6 @@ const DivRenderStrategyTextured = () => {
               height: ray.stripHeight,
               left: stripWidth * index,
               top: (viewport.height - ray.stripHeight) / 2,
-              backgroundColor: `black`,
             }}
             key={index}
           >

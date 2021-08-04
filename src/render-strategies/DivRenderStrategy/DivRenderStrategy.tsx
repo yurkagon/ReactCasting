@@ -17,7 +17,14 @@ const DivRenderStrategy = () => {
       {rays.map((ray, index) => {
         if (!ray.collision) return null;
 
-        const rgbMax = 170;
+        const isShadedSide =
+          ray.collision.collisionSide === "top" ||
+          ray.collision.collisionSide === "left";
+        // const darkness =
+        //   (ray.stripHeight * 2) /
+        //   (isShadedSide ? viewport.height : viewport.height * 0.6);
+
+        const rgbMax = isShadedSide ? 170 : 100;
         const colorValue = limit(
           (rgbMax * ray.stripHeight) / viewport.height,
           rgbMax
