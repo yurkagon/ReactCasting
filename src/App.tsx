@@ -41,7 +41,7 @@ const App = () => {
       <div className="game-view-port" style={{ width, height }}>
         {<renderStrategy.component />}
 
-        {/* <UiMap /> */}
+        <UiMap />
       </div>
 
       <div>
