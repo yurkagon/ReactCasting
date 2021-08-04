@@ -20,7 +20,7 @@ class Player extends GameObject {
   private readonly control = new Control();
 
   public update() {
-    const { rotateLeft, rotateRight, toForward, toBack } =
+    const { rotateLeft, rotateRight, toForward, toBack, toRight, toLeft } =
       this.control.moveState;
     const scene = Scene.getInstance();
 
@@ -48,6 +48,26 @@ class Player extends GameObject {
           Math.sin(this.position.rotation) *
           this.walkSpeed *
           multiplier *
+          scene.deltaTime,
+      };
+
+      this.moveBy(vector);
+    }
+
+    if (toRight || toLeft) {
+      const multiplier1 = toRight ? 1 : -1;
+      const multiplier2 = toRight ? -1 : 1;
+
+      const vector = {
+        y:
+          Math.cos(this.position.rotation) *
+          this.walkSpeed *
+          multiplier1 *
+          scene.deltaTime,
+        x:
+          Math.sin(this.position.rotation) *
+          this.walkSpeed *
+          multiplier2 *
           scene.deltaTime,
       };
 
