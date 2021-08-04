@@ -19,7 +19,6 @@ class Ray {
 
   public stripHeight: number = 0;
 
-  private readonly checkingDistance: number = 1 / 2;
   public readonly maxDistance: number = 300;
 
   private readonly grid: Grid = Grid.getInstance();
@@ -39,168 +38,120 @@ class Ray {
     this.cast();
   }
 
-  private cast() {
-    let xintercept, yintercept;
-    let xstep, ystep;
+  private cast(): void {
+    const horizontalCollision = this.castHorizontal();
+    const verticalCollision = this.castVertical();
 
-    ///////////////////////////////////////////
-    // HORIZONTAL RAY-GRID INTERSECTION CODE
-    ///////////////////////////////////////////
-    let foundHorzWallHit = false;
-    let horzWallHitX = 0;
-    let horzWallHitY = 0;
+    if (!horizontalCollision && !verticalCollision) return;
 
-    // Find the y-coordinate of the closest horizontal grid intersenction
-    yintercept =
+    const horizontalDistance = horizontalCollision
+      ? calculateDistance(this.player.position, horizontalCollision.point)
+      : Number.MAX_VALUE;
+    const verticalDistance = verticalCollision
+      ? calculateDistance(this.player.position, verticalCollision.point)
+      : Number.MAX_VALUE;
+
+    if (horizontalDistance < verticalDistance) {
+      this.collision = horizontalCollision;
+      this.hitDistance = horizontalDistance;
+    } else if (verticalDistance <= horizontalDistance) {
+      this.collision = verticalCollision;
+      this.hitDistance = verticalDistance;
+    }
+
+    const wallCoefficient = 10000;
+    this.stripHeight =
+      wallCoefficient /
+      (Math.cos(Player.getInstance().position.rotation - this.angle) *
+        this.hitDistance);
+  }
+
+  private castHorizontal(): Collision {
+    let yIntercept: number, xIntercept: number, yStep: number, xStep: number;
+
+    yIntercept =
       Math.floor(this.player.position.y / this.grid.tileSize) *
       this.grid.tileSize;
-    yintercept += this.isRayFacingDown ? this.grid.tileSize : 0;
+    yIntercept += this.isRayFacingDown ? this.grid.tileSize : 0;
 
-    // Find the x-coordinate of the closest horizontal grid intersection
-    xintercept =
+    xIntercept =
       this.player.position.x +
-      (yintercept - this.player.position.y) / Math.tan(this.angle);
+      (yIntercept - this.player.position.y) / Math.tan(this.angle);
 
-    // Calculate the increment xstep and ystep
-    ystep = this.grid.tileSize;
-    ystep *= this.isRayFacingUp ? -1 : 1;
+    yStep = this.grid.tileSize;
+    yStep *= this.isRayFacingUp ? -1 : 1;
 
-    xstep = this.grid.tileSize / Math.tan(this.angle);
-    xstep *= this.isRayFacingLeft && xstep > 0 ? -1 : 1;
-    xstep *= this.isRayFacingRight && xstep < 0 ? -1 : 1;
+    xStep = this.grid.tileSize / Math.tan(this.angle);
+    xStep *= this.isRayFacingLeft && xStep > 0 ? -1 : 1;
+    xStep *= this.isRayFacingRight && xStep < 0 ? -1 : 1;
 
-    let nextHorzTouchX = xintercept;
-    let nextHorzTouchY = yintercept;
+    let nextHorizontalTouchX = xIntercept;
+    let nextHorizontalTouchY = yIntercept;
 
-    let horizontalCollision;
-
-    // Increment xstep and ystep until we find a wall
     while (
-      nextHorzTouchX >= 0 &&
-      nextHorzTouchX <= 2000 &&
-      nextHorzTouchY >= 0 &&
-      nextHorzTouchY <= 2000
+      nextHorizontalTouchX >= 0 &&
+      nextHorizontalTouchX <= 2000 &&
+      nextHorizontalTouchY >= 0 &&
+      nextHorizontalTouchY <= 2000
     ) {
       const collision = this.grid.handleCollision({
-        x: nextHorzTouchX,
-        y: nextHorzTouchY - (this.isRayFacingUp ? 1 : 0),
+        x: nextHorizontalTouchX,
+        y: nextHorizontalTouchY - (this.isRayFacingUp ? 1 : 0),
       });
 
-      if (collision) {
-        horizontalCollision = collision;
+      if (collision) return collision;
 
-        foundHorzWallHit = true;
-        horzWallHitX = nextHorzTouchX;
-        horzWallHitY = nextHorzTouchY;
-        break;
-      } else {
-        nextHorzTouchX += xstep;
-        nextHorzTouchY += ystep;
-      }
+      nextHorizontalTouchX += xStep;
+      nextHorizontalTouchY += yStep;
     }
+  }
 
-    /////////////////////////////////////////
-    // VERTICAL RAY-GRID INTERSECTION CODE
-    /////////////////////////////////////////
-    let foundVertWallHit = false;
-    let vertWallHitX = 0;
-    let vertWallHitY = 0;
+  private castVertical(): Collision {
+    let yIntercept: number, xIntercept: number, yStep: number, xStep: number;
 
-    // Find the x-coordinate of the closest vertical grid intersenction
-    xintercept =
+    xIntercept =
       Math.floor(this.player.position.x / this.grid.tileSize) *
       this.grid.tileSize;
-    xintercept += this.isRayFacingRight ? this.grid.tileSize : 0;
+    xIntercept += this.isRayFacingRight ? this.grid.tileSize : 0;
 
-    // Find the y-coordinate of the closest vertical grid intersection
-    yintercept =
+    yIntercept =
       this.player.position.y +
-      (xintercept - this.player.position.x) * Math.tan(this.angle);
+      (xIntercept - this.player.position.x) * Math.tan(this.angle);
 
-    // Calculate the increment xstep and ystep
-    xstep = this.grid.tileSize;
-    xstep *= this.isRayFacingLeft ? -1 : 1;
+    xStep = this.grid.tileSize;
+    xStep *= this.isRayFacingLeft ? -1 : 1;
 
-    ystep = this.grid.tileSize * Math.tan(this.angle);
-    ystep *= this.isRayFacingUp && ystep > 0 ? -1 : 1;
-    ystep *= this.isRayFacingDown && ystep < 0 ? -1 : 1;
+    yStep = this.grid.tileSize * Math.tan(this.angle);
+    yStep *= this.isRayFacingUp && yStep > 0 ? -1 : 1;
+    yStep *= this.isRayFacingDown && yStep < 0 ? -1 : 1;
 
-    let nextVertTouchX = xintercept;
-    let nextVertTouchY = yintercept;
+    let nextVerticalTouchX = xIntercept;
+    let nextVerticalTouchY = yIntercept;
 
-    let verCollision;
-
-    // Increment xstep and ystep until we find a wall
     while (
-      nextVertTouchX >= 0 &&
-      nextVertTouchX <= 2000 &&
-      nextVertTouchY >= 0 &&
-      nextVertTouchY <= 2000
+      nextVerticalTouchX >= 0 &&
+      nextVerticalTouchX <= 2000 &&
+      nextVerticalTouchY >= 0 &&
+      nextVerticalTouchY <= 2000
     ) {
       const collision = this.grid.handleCollision({
-        x: nextVertTouchX - (this.isRayFacingLeft ? 1 : 0),
-        y: nextVertTouchY,
+        x: nextVerticalTouchX - (this.isRayFacingLeft ? 1 : 0),
+        y: nextVerticalTouchY,
       });
 
-      if (collision) {
-        verCollision = collision;
-        foundVertWallHit = true;
-        vertWallHitX = nextVertTouchX;
-        vertWallHitY = nextVertTouchY;
-        break;
-      } else {
-        nextVertTouchX += xstep;
-        nextVertTouchY += ystep;
-      }
+      if (collision) return collision;
+
+      nextVerticalTouchX += xStep;
+      nextVerticalTouchY += yStep;
     }
-
-    // Calculate both horizontal and vertical distances and choose the smallest value
-    let horzHitDistance = foundHorzWallHit
-      ? calculateDistance(this.player.position, {
-          x: horzWallHitX,
-          y: horzWallHitY,
-        })
-      : Number.MAX_VALUE;
-    let vertHitDistance = foundVertWallHit
-      ? calculateDistance(this.player.position, {
-          x: vertWallHitX,
-          y: vertWallHitY,
-        })
-      : Number.MAX_VALUE;
-
-    if (horzHitDistance < vertHitDistance) {
-      this.collision = horizontalCollision;
-
-      this.hitDistance = horzHitDistance;
-
-      this.stripHeight =
-        10000 /
-        (Math.cos(Player.getInstance().position.rotation - this.angle) *
-          this.hitDistance);
-    } else if (vertHitDistance <= horzHitDistance) {
-      this.collision = verCollision;
-      this.hitDistance = vertHitDistance;
-
-      this.stripHeight =
-        10000 /
-        (Math.cos(Player.getInstance().position.rotation - this.angle) *
-          this.hitDistance);
-    }
-
-    // only store the smallest of the distances
-    // const wallHitX =
-    //   horzHitDistance < vertHitDistance ? horzWallHitX : vertWallHitX;
-    // const wallHitY =
-    //   horzHitDistance < vertHitDistance ? horzWallHitY : vertWallHitY;
-    // const distance =
-    //   horzHitDistance < vertHitDistance ? horzHitDistance : vertHitDistance;
-    // const wasHitVertical = vertHitDistance < horzHitDistance;
   }
 
   /*
     Old variant with "brute force" like ray hit checking
   */
   private castLegacy() {
+    const checkingDistance = 1 / 2;
+
     let distance = 0;
 
     while (distance < this.maxDistance) {
@@ -228,7 +179,7 @@ class Ray {
         break;
       }
 
-      distance += this.checkingDistance;
+      distance += checkingDistance;
     }
   }
 }
