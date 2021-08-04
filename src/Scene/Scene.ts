@@ -5,20 +5,11 @@ import { Subscriber } from "./types";
 class Scene {
   private subscribers: Subscriber[] = [];
 
+  private previousCall: number;
+  private deltaTimeValue: number = 0;
+
   public init() {
     setInterval(() => this.update(), 10);
-  }
-
-  public update() {
-    this.subscribers.forEach((subscriber) => {
-      if (subscriber instanceof GameObject) {
-        if (!subscriber.isStarted()) subscriber.start();
-
-        subscriber.update();
-      } else {
-        subscriber();
-      }
-    });
   }
 
   public subscribe(subscriber: Subscriber): void {
@@ -30,8 +21,34 @@ class Scene {
     this.subscribers.splice(index, 1);
   }
 
-  private static instance: Scene;
+  public get deltaTime(): number {
+    return this.deltaTimeValue;
+  }
 
+  private update(): void {
+    this.subscribers.forEach((subscriber) => {
+      if (subscriber instanceof GameObject) {
+        if (!subscriber.isStarted()) subscriber.start();
+
+        subscriber.update();
+      } else {
+        subscriber();
+      }
+    });
+
+    this.trackDeltaTime();
+  }
+
+  private trackDeltaTime(): void {
+    const currentCall = Date.now();
+    if (this.previousCall) {
+      this.deltaTimeValue = (currentCall - this.previousCall) / 1000;
+    }
+
+    this.previousCall = currentCall;
+  }
+
+  private static instance: Scene;
   public static getInstance(): Scene {
     if (this.instance) return this.instance;
 

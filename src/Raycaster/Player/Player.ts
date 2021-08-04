@@ -1,6 +1,6 @@
 import { Angle } from "../../utils";
 
-import { GameObject } from "../../Scene";
+import Scene, { GameObject } from "../../Scene";
 import Grid from "../Grid";
 
 import Control from "./Control";
@@ -12,8 +12,8 @@ class Player extends GameObject {
     y: 128.58201781700896,
   };
 
-  public readonly walkSpeed = 1;
-  public readonly rotationSpeed = Angle.toRad(2);
+  public readonly walkSpeed = 50;
+  public readonly rotationSpeed = 1.3;
 
   public readonly radius = 8;
 
@@ -22,13 +22,16 @@ class Player extends GameObject {
   public update() {
     const { rotateLeft, rotateRight, toForward, toBack } =
       this.control.moveState;
+    const scene = Scene.getInstance();
 
     if (rotateLeft || rotateRight) {
       const multiplier = rotateRight ? 1 : -1;
 
       this.position = {
         ...this.position,
-        rotation: this.position.rotation + this.rotationSpeed * multiplier,
+        rotation:
+          this.position.rotation +
+          this.rotationSpeed * multiplier * scene.deltaTime,
       };
     }
 
@@ -36,8 +39,16 @@ class Player extends GameObject {
       const multiplier = toForward ? 1 : -1;
 
       const vector = {
-        x: Math.cos(this.position.rotation) * this.walkSpeed * multiplier,
-        y: Math.sin(this.position.rotation) * this.walkSpeed * multiplier,
+        x:
+          Math.cos(this.position.rotation) *
+          this.walkSpeed *
+          multiplier *
+          scene.deltaTime,
+        y:
+          Math.sin(this.position.rotation) *
+          this.walkSpeed *
+          multiplier *
+          scene.deltaTime,
       };
 
       this.moveBy(vector);

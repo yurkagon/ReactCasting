@@ -10,8 +10,6 @@ const DivRenderStrategyTextured = () => {
   const rays = useRays();
   const raycaster = Raycaster.getInstance();
 
-  console.log(raycaster.player.position);
-
   const viewport = useViewport();
 
   const stripWidth = viewport.width / raycaster.raysCount;
@@ -40,15 +38,6 @@ const DivRenderStrategyTextured = () => {
             }}
             key={index}
           >
-            {/* <img
-              src={wallData[ray.collision.cell]}
-              style={{
-                height: ray.stripHeight,
-                width: ray.stripHeight,
-                left: -textureMove,
-                opacity: (ray.stripHeight * 2) / viewport.height,
-              }}
-            /> */}
             <div
               className="texture"
               style={{
