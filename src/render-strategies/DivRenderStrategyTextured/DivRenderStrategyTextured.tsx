@@ -10,6 +10,8 @@ const DivRenderStrategyTextured = () => {
   const rays = useRays();
   const raycaster = Raycaster.getInstance();
 
+  console.log(raycaster.player.position);
+
   const viewport = useViewport();
 
   const stripWidth = viewport.width / raycaster.raysCount;
