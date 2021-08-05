@@ -7,7 +7,7 @@ class Settings {
   public static allowMouse: boolean = true;
 
   public static readonly viewPortSizeMultiplier: number = 0.9;
-  public static readonly uiMapSizeMultiplier: number = 0.5;
+  public static readonly miniMapSizeMultiplier: number = 0.5;
 
   public static readonly textRenderCharSpectre: string = ",,:;I&&00%$@@#";
   public static readonly viewportWidthToCharsScaleCoefficient = 0.33;
@@ -23,6 +23,7 @@ class Settings {
       name: "HTML <div> Textured",
       component: DivRenderStrategyTextured,
       raysCountChangeAvailable: true,
+      skybox: { default: false },
     },
     {
       name: "HTML <div> Shaded",

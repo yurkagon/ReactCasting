@@ -7,7 +7,7 @@ import RayHits from "./RayHits";
 
 import "./style.scss";
 
-const UiMap = () => {
+const MiniMap = () => {
   const grid = useGrid();
   if (!grid) return null;
 
@@ -50,4 +50,4 @@ const UiMap = () => {
   );
 };
 
-export default UiMap;
+export default MiniMap;

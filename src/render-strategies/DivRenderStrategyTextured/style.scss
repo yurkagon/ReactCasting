@@ -2,13 +2,22 @@
   width: 100%;
   height: 100%;
   position: relative;
-  background: rgb(89, 89, 89);
-  background: linear-gradient(
-    0deg,
-    rgb(66, 66, 66) 0%,
-    rgba(0, 0, 0, 1) 53%,
-    rgb(3, 67, 80) 79%
-  );
+  background-size: cover;
+
+  &.skybox {
+    background-image: url(./skybox.jpg);
+    image-rendering: pixelated;
+  }
+
+  &.gradient {
+    background: rgb(89, 89, 89);
+    background: linear-gradient(
+      0deg,
+      rgb(66, 66, 66) 0%,
+      rgba(0, 0, 0, 1) 53%,
+      rgb(3, 67, 80) 79%
+    );
+  }
 
   overflow: hidden;
 

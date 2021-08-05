@@ -14,4 +14,5 @@ declare interface RenderStrategy {
   name: string;
   component: React.ComponentType<any>;
   raysCountChangeAvailable?: boolean;
+  skybox?: { default: boolean };
 }

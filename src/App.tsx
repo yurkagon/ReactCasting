@@ -7,7 +7,7 @@ import Settings from "./Settings";
 import Scene from "./Scene";
 import Raycaster from "./Raycaster";
 
-import UiMap from "./components/UiMap";
+import MiniMap from "./components/MiniMap";
 
 const App = () => {
   const raycaster = Raycaster.getInstance();
@@ -21,6 +21,9 @@ const App = () => {
 
   const [allowMouse, setAllowMouse] = useState<boolean>(Settings.allowMouse);
   const [allowMinimap, setAllowMinimap] = useState<boolean>(true);
+  const [allowSkybox, setAllowSkybox] = useState<boolean>(
+    Settings.renderingStrategies[0].skybox.default
+  );
 
   useEffect(() => {
     const scene = Scene.getInstance();
@@ -45,9 +48,9 @@ const App = () => {
   return (
     <div className="App">
       <div className="game-view-port" style={{ width, height }}>
-        {<renderStrategy.component />}
+        {<renderStrategy.component skyboxEnabled={allowSkybox} />}
 
-        {allowMinimap && <UiMap />}
+        {allowMinimap && <MiniMap />}
       </div>
 
       <div className="settings">
@@ -120,11 +123,23 @@ const App = () => {
             />
             <label htmlFor="allow-minimap">Allow minimap</label>
           </div>
+
+          {renderStrategy.skybox && (
+            <div>
+              <input
+                checked={allowSkybox}
+                onChange={(e) => setAllowSkybox(e.target.checked)}
+                type="checkbox"
+                id="allow-skybox"
+              />
+              <label htmlFor="allow-skybox">Skybox</label>
+            </div>
+          )}
         </div>
 
         <div className="settings-block">
           <div>WASD - to move</div>
-          <div>Q and E - rotate left and right</div>
+          <div>Q and E - to rotate</div>
         </div>
       </div>
     </div>

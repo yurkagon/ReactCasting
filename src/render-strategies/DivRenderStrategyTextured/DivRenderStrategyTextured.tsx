@@ -1,12 +1,17 @@
-import { useViewport, limit } from "../../utils";
+import { FC } from "react";
+import cn from "classnames";
+
+import { useViewport } from "../../utils";
 
 import Raycaster, { useRays } from "../../Raycaster";
 
 import wallData from "./wallData";
 
+import { Props } from "./types";
+
 import "./style.scss";
 
-const DivRenderStrategyTextured = () => {
+const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
   const rays = useRays();
   const raycaster = Raycaster.getInstance();
 
@@ -15,7 +20,20 @@ const DivRenderStrategyTextured = () => {
   const stripWidth = viewport.width / raycaster.raysCount;
 
   return (
-    <div className="div-render-strategy-textured">
+    <div
+      className={cn(
+        "div-render-strategy-textured",
+        skyboxEnabled ? "skybox" : "gradient"
+      )}
+      style={
+        skyboxEnabled
+          ? {
+              backgroundPositionX:
+                -raycaster.player.position.rotation * viewport.width,
+            }
+          : undefined
+      }
+    >
       {rays.map((ray, index) => {
         if (!ray.collision) return null;
 
