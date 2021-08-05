@@ -1,28 +1,29 @@
 {
   "files": {
-    "main.css": "/Raycasting-React/static/css/main.d1c83d9f.chunk.css",
-    "main.js": "/Raycasting-React/static/js/main.4992b5b9.chunk.js",
-    "main.js.map": "/Raycasting-React/static/js/main.4992b5b9.chunk.js.map",
-    "runtime-main.js": "/Raycasting-React/static/js/runtime-main.c249578f.js",
-    "runtime-main.js.map": "/Raycasting-React/static/js/runtime-main.c249578f.js.map",
-    "static/js/2.c22ff0f8.chunk.js": "/Raycasting-React/static/js/2.c22ff0f8.chunk.js",
-    "static/js/2.c22ff0f8.chunk.js.map": "/Raycasting-React/static/js/2.c22ff0f8.chunk.js.map",
-    "static/js/3.980ffd09.chunk.js": "/Raycasting-React/static/js/3.980ffd09.chunk.js",
-    "static/js/3.980ffd09.chunk.js.map": "/Raycasting-React/static/js/3.980ffd09.chunk.js.map",
+    "main.css": "/Raycasting-React/static/css/main.3688a59d.chunk.css",
+    "main.js": "/Raycasting-React/static/js/main.df09da3f.chunk.js",
+    "main.js.map": "/Raycasting-React/static/js/main.df09da3f.chunk.js.map",
+    "runtime-main.js": "/Raycasting-React/static/js/runtime-main.4834c0af.js",
+    "runtime-main.js.map": "/Raycasting-React/static/js/runtime-main.4834c0af.js.map",
+    "static/js/2.718ce3ba.chunk.js": "/Raycasting-React/static/js/2.718ce3ba.chunk.js",
+    "static/js/2.718ce3ba.chunk.js.map": "/Raycasting-React/static/js/2.718ce3ba.chunk.js.map",
+    "static/js/3.eeaeda9d.chunk.js": "/Raycasting-React/static/js/3.eeaeda9d.chunk.js",
+    "static/js/3.eeaeda9d.chunk.js.map": "/Raycasting-React/static/js/3.eeaeda9d.chunk.js.map",
     "index.html": "/Raycasting-React/index.html",
     "service-worker.js": "/Raycasting-React/service-worker.js",
     "service-worker.js.map": "/Raycasting-React/service-worker.js.map",
-    "static/css/main.d1c83d9f.chunk.css.map": "/Raycasting-React/static/css/main.d1c83d9f.chunk.css.map",
-    "static/js/2.c22ff0f8.chunk.js.LICENSE.txt": "/Raycasting-React/static/js/2.c22ff0f8.chunk.js.LICENSE.txt",
+    "static/css/main.3688a59d.chunk.css.map": "/Raycasting-React/static/css/main.3688a59d.chunk.css.map",
+    "static/js/2.718ce3ba.chunk.js.LICENSE.txt": "/Raycasting-React/static/js/2.718ce3ba.chunk.js.LICENSE.txt",
     "static/media/devtools.39991061.jpeg": "/Raycasting-React/static/media/devtools.39991061.jpeg",
+    "static/media/style.scss": "/Raycasting-React/static/media/skybox.f686b2a6.jpg",
     "static/media/wall1.2598404c.jpg": "/Raycasting-React/static/media/wall1.2598404c.jpg",
     "static/media/wall2.c183bd8a.jpg": "/Raycasting-React/static/media/wall2.c183bd8a.jpg",
     "static/media/wall3.708ac57b.jpg": "/Raycasting-React/static/media/wall3.708ac57b.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.c249578f.js",
-    "static/js/2.c22ff0f8.chunk.js",
-    "static/css/main.d1c83d9f.chunk.css",
-    "static/js/main.4992b5b9.chunk.js"
+    "static/js/runtime-main.4834c0af.js",
+    "static/js/2.718ce3ba.chunk.js",
+    "static/css/main.3688a59d.chunk.css",
+    "static/js/main.df09da3f.chunk.js"
   ]
 }
