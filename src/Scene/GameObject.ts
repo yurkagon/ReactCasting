@@ -13,11 +13,11 @@ abstract class GameObject {
     this.started = true;
   }
 
+  public abstract update(): void;
+
   public isStarted() {
     return this.started;
   }
-
-  public abstract update(): void;
 }
 
 export default GameObject;

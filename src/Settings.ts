@@ -14,6 +14,8 @@ class Settings {
   public static readonly consoleRaysCount: number = 100;
   public static readonly consoleHeight: number = 40;
 
+  public static readonly mouseSensitivity: number = 0.1;
+
   public static readonly renderingStrategies: RenderStrategy[] = [
     {
       name: "HTML <div> Textured",

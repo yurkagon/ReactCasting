@@ -1,6 +1,5 @@
-import { Angle } from "../../utils";
-
 import Scene, { GameObject } from "../../Scene";
+import Settings from "../../Settings";
 import Grid from "../Grid";
 
 import Control from "./Control";
@@ -17,11 +16,18 @@ class Player extends GameObject {
 
   public readonly radius = 8;
 
-  private readonly control = new Control();
+  private readonly control: Control;
+
+  private constructor() {
+    super();
+
+    this.control = new Control({ onMouseMove: this.onMouseMove.bind(this) });
+  }
 
   public update() {
     const { rotateLeft, rotateRight, toForward, toBack, toRight, toLeft } =
       this.control.moveState;
+
     const scene = Scene.getInstance();
 
     if (rotateLeft || rotateRight) {
@@ -75,7 +81,7 @@ class Player extends GameObject {
     }
   }
 
-  public moveBy(vector: Position): void {
+  private moveBy(vector: Position): void {
     const grid = Grid.getInstance();
 
     const newPosition = {
@@ -87,6 +93,15 @@ class Player extends GameObject {
     if (grid.handleCollision(newPosition)) return;
 
     this.position = newPosition;
+  }
+
+  private onMouseMove(value: number) {
+    const scene = Scene.getInstance();
+
+    this.position = {
+      ...this.position,
+      rotation: this.position.rotation + value * scene.deltaTime,
+    };
   }
 
   private static instance: Player;
