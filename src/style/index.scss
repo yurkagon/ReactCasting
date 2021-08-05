@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.game-view-port {
+  position: relative;
+  margin: auto;
+}
+
+.settings {
+  display: flex;
+  flex-wrap: wrap;
+
+  .settings-block {
+    margin-right: 20px;
+  }
+}

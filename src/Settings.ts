@@ -4,6 +4,8 @@ import TextRenderStrategy from "./render-strategies/TextRenderStrategy";
 import ConsoleRenderStrategy from "./render-strategies/ConsoleRenderStrategy";
 
 class Settings {
+  public static allowMouse: boolean = true;
+
   public static readonly viewPortSizeMultiplier: number = 0.9;
   public static readonly uiMapSizeMultiplier: number = 0.5;
 

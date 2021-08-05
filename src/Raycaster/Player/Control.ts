@@ -52,6 +52,8 @@ class Control {
 
   private attachMouseMove(): void {
     document.addEventListener("mousemove", (event) => {
+      if (!Settings.allowMouse) return;
+
       const valueToRotate = event.movementX * Settings.mouseSensitivity;
 
       this.mouseMoveCallback(valueToRotate);
