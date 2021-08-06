@@ -1,9 +1,12 @@
 .sprite {
   position: absolute;
 
-  background-size: cover;
+  background-size: contain;
+  image-rendering: pixelated;
 
-  &.guard {
-    background-image: url("./assets/guard.png");
-  }
+  // transform: scale(3);
+
+  // &.guard {
+  //   background-image: url("./assets/guard.png");
+  // }
 }

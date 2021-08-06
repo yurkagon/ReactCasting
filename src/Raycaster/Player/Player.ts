@@ -23,6 +23,10 @@ class Player extends GameObject {
     super();
 
     this.control = new Control({ onMouseMove: this.onMouseMove.bind(this) });
+
+    const positionFromStorage = localStorage.getItem("player-position");
+
+    if (positionFromStorage) this.position = JSON.parse(positionFromStorage);
   }
 
   public update() {
@@ -126,7 +130,7 @@ class Player extends GameObject {
     };
 
     if (grid.handleCollision(newPosition)) return;
-
+    localStorage.setItem("player-position", JSON.stringify(newPosition));
     this.position = newPosition;
   }
 

@@ -10,6 +10,8 @@ import Raycaster, {
 
 import Sprite from "../../../Sprite";
 
+import spriteData from "./spriteData";
+
 import "./style.scss";
 
 const SpriteLayer = () => {
@@ -31,13 +33,20 @@ const SpriteLayer = () => {
         const spriteHeight =
           1000 / (Math.cos(position.rotation - angleBetweenTarget) * distance);
 
+        const originalWidth = 96;
+        const originalHeight = 146;
+
+        const renderHeight = spriteHeight * 10;
+        const renderWidth = (renderHeight * originalWidth) / originalHeight;
+
         return (
-          <div
+          <img
+            src={spriteData[sprite.name]}
             className={cn("sprite", sprite.name)}
             style={{
-              width: spriteHeight * 10,
-              height: spriteHeight * 10,
-              top: (viewport.height - spriteHeight) / 2 + spriteHeight,
+              width: renderWidth,
+              height: renderHeight,
+              top: (viewport.height - spriteHeight) / 2 - spriteHeight * 2,
               left:
                 (viewport.width * (angleBetweenTarget - fovAngleStart)) /
                 raycaster.FOV,
