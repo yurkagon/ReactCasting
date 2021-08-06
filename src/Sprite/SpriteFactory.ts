@@ -20,6 +20,8 @@ class SpriteFactory {
 
   public static removeAll() {
     this.sprites.forEach((sprite) => sprite.destroy());
+
+    this.sprites = [];
   }
 }
 

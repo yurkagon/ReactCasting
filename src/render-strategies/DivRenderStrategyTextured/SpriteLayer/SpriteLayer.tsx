@@ -18,6 +18,8 @@ const SpriteLayer = () => {
 
   const viewport = useViewport();
 
+  if (!position) return null;
+
   return (
     <Fragment>
       {SpriteFactory.sprites.map((sprite, index) => {
@@ -25,6 +27,7 @@ const SpriteLayer = () => {
         if (!visibility) return null;
 
         const { angleBetweenTarget, fovAngleStart } = visibility;
+        console.log(sprite.position, position);
 
         const distance = calculateDistance(sprite.position, position);
 
