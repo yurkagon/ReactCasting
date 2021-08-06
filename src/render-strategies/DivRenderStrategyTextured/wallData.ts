@@ -1,6 +1,6 @@
-import wall1 from "./wall1.jpg";
-import wall2 from "./wall2.jpg";
-import wall3 from "./wall3.jpg";
+import wall1 from "./assets/wall1.jpg";
+import wall2 from "./assets/wall2.jpg";
+import wall3 from "./assets/wall3.jpg";
 
 const wallData = {
   "1": wall1,

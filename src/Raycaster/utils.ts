@@ -67,3 +67,9 @@ export const useRays = () => {
 
   return rays;
 };
+
+export const getZIndexByDistance = (distance: number): number => {
+  const maxIndex = 1000;
+
+  return Math.floor(maxIndex - distance);
+};

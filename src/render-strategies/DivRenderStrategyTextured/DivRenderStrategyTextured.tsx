@@ -1,13 +1,17 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import cn from "classnames";
 
 import { useViewport } from "../../utils";
 
-import Raycaster, { useRays } from "../../Raycaster";
+import Raycaster, { getZIndexByDistance, useRays } from "../../Raycaster";
+
+import Sprite from "../../Sprite";
 
 import wallData from "./wallData";
 
 import { Props } from "./types";
+
+import SpriteLayer from "./SpriteLayer";
 
 import "./style.scss";
 
@@ -18,6 +22,13 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
   const viewport = useViewport();
 
   const stripWidth = viewport.width / raycaster.raysCount;
+
+  useEffect(() => {
+    new Sprite({ name: "guard", position: { x: 200, y: 200 } });
+    new Sprite({ name: "guard", position: { x: 200, y: 250 } });
+
+    return () => Sprite.removeAll();
+  }, []);
 
   return (
     <div
@@ -53,6 +64,7 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
               height: ray.stripHeight,
               left: stripWidth * index,
               top: (viewport.height - ray.stripHeight) / 2,
+              zIndex: getZIndexByDistance(ray.hitDistance),
             }}
             key={index}
           >
@@ -70,6 +82,8 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
           </div>
         );
       })}
+
+      <SpriteLayer />
     </div>
   );
 };

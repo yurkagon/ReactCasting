@@ -1,6 +1,7 @@
 import Scene, { GameObject } from "../../Scene";
-import Settings from "../../Settings";
+import { Angle } from "../../utils";
 import Grid from "../Grid";
+import Raycaster from "../Raycaster";
 
 import Control from "./Control";
 
@@ -33,12 +34,10 @@ class Player extends GameObject {
     if (rotateLeft || rotateRight) {
       const multiplier = rotateRight ? 1 : -1;
 
-      this.position = {
-        ...this.position,
-        rotation:
-          this.position.rotation +
-          this.rotationSpeed * multiplier * scene.deltaTime,
-      };
+      this.setRotation(
+        this.position.rotation +
+          this.rotationSpeed * multiplier * scene.deltaTime
+      );
     }
 
     if (toForward || toBack) {
@@ -81,6 +80,42 @@ class Player extends GameObject {
     }
   }
 
+  public checkVisibilityByPlayer(target: GameObject): {
+    angleBetweenTarget: number;
+    fovAngleStart: number;
+    fovAngleEnd: number;
+  } | null {
+    const raycaster = Raycaster.getInstance();
+
+    const angleBetweenTarget = Angle.getAngleBetween(
+      this.position,
+      target.position
+    );
+
+    const fovAngleStart = Angle.normalize(
+      this.position.rotation - raycaster.FOV / 2
+    );
+    const fovAngleEnd = Angle.normalize(
+      this.position.rotation + raycaster.FOV / 2
+    );
+
+    if (
+      !Angle.isAngleBetweenAngles(
+        angleBetweenTarget,
+        fovAngleStart,
+        fovAngleEnd
+      )
+    ) {
+      return null;
+    }
+
+    return {
+      angleBetweenTarget: angleBetweenTarget,
+      fovAngleStart: fovAngleStart,
+      fovAngleEnd: fovAngleEnd,
+    };
+  }
+
   private moveBy(vector: Position): void {
     const grid = Grid.getInstance();
 
@@ -98,9 +133,13 @@ class Player extends GameObject {
   private onMouseMove(value: number) {
     const scene = Scene.getInstance();
 
+    this.setRotation(this.position.rotation + value * scene.deltaTime);
+  }
+
+  private setRotation(rotation: number) {
     this.position = {
       ...this.position,
-      rotation: this.position.rotation + value * scene.deltaTime,
+      rotation: Angle.normalize(rotation),
     };
   }
 

@@ -1,6 +1,9 @@
+import { useState, useEffect } from "react";
 import { useViewport as useViewportCore } from "@toolz/use-viewport";
 
 import Settings from "../Settings";
+
+import Scene from "../Scene";
 
 export { default as Angle } from "./angle";
 
@@ -36,4 +39,21 @@ export const limit = (value: number, limit: number): number => {
   if (value > limit) return limit;
 
   return value;
+};
+
+export const useSceneUpdate = () => {
+  const [updateCount, setUpdateCount] = useState(0);
+
+  const scene = Scene.getInstance();
+
+  useEffect(() => {
+    const subscriber = () => {
+      setUpdateCount((prev) => prev + 1);
+    };
+    scene.subscribe(subscriber);
+
+    return () => {
+      scene.unsubscribe(subscriber);
+    };
+  }, [scene]);
 };

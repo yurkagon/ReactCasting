@@ -4,6 +4,7 @@ import { useGrid } from "../../Raycaster";
 
 import PlayerMarker from "./PlayerMarker";
 import RayHits from "./RayHits";
+import Dots from "./Dots";
 
 import "./style.scss";
 
@@ -43,6 +44,8 @@ const MiniMap = () => {
             })}
 
             <PlayerMarker />
+
+            <Dots />
           </Fragment>
         ))}
       </div>

@@ -3,7 +3,11 @@ import Scene from "./Scene";
 abstract class GameObject {
   private started: boolean = false;
 
-  constructor() {
+  public position?: Position;
+
+  constructor(position?: Position) {
+    this.position = position;
+
     const scene = Scene.getInstance();
 
     scene.subscribe(this);
@@ -17,6 +21,12 @@ abstract class GameObject {
 
   public isStarted() {
     return this.started;
+  }
+
+  public destroy() {
+    const scene = Scene.getInstance();
+
+    scene.unsubscribe(this);
   }
 }
 

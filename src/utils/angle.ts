@@ -10,6 +10,32 @@ class Angle {
     }
     return angle;
   }
+
+  public static isAngleBetweenAngles(
+    angle: number,
+    start: number,
+    end: number
+  ): boolean {
+    const formattedEnd =
+      end - start < 0 ? end - start + 2 * Math.PI : end - start;
+    const formattedMid =
+      angle - start < 0 ? angle - start + 2 * Math.PI : angle - start;
+
+    return formattedMid < formattedEnd;
+  }
+
+  public static getAngleBetween(pos1: Position, pos2: Position) {
+    const dx = pos1.x - pos2.x;
+    const dz = pos2.y - pos1.y;
+
+    const angle = Math.atan2(dz, dx);
+
+    return this.normalize(Math.PI - angle);
+  }
+
+  public static log(rad: number): void {
+    console.log(this.toDeg(rad));
+  }
 }
 
 export default Angle;

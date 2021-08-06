@@ -13,12 +13,14 @@ class Scene {
   }
 
   public subscribe(subscriber: Subscriber): void {
-    this.subscribers.push(subscriber);
+    this.subscribers = [...this.subscribers, subscriber];
   }
   public unsubscribe(subscriber: Subscriber) {
     const index = this.subscribers.findIndex((el) => subscriber === el);
 
     this.subscribers.splice(index, 1);
+
+    this.subscribers = [...this.subscribers];
   }
 
   public get deltaTime(): number {

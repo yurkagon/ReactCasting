@@ -1,0 +1,9 @@
+.sprite {
+  position: absolute;
+
+  background-size: cover;
+
+  &.guard {
+    background-image: url("./assets/guard.png");
+  }
+}
