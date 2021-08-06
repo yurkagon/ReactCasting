@@ -5,13 +5,12 @@ import { useViewport } from "../../utils";
 
 import Raycaster, { getZIndexByDistance, useRays } from "../../Raycaster";
 
-import Sprite from "../../Sprite";
+import { SpriteFactory } from "../../Sprite";
+import SpriteLayer from "./SpriteLayer";
 
 import wallData from "./wallData";
 
 import { Props } from "./types";
-
-import SpriteLayer from "./SpriteLayer";
 
 import "./style.scss";
 
@@ -24,10 +23,10 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
   const stripWidth = viewport.width / raycaster.raysCount;
 
   useEffect(() => {
-    new Sprite({ name: "guard", position: { x: 200, y: 200 } });
-    new Sprite({ name: "guard", position: { x: 200, y: 250 } });
+    SpriteFactory.create("guard", { x: 200, y: 200 });
+    SpriteFactory.create("guard", { x: 200, y: 250 });
 
-    return () => Sprite.removeAll();
+    return () => SpriteFactory.removeAll();
   }, []);
 
   return (

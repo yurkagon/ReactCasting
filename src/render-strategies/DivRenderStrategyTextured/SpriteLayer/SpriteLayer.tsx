@@ -8,9 +8,7 @@ import Raycaster, {
   usePlayerPosition,
 } from "../../../Raycaster";
 
-import Sprite from "../../../Sprite";
-
-import spriteData from "./spriteData";
+import { SpriteFactory } from "../../../Sprite";
 
 import "./style.scss";
 
@@ -22,7 +20,7 @@ const SpriteLayer = () => {
 
   return (
     <Fragment>
-      {Sprite.sprites.map((sprite, index) => {
+      {SpriteFactory.sprites.map((sprite, index) => {
         const visibility = raycaster.player.checkVisibilityByPlayer(sprite);
         if (!visibility) return null;
 
@@ -33,15 +31,12 @@ const SpriteLayer = () => {
         const spriteHeight =
           1000 / (Math.cos(position.rotation - angleBetweenTarget) * distance);
 
-        const originalWidth = 96;
-        const originalHeight = 146;
-
         const renderHeight = spriteHeight * 10;
-        const renderWidth = (renderHeight * originalWidth) / originalHeight;
+        const renderWidth = renderHeight * sprite.widthCoefficient;
 
         return (
           <img
-            src={spriteData[sprite.name]}
+            src={sprite.texture}
             className={cn("sprite", sprite.name)}
             style={{
               width: renderWidth,

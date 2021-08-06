@@ -2,14 +2,14 @@ import { Fragment } from "react";
 
 import { useSceneUpdate } from "../../utils";
 
-import Sprite from "../../Sprite";
+import { SpriteFactory } from "../../Sprite";
 
 const RayHits = () => {
   useSceneUpdate();
 
   return (
     <Fragment>
-      {Sprite.sprites.map((sprite, j) => (
+      {SpriteFactory.sprites.map((sprite, j) => (
         <div
           key={j}
           style={{

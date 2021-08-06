@@ -1,25 +1,25 @@
 import { GameObject } from "../Scene";
 
-import { SpiteConfig } from "./types";
+import { SpriteConfig, SpriteSize } from "./types";
 
 class Sprite extends GameObject {
-  public static sprites: Sprite[] = [];
-
   public readonly name: string;
+  public readonly texture: string;
 
-  constructor({ position, name }: SpiteConfig) {
-    super(position);
+  public readonly widthCoefficient: number;
+  public readonly originalSize: SpriteSize;
 
-    this.name = name;
+  constructor(config: SpriteConfig) {
+    super(config.position);
 
-    Sprite.sprites.push(this);
+    this.name = config.name;
+    this.texture = config.texture;
+    this.originalSize = config.originalSize;
+    this.widthCoefficient =
+      config.originalSize.width / config.originalSize.height;
   }
 
   update() {}
-
-  public static removeAll() {
-    this.sprites.forEach((sprite) => sprite.destroy());
-  }
 }
 
 export default Sprite;
