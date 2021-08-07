@@ -6,11 +6,15 @@
 
   opacity: 0.8;
 
+  background-color: rgba(45, 45, 45, 0.8);
+
   .cell-wrapper {
     position: relative;
 
     .cell {
       position: absolute;
+      background-size: cover;
+
       background-color: black;
     }
 

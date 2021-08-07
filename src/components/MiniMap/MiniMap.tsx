@@ -2,6 +2,8 @@ import { Fragment } from "react";
 
 import { useGrid } from "../../Raycaster";
 
+import wallData from "../../render-strategies/DivRenderStrategyTextured/wallData";
+
 import PlayerMarker from "./PlayerMarker";
 import RayHits from "./RayHits";
 import Dots from "./Dots";
@@ -37,6 +39,7 @@ const MiniMap = () => {
                     left: j * tilesSize,
                     width: tilesSize,
                     height: tilesSize,
+                    backgroundImage: `url(${wallData[cellType]})`,
                   }}
                   key={j}
                 />

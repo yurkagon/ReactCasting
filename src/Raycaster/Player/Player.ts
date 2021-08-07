@@ -130,7 +130,7 @@ class Player extends GameObject {
     };
 
     if (grid.handleCollision(newPosition)) return;
-    localStorage.setItem("player-position", JSON.stringify(newPosition));
+    // localStorage.setItem("player-position", JSON.stringify(newPosition));
     this.position = newPosition;
   }
 
