@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import Scene from "../Scene";
 import Raycaster from "./Raycaster";
+import Player from "./Player";
 import Ray from "./Ray";
 
 export const useGrid = () => {
@@ -28,16 +29,16 @@ export const useGrid = () => {
   return { data: grid, tileSize };
 };
 
-export const usePlayerPosition = () => {
-  const [playerPosition, setPlayerPosition] = useState<Position>(null);
+export const usePlayer = (): Player => {
+  const [_, updateByPlayerPositionUpdate] = useState<Position>(null);
+
+  const player = Player.getInstance();
 
   useEffect(() => {
     const scene = Scene.getInstance();
 
-    const raycaster = Raycaster.getInstance();
-
     const subscriber = () => {
-      setPlayerPosition(raycaster.player.position);
+      updateByPlayerPositionUpdate(player.position);
     };
 
     scene.subscribe(subscriber);
@@ -45,7 +46,7 @@ export const usePlayerPosition = () => {
     return () => scene.unsubscribe(subscriber);
   }, []);
 
-  return playerPosition;
+  return player;
 };
 
 export const useRays = () => {

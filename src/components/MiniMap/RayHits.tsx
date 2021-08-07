@@ -1,13 +1,13 @@
 import { Fragment } from "react";
-import { useRays, usePlayerPosition } from "../../Raycaster";
+import { useRays, usePlayer } from "../../Raycaster";
 
 import Line from "./Line";
 
 const RayHits = () => {
   const rays = useRays();
-  const position = usePlayerPosition();
+  const player = usePlayer();
 
-  if (!position) return null;
+  if (!player.position) return null;
 
   return (
     <Fragment>
@@ -19,7 +19,7 @@ const RayHits = () => {
         return (
           <Line
             key={index}
-            from={{ x: position.x / 2, y: position.y / 2 }}
+            from={{ x: player.position.x / 2, y: player.position.y / 2 }}
             to={{ x: ray.collision.point.x / 2, y: ray.collision.point.y / 2 }}
           />
         );

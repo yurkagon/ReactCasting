@@ -8,6 +8,7 @@ import Scene from "./Scene";
 import Raycaster from "./Raycaster";
 
 import MiniMap from "./components/MiniMap";
+import PlayerDebugger from "./components/PlayerDebugger";
 
 const App = () => {
   const raycaster = Raycaster.getInstance();
@@ -140,6 +141,10 @@ const App = () => {
         <div className="settings-block">
           <div>WASD - to move</div>
           <div>Q and E - to rotate</div>
+        </div>
+
+        <div className="settings-block">
+          <PlayerDebugger />
         </div>
       </div>
     </div>

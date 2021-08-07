@@ -3,10 +3,7 @@ import cn from "classnames";
 
 import { calculateDistance, useViewport, limit, Angle } from "../../../utils";
 
-import Raycaster, {
-  getZIndexByDistance,
-  usePlayerPosition,
-} from "../../../Raycaster";
+import Raycaster, { getZIndexByDistance, usePlayer } from "../../../Raycaster";
 
 import { SpriteFactory } from "../../../Sprite";
 
@@ -14,24 +11,25 @@ import "./style.scss";
 
 const SpriteLayer = () => {
   const raycaster = Raycaster.getInstance();
-  const position = usePlayerPosition();
+  const player = usePlayer();
 
   const viewport = useViewport();
 
-  if (!position) return null;
+  if (!player.position) return null;
 
   return (
     <Fragment>
       {SpriteFactory.sprites.map((sprite, index) => {
-        const visibility = raycaster.player.checkVisibility(sprite);
+        const visibility = player.checkVisibility(sprite);
         if (!visibility) return null;
 
         const { angleBetweenTarget, fovAngleStart } = visibility;
 
-        const distance = calculateDistance(sprite.position, position);
+        const distance = calculateDistance(sprite.position, player.position);
 
         const spriteHeight =
-          1000 / (Math.cos(position.rotation - angleBetweenTarget) * distance);
+          1000 /
+          (Math.cos(player.position.rotation - angleBetweenTarget) * distance);
 
         const renderHeight = spriteHeight * 10;
         const renderWidth = renderHeight * sprite.widthCoefficient;

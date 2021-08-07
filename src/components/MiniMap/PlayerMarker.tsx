@@ -1,18 +1,17 @@
-import Raycaster, { usePlayerPosition } from "../../Raycaster";
+import { usePlayer } from "../../Raycaster";
 
 const PlayerMarker = () => {
-  const position = usePlayerPosition();
-  if (!position) return null;
+  const player = usePlayer();
+  if (!player.position) return null;
 
-  const raycaster = Raycaster.getInstance();
-  const size = raycaster.player.radius * 2;
+  const size = player.radius * 2;
 
   return (
     <div
       className="player-marker"
       style={{
-        top: position.y / 2,
-        left: position.x / 2,
+        top: player.position.y / 2,
+        left: player.position.x / 2,
       }}
     >
       <div
@@ -20,9 +19,9 @@ const PlayerMarker = () => {
         style={{
           height: size,
           width: size,
-          top: -raycaster.player.radius,
-          left: -raycaster.player.radius,
-          transform: `rotate(${position.rotation}rad)`,
+          top: -player.radius,
+          left: -player.radius,
+          transform: `rotate(${player.position.rotation}rad)`,
         }}
       />
     </div>
