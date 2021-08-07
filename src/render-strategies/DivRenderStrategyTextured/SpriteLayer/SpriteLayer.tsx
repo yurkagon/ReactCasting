@@ -56,6 +56,8 @@ const SpriteLayer = () => {
             <img
               src={sprite.texture}
               style={{
+                width: renderWidth,
+                height: renderHeight,
                 filter: `brightness(${brightness})`,
                 left: -renderWidth / 2,
               }}

@@ -53,7 +53,8 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
             ? ray.collision.floatPart.y
             : ray.collision.floatPart.x;
 
-        const textureMove = float * ray.stripHeight;
+        const textureSizeValue = 2;
+        const textureMove = float * ray.stripHeight * textureSizeValue;
 
         return (
           <div

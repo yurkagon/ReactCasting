@@ -4,6 +4,11 @@ import TextRenderStrategy from "./render-strategies/TextRenderStrategy";
 import ConsoleRenderStrategy from "./render-strategies/ConsoleRenderStrategy";
 
 class Settings {
+  public static readonly isProduction: boolean =
+    process.env.NODE_ENV === "production";
+  public static readonly isDevelopment: boolean =
+    process.env.NODE_ENV === "development";
+
   public static allowMouse: boolean = false;
 
   public static readonly viewPortSizeMultiplier: number = 0.9;

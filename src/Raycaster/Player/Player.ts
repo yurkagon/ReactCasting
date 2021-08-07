@@ -1,4 +1,5 @@
 import Scene, { GameObject } from "../../Scene";
+import Settings from "../../Settings";
 import { Angle } from "../../utils";
 import Grid from "../Grid";
 import Raycaster from "../Raycaster";
@@ -24,9 +25,11 @@ class Player extends GameObject {
 
     this.control = new Control({ onMouseMove: this.onMouseMove.bind(this) });
 
-    const positionFromStorage = localStorage.getItem("player-position");
+    if (Settings.isDevelopment) {
+      const positionFromStorage = localStorage.getItem("player-position");
 
-    if (positionFromStorage) this.position = JSON.parse(positionFromStorage);
+      if (positionFromStorage) this.position = JSON.parse(positionFromStorage);
+    }
   }
 
   public update() {
@@ -130,8 +133,12 @@ class Player extends GameObject {
     };
 
     if (grid.handleCollision(newPosition)) return;
-    // localStorage.setItem("player-position", JSON.stringify(newPosition));
+
     this.position = newPosition;
+
+    if (Settings.isDevelopment) {
+      this.savePosition();
+    }
   }
 
   private onMouseMove(value: number) {
@@ -145,6 +152,10 @@ class Player extends GameObject {
       ...this.position,
       rotation: Angle.normalize(rotation),
     };
+  }
+
+  private savePosition(): void {
+    localStorage.setItem("player-position", JSON.stringify(this.position));
   }
 
   private static instance: Player;
