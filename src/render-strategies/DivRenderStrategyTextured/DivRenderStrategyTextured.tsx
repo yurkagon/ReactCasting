@@ -24,7 +24,7 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
 
   useEffect(() => {
     SpriteFactory.create("guard", { x: 200, y: 200 });
-    SpriteFactory.create("guard", { x: 200, y: 250 });
+    // SpriteFactory.create("guard", { x: 200, y: 250 });
 
     return () => SpriteFactory.removeAll();
   }, []);

@@ -29,7 +29,7 @@ const MiniMap = () => {
         {grid.data.map((row, i) => (
           <Fragment key={i}>
             {row.map((cellType: Cell, j) => {
-              if (cellType === 0) return null;
+              if (cellType === " ") return null;
 
               return (
                 <div

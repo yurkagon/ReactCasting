@@ -18,7 +18,7 @@ class Grid {
     const cell =
       this.data?.[Math.floor(gridPosition.y)]?.[Math.floor(gridPosition.x)];
 
-    const collisionExist = cell !== 0;
+    const collisionExist = cell !== " ";
     if (!collisionExist) return null;
 
     const floatPart = { x: gridPosition.x % 1, y: gridPosition.y % 1 };

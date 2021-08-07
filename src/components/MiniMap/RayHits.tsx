@@ -14,7 +14,7 @@ const RayHits = () => {
       {rays.map((ray, index) => {
         if (!ray.collision) return null;
 
-        if (index % 10 !== 0) return null;
+        if (index % 20 !== 0) return null;
 
         return (
           <Line

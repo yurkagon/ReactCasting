@@ -1,6 +1,16 @@
 /// <reference types="react-scripts" />
 
-declare type Cell = 0 | 1 | 2 | 3;
+declare type Cell =
+  | " "
+  | "s"
+  | "w"
+  | "w2"
+  | "g"
+  | "g2"
+  | "g3"
+  | "b"
+  | "b2"
+  | "b3";
 
 declare type CellGrid = Cell[][];
 
