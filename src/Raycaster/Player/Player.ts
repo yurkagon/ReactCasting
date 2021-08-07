@@ -84,7 +84,7 @@ class Player extends GameObject {
     }
   }
 
-  public checkVisibilityByPlayer(target: GameObject): {
+  public checkVisibility(target: GameObject): {
     angleBetweenTarget: number;
     fovAngleStart: number;
     fovAngleEnd: number;

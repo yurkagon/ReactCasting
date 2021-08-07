@@ -4,9 +4,10 @@
   background-size: contain;
   image-rendering: pixelated;
 
-  // transform: scale(3);
+  img {
+    width: 100%;
+    height: 100%;
 
-  // &.guard {
-  //   background-image: url("./assets/guard.png");
-  // }
+    position: relative;
+  }
 }

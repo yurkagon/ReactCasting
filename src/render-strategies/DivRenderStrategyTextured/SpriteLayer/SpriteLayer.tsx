@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import cn from "classnames";
 
-import { calculateDistance, useViewport } from "../../../utils";
+import { calculateDistance, useViewport, limit, Angle } from "../../../utils";
 
 import Raycaster, {
   getZIndexByDistance,
@@ -23,11 +23,10 @@ const SpriteLayer = () => {
   return (
     <Fragment>
       {SpriteFactory.sprites.map((sprite, index) => {
-        const visibility = raycaster.player.checkVisibilityByPlayer(sprite);
+        const visibility = raycaster.player.checkVisibility(sprite);
         if (!visibility) return null;
 
         const { angleBetweenTarget, fovAngleStart } = visibility;
-        console.log(sprite.position, position);
 
         const distance = calculateDistance(sprite.position, position);
 
@@ -37,21 +36,31 @@ const SpriteLayer = () => {
         const renderHeight = spriteHeight * 10;
         const renderWidth = renderHeight * sprite.widthCoefficient;
 
+        const brightness = limit((renderHeight * 2) / viewport.height, 1);
+
         return (
-          <img
-            src={sprite.texture}
+          <div
             className={cn("sprite", sprite.name)}
             style={{
               width: renderWidth,
               height: renderHeight,
               top: (viewport.height - spriteHeight) / 2 - spriteHeight * 2,
               left:
-                (viewport.width * (angleBetweenTarget - fovAngleStart)) /
+                (viewport.width *
+                  Angle.normalize(angleBetweenTarget - fovAngleStart)) /
                 raycaster.FOV,
               zIndex: getZIndexByDistance(distance),
             }}
             key={index}
-          />
+          >
+            <img
+              src={sprite.texture}
+              style={{
+                filter: `brightness(${brightness})`,
+                left: -renderWidth / 2,
+              }}
+            />
+          </div>
         );
       })}
     </Fragment>
