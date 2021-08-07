@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/Raycasting-React/static/css/main.85508395.chunk.css",
-    "main.js": "/Raycasting-React/static/js/main.75fe9066.chunk.js",
-    "main.js.map": "/Raycasting-React/static/js/main.75fe9066.chunk.js.map",
+    "main.css": "/Raycasting-React/static/css/main.825499f5.chunk.css",
+    "main.js": "/Raycasting-React/static/js/main.c244c3d8.chunk.js",
+    "main.js.map": "/Raycasting-React/static/js/main.c244c3d8.chunk.js.map",
     "runtime-main.js": "/Raycasting-React/static/js/runtime-main.5268d551.js",
     "runtime-main.js.map": "/Raycasting-React/static/js/runtime-main.5268d551.js.map",
     "static/js/2.6b6876e1.chunk.js": "/Raycasting-React/static/js/2.6b6876e1.chunk.js",
@@ -12,18 +12,24 @@
     "index.html": "/Raycasting-React/index.html",
     "service-worker.js": "/Raycasting-React/service-worker.js",
     "service-worker.js.map": "/Raycasting-React/service-worker.js.map",
-    "static/css/main.85508395.chunk.css.map": "/Raycasting-React/static/css/main.85508395.chunk.css.map",
+    "static/css/main.825499f5.chunk.css.map": "/Raycasting-React/static/css/main.825499f5.chunk.css.map",
     "static/js/2.6b6876e1.chunk.js.LICENSE.txt": "/Raycasting-React/static/js/2.6b6876e1.chunk.js.LICENSE.txt",
+    "static/media/b.c4ba0bee.jpg": "/Raycasting-React/static/media/b.c4ba0bee.jpg",
+    "static/media/b2.91a79e2e.jpg": "/Raycasting-React/static/media/b2.91a79e2e.jpg",
+    "static/media/b3.aee621d9.jpg": "/Raycasting-React/static/media/b3.aee621d9.jpg",
     "static/media/devtools.39991061.jpeg": "/Raycasting-React/static/media/devtools.39991061.jpeg",
+    "static/media/g.708ac57b.jpg": "/Raycasting-React/static/media/g.708ac57b.jpg",
+    "static/media/g2.58dc188c.jpg": "/Raycasting-React/static/media/g2.58dc188c.jpg",
+    "static/media/g3.30f68b00.jpg": "/Raycasting-React/static/media/g3.30f68b00.jpg",
+    "static/media/s.2598404c.jpg": "/Raycasting-React/static/media/s.2598404c.jpg",
     "static/media/style.scss": "/Raycasting-React/static/media/skybox.f686b2a6.jpg",
-    "static/media/wall1.2598404c.jpg": "/Raycasting-React/static/media/wall1.2598404c.jpg",
-    "static/media/wall2.c183bd8a.jpg": "/Raycasting-React/static/media/wall2.c183bd8a.jpg",
-    "static/media/wall3.708ac57b.jpg": "/Raycasting-React/static/media/wall3.708ac57b.jpg"
+    "static/media/w.c183bd8a.jpg": "/Raycasting-React/static/media/w.c183bd8a.jpg",
+    "static/media/w2.3d66fb1a.jpg": "/Raycasting-React/static/media/w2.3d66fb1a.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.5268d551.js",
     "static/js/2.6b6876e1.chunk.js",
-    "static/css/main.85508395.chunk.css",
-    "static/js/main.75fe9066.chunk.js"
+    "static/css/main.825499f5.chunk.css",
+    "static/js/main.c244c3d8.chunk.js"
   ]
 }
