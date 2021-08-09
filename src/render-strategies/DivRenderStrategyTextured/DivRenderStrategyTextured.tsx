@@ -57,7 +57,8 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
         const textureSizeValue = 2;
         const textureMove = float * ray.stripHeight * textureSizeValue;
 
-        const lightLevel = 0.1;
+        const lightLevel =
+          ray.collision.wall.sidesLight[ray.collision.collisionSide] || 0.1;
 
         return (
           <div
