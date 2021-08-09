@@ -1,8 +1,9 @@
 import { Fragment } from "react";
 
 import { useGrid } from "../../Raycaster";
+// import wallData from "../../Raycaster/Grid/Wall/wallData";
 
-import wallData from "../../render-strategies/DivRenderStrategyTextured/wallData";
+// wallData
 
 import PlayerMarker from "./PlayerMarker";
 import RayHits from "./RayHits";
@@ -25,10 +26,10 @@ const MiniMap = () => {
       <div className="cell-wrapper" style={{ width, height }}>
         <RayHits />
 
-        {grid.data.map((row, i) => (
+        {grid.walls?.map((row, i) => (
           <Fragment key={i}>
-            {row.map((cellType: Cell, j) => {
-              if (cellType === " ") return null;
+            {row.map((wall, j) => {
+              if (!wall) return null;
 
               return (
                 <div
@@ -38,7 +39,7 @@ const MiniMap = () => {
                     left: j * tilesSize,
                     width: tilesSize,
                     height: tilesSize,
-                    backgroundImage: `url(${wallData[cellType]})`,
+                    backgroundImage: `url(${wall.texture})`,
                   }}
                   key={j}
                 />

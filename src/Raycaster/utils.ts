@@ -5,8 +5,11 @@ import Raycaster from "./Raycaster";
 import Player from "./Player";
 import Ray from "./Ray";
 
+import Wall from "./Grid/Wall";
+
 export const useGrid = () => {
-  const [grid, setDataData] = useState<CellGrid>(null);
+  const [grid, setGrid] = useState<CellGrid>(null);
+  const [walls, setWalls] = useState<Wall[][]>(null);
   const [tileSize, setTileSize] = useState<number>(null);
 
   useEffect(() => {
@@ -15,7 +18,8 @@ export const useGrid = () => {
     const raycaster = Raycaster.getInstance();
 
     const subscriber = () => {
-      setDataData(raycaster.grid.data);
+      setGrid(raycaster.grid.data);
+      setWalls(raycaster.grid.wallData);
       setTileSize(raycaster.grid.tileSize);
     };
 
@@ -26,7 +30,7 @@ export const useGrid = () => {
 
   if (!grid) return null;
 
-  return { data: grid, tileSize };
+  return { data: grid, tileSize, walls };
 };
 
 export const usePlayer = (): Player => {

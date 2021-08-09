@@ -8,7 +8,7 @@ import b from "./assets/b.jpg";
 import b2 from "./assets/b2.jpg";
 import b3 from "./assets/b3.jpg";
 
-const wallData: Partial<Record<Cell, string>> = {
+const texturesData: Partial<Record<Cell, string>> = {
   s,
   w,
   g,
@@ -20,4 +20,4 @@ const wallData: Partial<Record<Cell, string>> = {
   b3,
 };
 
-export default wallData;
+export default texturesData;

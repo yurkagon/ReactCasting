@@ -8,8 +8,6 @@ import Raycaster, { getZIndexByDistance, useRays } from "../../Raycaster";
 import { SpriteFactory } from "../../Sprite";
 import SpriteLayer from "./SpriteLayer";
 
-import wallData from "./wallData";
-
 import { Props } from "./types";
 
 import "./style.scss";
@@ -59,6 +57,8 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
         const textureSizeValue = 2;
         const textureMove = float * ray.stripHeight * textureSizeValue;
 
+        const lightLevel = 0.1;
+
         return (
           <div
             className="strip"
@@ -74,12 +74,13 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
             <div
               className="texture"
               style={{
-                backgroundImage: `url(${wallData[ray.collision.cell]})`,
+                backgroundImage: `url(${ray.collision.wall.texture})`,
                 height: ray.stripHeight,
                 width: ray.stripHeight,
                 backgroundSize: "cover",
                 backgroundPositionX: -textureMove,
-                opacity: (ray.stripHeight * 2) / viewport.height,
+                // opacity: (ray.stripHeight * 2) / viewport.height,
+                opacity: lightLevel,
               }}
             />
           </div>

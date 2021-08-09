@@ -1,22 +1,42 @@
 import maxBy from "lodash/maxBy";
 
-import { Collision, Side } from "./types";
+import Wall from "./Wall";
+
+import { Collision, Side } from "../types";
+import { GridConfig } from "./types";
 
 class Grid {
   public data: CellGrid = null;
+  public wallData: Wall[][] = null;
+  private pointLightMap: number[][] = null;
+  private lightMap: number[][] = null;
+
   public readonly tileSize: number = 32;
 
   private constructor() {}
 
-  public setData(grid: CellGrid): void {
-    this.data = grid;
+  public setData(config: GridConfig): void {
+    this.data = config.grid;
+    this.pointLightMap = config.pointLightMap;
+
+    this.wallData = this.data.map((row, i) =>
+      row.map((wallChar, j) => {
+        if (wallChar !== " ") {
+          return new Wall({ char: wallChar });
+        }
+
+        return null;
+      })
+    );
   }
 
   public handleCollision(position: Position): Collision | null {
     const gridPosition = this.convertPositionToGridPosition(position);
 
-    const cell =
-      this.data?.[Math.floor(gridPosition.y)]?.[Math.floor(gridPosition.x)];
+    const x = Math.floor(gridPosition.x);
+    const y = Math.floor(gridPosition.y);
+
+    const cell = this.data?.[y]?.[x];
 
     const collisionExist = cell !== " ";
     if (!collisionExist) return null;
@@ -42,6 +62,7 @@ class Grid {
       gridPosition,
       floatPart,
       cell,
+      wall: this.wallData?.[y]?.[x],
       collisionSide: side,
     };
   }

@@ -1,3 +1,5 @@
+import Wall from "./Grid/Wall";
+
 export type Subscriber = ({ grid: CellGrid }) => void;
 
 export type Side = "top" | "bottom" | "left" | "right";
@@ -9,4 +11,6 @@ export interface Collision {
   gridPosition: Position;
   floatPart: Position;
   collisionSide: Side;
+
+  wall: Wall;
 }
