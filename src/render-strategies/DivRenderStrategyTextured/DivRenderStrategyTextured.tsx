@@ -23,8 +23,11 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
   const stripWidth = viewport.width / raycaster.raysCount;
 
   useEffect(() => {
-    SpriteFactory.create("guard", { x: 200, y: 200 });
-    // SpriteFactory.create("guard", { x: 200, y: 250 });
+    SpriteFactory.create("guard", { x: 45, y: 50 });
+    SpriteFactory.create("guard", { x: 45, y: 60 });
+
+    SpriteFactory.create("guard", { x: 55, y: 60 });
+    SpriteFactory.create("guard", { x: 65, y: 50 });
 
     return () => SpriteFactory.removeAll();
   }, []);

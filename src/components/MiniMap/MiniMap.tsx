@@ -6,7 +6,6 @@ import wallData from "../../render-strategies/DivRenderStrategyTextured/wallData
 
 import PlayerMarker from "./PlayerMarker";
 import RayHits from "./RayHits";
-import Dots from "./Dots";
 
 import "./style.scss";
 
@@ -47,8 +46,6 @@ const MiniMap = () => {
             })}
 
             <PlayerMarker />
-
-            <Dots />
           </Fragment>
         ))}
       </div>
