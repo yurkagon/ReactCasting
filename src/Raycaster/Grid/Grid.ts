@@ -63,15 +63,7 @@ class Grid {
       { side: "right", value: distanceRight },
     ];
 
-    const { side: calculatedSide } = maxBy(distanceData, "value");
-
-    let formattedSide = calculatedSide;
-
-    if (formattedSide === "bottom") {
-      const hasNearWall = this.data?.[y + 1]?.[x] !== " ";
-
-      console.log(distanceBottom);
-    }
+    const { side } = maxBy(distanceData, "value");
 
     return {
       point: position,
@@ -79,7 +71,7 @@ class Grid {
       floatPart,
       cell,
       wall: this.wallData?.[y]?.[x],
-      collisionSide: formattedSide,
+      collisionSide: side,
     };
   }
 
