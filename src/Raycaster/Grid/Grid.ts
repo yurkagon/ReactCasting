@@ -1,4 +1,5 @@
 import maxBy from "lodash/maxBy";
+import find from "lodash/find";
 
 import Wall from "./Wall";
 
@@ -31,6 +32,9 @@ class Grid {
       })
     );
 
+    // @ts-ignore
+    window.wallData = this.wallData;
+
     this.calculateLightMap();
   }
 
@@ -59,7 +63,15 @@ class Grid {
       { side: "right", value: distanceRight },
     ];
 
-    const { side } = maxBy(distanceData, "value");
+    const { side: calculatedSide } = maxBy(distanceData, "value");
+
+    let formattedSide = calculatedSide;
+
+    if (formattedSide === "bottom") {
+      const hasNearWall = this.data?.[y + 1]?.[x] !== " ";
+
+      console.log(distanceBottom);
+    }
 
     return {
       point: position,
@@ -67,7 +79,7 @@ class Grid {
       floatPart,
       cell,
       wall: this.wallData?.[y]?.[x],
-      collisionSide: side,
+      collisionSide: formattedSide,
     };
   }
 
@@ -96,102 +108,43 @@ class Grid {
     if (intensity <= 0) return;
     calculatedPoints.push(point);
 
-    const handleLightToTop = () => {
+    const pushLight = (direction: Position, wallSideToHit: Side) => {
       let i = 1;
 
       while (true) {
         const nextPoint = {
-          y: point.y - i,
-          x: point.x,
+          y: point.y + i * direction.y,
+          x: point.x + i * direction.x,
         };
+        if (find(calculatedPoints, nextPoint)) break;
 
         const wall = this.wallData?.[nextPoint.y]?.[nextPoint.x];
 
-        const newIntensity = intensity - this.lightScattering * i;
+        const nextIntensity = intensity - this.lightScattering * (i - 1);
+        if (nextIntensity <= 0) break;
 
         if (wall) {
-          wall.addSideLight("top", newIntensity);
+          wall.addSideLight(wallSideToHit, nextIntensity);
 
           break;
         }
+
+        calculatedPoints.push(nextPoint);
+
+        this.calculateLightFromPoint(
+          nextPoint,
+          nextIntensity - this.lightScattering * 1.5,
+          calculatedPoints
+        );
 
         i++;
       }
     };
 
-    const handleLightToBottom = () => {
-      let i = 1;
-
-      while (true) {
-        const nextPoint = {
-          y: point.y + i,
-          x: point.x,
-        };
-
-        const wall = this.wallData?.[nextPoint.y]?.[nextPoint.x];
-
-        const newIntensity = intensity - this.lightScattering * i;
-
-        if (wall) {
-          wall.addSideLight("bottom", newIntensity);
-
-          break;
-        }
-
-        i++;
-      }
-    };
-
-    const handleLightToRight = () => {
-      let i = 1;
-
-      while (true) {
-        const nextPoint = {
-          y: point.y,
-          x: point.x + i,
-        };
-
-        const wall = this.wallData?.[nextPoint.y]?.[nextPoint.x];
-
-        const newIntensity = intensity - this.lightScattering * i;
-
-        if (wall) {
-          wall.addSideLight("right", newIntensity);
-
-          break;
-        }
-
-        i++;
-      }
-    };
-
-    const handleLightToLeft = () => {
-      let i = 1;
-
-      while (true) {
-        const nextPoint = {
-          y: point.y,
-          x: point.x - i,
-        };
-
-        const wall = this.wallData?.[nextPoint.y]?.[nextPoint.x];
-
-        const newIntensity = intensity - this.lightScattering * i;
-
-        if (wall) {
-          wall.addSideLight("left", newIntensity);
-
-          break;
-        }
-
-        i++;
-      }
-    };
-
-    handleLightToTop();
-    handleLightToBottom();
-    handleLightToRight();
-    handleLightToLeft();
+    pushLight({ y: -1, x: 0 }, "top");
+    pushLight({ y: 1, x: 0 }, "bottom");
+    pushLight({ y: 0, x: 1 }, "right");
+    pushLight({ y: 0, x: -1 }, "left");
   }
 
   private static instance: Grid;
