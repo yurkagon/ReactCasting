@@ -14,7 +14,7 @@ class Grid {
 
   public readonly tileSize: number = 32;
 
-  private lightScattering: number = 0.1;
+  private lightScattering: number = 0.2;
 
   private constructor() {}
 
@@ -95,7 +95,8 @@ class Grid {
   private calculateLightFromPoint(
     point: Position,
     intensity: number,
-    calculatedPoints: Position[] = []
+    calculatedPoints: Position[] = [],
+    specifiedWay?: Side
   ) {
     if (intensity <= 0) return;
     calculatedPoints.push(point);
@@ -125,18 +126,19 @@ class Grid {
 
         this.calculateLightFromPoint(
           nextPoint,
-          nextIntensity - this.lightScattering * 1.5,
-          calculatedPoints
+          nextIntensity - this.lightScattering,
+          calculatedPoints,
+          wallSideToHit
         );
 
         i++;
       }
     };
 
-    pushLight({ y: -1, x: 0 }, "top");
-    pushLight({ y: 1, x: 0 }, "bottom");
-    pushLight({ y: 0, x: 1 }, "right");
-    pushLight({ y: 0, x: -1 }, "left");
+    if (specifiedWay !== "top") pushLight({ y: -1, x: 0 }, "top");
+    if (specifiedWay !== "bottom") pushLight({ y: 1, x: 0 }, "bottom");
+    if (specifiedWay !== "right") pushLight({ y: 0, x: 1 }, "right");
+    if (specifiedWay !== "left") pushLight({ y: 0, x: -1 }, "left");
   }
 
   private static instance: Grid;

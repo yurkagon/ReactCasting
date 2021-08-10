@@ -59,7 +59,7 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
 
         const lightLevel = range(
           ray.collision.wall.sidesLight[ray.collision.collisionSide],
-          0.05,
+          0.1,
           0.8
         );
 
