@@ -41,6 +41,16 @@ export const limit = (value: number, limit: number): number => {
   return value;
 };
 
+export const minimum = (value: number, min: number): number => {
+  if (value < min) return min;
+
+  return value;
+};
+
+export const range = (value: number, min: number, max: number): number => {
+  return limit(minimum(value, min), max);
+};
+
 export const useSceneUpdate = () => {
   const [updateCount, setUpdateCount] = useState(0);
 

@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import cn from "classnames";
 
-import { useViewport } from "../../utils";
+import { range, useViewport } from "../../utils";
 
 import Raycaster, { getZIndexByDistance, useRays } from "../../Raycaster";
 
@@ -57,8 +57,11 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
         const textureSizeValue = 2;
         const textureMove = float * ray.stripHeight * textureSizeValue;
 
-        const lightLevel =
-          ray.collision.wall.sidesLight[ray.collision.collisionSide] || 0.1;
+        const lightLevel = range(
+          ray.collision.wall.sidesLight[ray.collision.collisionSide],
+          0.05,
+          0.8
+        );
 
         return (
           <div
