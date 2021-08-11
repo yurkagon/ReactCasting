@@ -60,7 +60,7 @@ class Ray {
       this.isVerticalCast = true;
     }
 
-    const wallCoefficient = 10000;
+    const wallCoefficient = 13000;
     this.stripHeight =
       wallCoefficient /
       (Math.cos(Player.getInstance().position.rotation - this.angle) *

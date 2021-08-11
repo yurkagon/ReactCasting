@@ -9,6 +9,7 @@ import Wall from "./Grid/Wall";
 
 export const useGrid = () => {
   const [grid, setGrid] = useState<CellGrid>(null);
+  const [lightMap, setLightMap] = useState<number[][]>(null);
   const [walls, setWalls] = useState<Wall[][]>(null);
   const [tileSize, setTileSize] = useState<number>(null);
 
@@ -21,6 +22,7 @@ export const useGrid = () => {
       setGrid(raycaster.grid.data);
       setWalls(raycaster.grid.wallData);
       setTileSize(raycaster.grid.tileSize);
+      setLightMap(raycaster.grid.lightMap);
     };
 
     scene.subscribe(subscriber);
@@ -30,7 +32,7 @@ export const useGrid = () => {
 
   if (!grid) return null;
 
-  return { data: grid, tileSize, walls };
+  return { data: grid, tileSize, walls, lightMap };
 };
 
 export const usePlayer = (): Player => {

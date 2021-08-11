@@ -1,5 +1,6 @@
 import maxBy from "lodash/maxBy";
 import find from "lodash/find";
+import cloneDeep from "lodash/cloneDeep";
 
 import Wall from "./Wall";
 
@@ -9,8 +10,8 @@ import { GridConfig } from "./types";
 class Grid {
   public data: CellGrid = null;
   public wallData: Wall[][] = null;
-  private pointLightMap: number[][] = null;
-  private lightMap: number[][] = null;
+  public pointLightMap: number[][] = null;
+  public lightMap: number[][] = null;
 
   public readonly tileSize: number = 32;
 
@@ -32,10 +33,13 @@ class Grid {
       })
     );
 
+    this.lightMap = cloneDeep(this.pointLightMap);
+
     // @ts-ignore
     window.wallData = this.wallData;
 
     this.calculateLightMap();
+    this.calculateWallLights();
   }
 
   public handleCollision(position: Position): Collision | null {
@@ -92,7 +96,62 @@ class Grid {
     );
   }
 
-  private calculateLightFromPoint(
+  private calculateLightFromPoint(point: Position, intensity: number) {
+    if (intensity <= 0) return;
+
+    const pushLight = (direction: Position) => {
+      let i = 1;
+
+      while (true) {
+        const nextPoint = {
+          y: point.y + i * direction.y,
+          x: point.x + i * direction.x,
+        };
+
+        const space = this.wallData?.[nextPoint.y]?.[nextPoint.x];
+        if (space !== null) break;
+
+        const nextIntensity = intensity - this.lightScattering * (i - 1);
+        if (nextIntensity <= 0) break;
+
+        if (this.lightMap[nextPoint.y][nextPoint.x] < nextIntensity) {
+          this.lightMap[nextPoint.y][nextPoint.x] = nextIntensity;
+        }
+
+        this.calculateLightFromPoint(
+          nextPoint,
+          nextIntensity - this.lightScattering
+        );
+
+        i++;
+      }
+    };
+
+    pushLight({ y: -1, x: 0 });
+    pushLight({ y: 1, x: 0 });
+    pushLight({ y: 0, x: 1 });
+    pushLight({ y: 0, x: -1 });
+  }
+
+  private calculateWallLights() {
+    this.lightMap.forEach((row, y) =>
+      row.map((intensity, x) => {
+        if (!intensity) return;
+
+        const topWall = this.wallData?.[y - 1]?.[x];
+        if (topWall) topWall.addSideLight("top", intensity);
+        const bottomWall = this.wallData?.[y + 1]?.[x];
+        if (bottomWall) bottomWall.addSideLight("bottom", intensity);
+
+        const leftWall = this.wallData?.[y]?.[x - 1];
+        if (leftWall) leftWall.addSideLight("left", intensity);
+        const rightWall = this.wallData?.[y]?.[x + 1];
+        if (rightWall) rightWall.addSideLight("right", intensity);
+      })
+    );
+  }
+
+  private calculateLightFromPointLegacy(
     point: Position,
     intensity: number,
     calculatedPoints: Position[] = [],
@@ -126,9 +185,7 @@ class Grid {
 
         this.calculateLightFromPoint(
           nextPoint,
-          nextIntensity - this.lightScattering,
-          calculatedPoints,
-          wallSideToHit
+          nextIntensity - this.lightScattering
         );
 
         i++;

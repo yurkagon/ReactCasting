@@ -29,7 +29,10 @@ const MiniMap = () => {
         {grid.walls?.map((row, i) => (
           <Fragment key={i}>
             {row.map((wall, j) => {
-              if (!wall) return null;
+              const lightValue = grid.lightMap?.[i]?.[j] * 255;
+              const background = wall
+                ? `url(${wall.texture})`
+                : `rgb(${lightValue},${lightValue},${lightValue})`;
 
               return (
                 <div
@@ -39,7 +42,8 @@ const MiniMap = () => {
                     left: j * tilesSize,
                     width: tilesSize,
                     height: tilesSize,
-                    backgroundImage: `url(${wall.texture})`,
+                    background: background,
+                    backgroundSize: "cover",
                   }}
                   key={j}
                 />
