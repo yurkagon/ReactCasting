@@ -22,6 +22,7 @@ class Player extends GameObject {
   private readonly control: Control;
 
   private bouncingState: boolean = true;
+  private stepAmount: number = 0.03;
 
   private constructor() {
     super();
@@ -140,16 +141,15 @@ class Player extends GameObject {
     this.position = newPosition;
 
     newPosition.z +=
-      (this.bouncingState ? 1 : -1) * Scene.getInstance().deltaTime * 0.25;
+      (this.bouncingState ? 1 : -1) * Scene.getInstance().deltaTime * 0.2;
 
-    const lim = 0.04;
-    if (newPosition.z <= -lim) {
+    if (newPosition.z <= -this.stepAmount) {
       this.bouncingState = true;
-      newPosition.z = -lim;
+      newPosition.z = -this.stepAmount;
     }
-    if (newPosition.z >= lim) {
+    if (newPosition.z >= this.stepAmount) {
       this.bouncingState = false;
-      newPosition.z = lim;
+      newPosition.z = this.stepAmount;
     }
 
     if (Settings.isDevelopment) {

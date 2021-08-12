@@ -9,7 +9,14 @@ class Scene {
   private deltaTimeValue: number = 0;
 
   public init() {
-    setInterval(() => this.update(), 10);
+    const updateHandler = () => {
+      this.update();
+
+      window.requestAnimationFrame(updateHandler);
+    };
+
+    window.requestAnimationFrame(updateHandler);
+    // setInterval(() => this.update(), 10);
   }
 
   public subscribe(subscriber: Subscriber): void {
