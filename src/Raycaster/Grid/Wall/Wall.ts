@@ -22,7 +22,6 @@ class Wall {
   }
 
   public addSideLight(side: Side, intensity: number) {
-    console.log(intensity);
     this.sidesLight[side] += intensity;
   }
 }

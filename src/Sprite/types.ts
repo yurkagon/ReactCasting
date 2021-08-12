@@ -1,4 +1,4 @@
-export type SpriteName = "guard";
+export type SpriteName = "guard" | "cage";
 
 export interface SpriteSize {
   width: number;
@@ -11,6 +11,8 @@ export interface SpriteConfig {
 
   position: Position;
   originalSize: SpriteSize;
+
+  relative?: { x: number; y: number };
 }
 
 export type SpriteData = {

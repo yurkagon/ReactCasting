@@ -42,7 +42,10 @@ const SpriteLayer = () => {
             style={{
               width: renderWidth,
               height: renderHeight,
-              top: (viewport.height - spriteHeight) / 2 - spriteHeight * 2,
+              top:
+                (viewport.height - spriteHeight) / 2 -
+                spriteHeight * 2 +
+                sprite.relative.y * spriteHeight,
               left:
                 (viewport.width *
                   Angle.normalize(angleBetweenTarget - fovAngleStart)) /
