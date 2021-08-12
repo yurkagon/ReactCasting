@@ -17,9 +17,8 @@ const spriteData: SpriteData = {
       width: 64,
       height: 64,
     },
-    relative: {
-      y: -3.5,
-      x: 0,
+    position: {
+      z: 3.5,
     },
   },
 };

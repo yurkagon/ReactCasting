@@ -78,6 +78,14 @@ class Grid {
       collisionSide: side,
     };
   }
+  public getBrightness(position: Position): number {
+    const gridPosition = this.convertPositionToGridPosition(position);
+
+    const x = Math.floor(gridPosition.x);
+    const y = Math.floor(gridPosition.y);
+
+    return this.lightMap?.[y]?.[x] || 0;
+  }
 
   private convertPositionToGridPosition(position: Position): Position {
     return {

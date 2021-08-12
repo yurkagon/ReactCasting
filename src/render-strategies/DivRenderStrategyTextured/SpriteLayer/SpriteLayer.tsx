@@ -3,13 +3,18 @@ import cn from "classnames";
 
 import { calculateDistance, useViewport, limit, Angle } from "../../../utils";
 
-import Raycaster, { getZIndexByDistance, usePlayer } from "../../../Raycaster";
+import Raycaster, {
+  getZIndexByDistance,
+  useGrid,
+  usePlayer,
+} from "../../../Raycaster";
 
 import { SpriteFactory } from "../../../Sprite";
 
 import "./style.scss";
 
 const SpriteLayer = () => {
+  const grid = useGrid();
   const raycaster = Raycaster.getInstance();
   const player = usePlayer();
 
@@ -34,7 +39,7 @@ const SpriteLayer = () => {
         const renderHeight = spriteHeight * 10;
         const renderWidth = renderHeight * sprite.widthCoefficient;
 
-        const brightness = limit((renderHeight * 2) / viewport.height, 1);
+        const brightness = raycaster.grid.getBrightness(sprite.position);
 
         return (
           <div
@@ -44,8 +49,8 @@ const SpriteLayer = () => {
               height: renderHeight,
               top:
                 (viewport.height - spriteHeight) / 2 -
-                spriteHeight * 2 +
-                sprite.relative.y * spriteHeight,
+                spriteHeight * 2 -
+                sprite.position.z * spriteHeight,
               left:
                 (viewport.width *
                   Angle.normalize(angleBetweenTarget - fovAngleStart)) /

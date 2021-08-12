@@ -11,10 +11,10 @@ export interface SpriteConfig {
 
   position: Position;
   originalSize: SpriteSize;
-
-  relative?: { x: number; y: number };
 }
 
 export type SpriteData = {
-  [key in SpriteName]: Omit<SpriteConfig, "position" | "name">;
+  [key in SpriteName]: Omit<SpriteConfig, "position" | "name"> & {
+    position?: Partial<Position>;
+  };
 };
