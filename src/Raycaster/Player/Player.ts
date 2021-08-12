@@ -14,7 +14,7 @@ class Player extends GameObject {
     z: 0,
   };
 
-  public readonly walkSpeed = 50;
+  public readonly walkSpeed = 44;
   public readonly rotationSpeed = 1.3;
 
   public readonly radius = 8;
@@ -140,8 +140,17 @@ class Player extends GameObject {
     this.position = newPosition;
 
     newPosition.z +=
-      (this.bouncingState ? 1 : -1) * Scene.getInstance().deltaTime;
-    if (Math.abs(newPosition.z) >= 1) this.bouncingState = !this.bouncingState;
+      (this.bouncingState ? 1 : -1) * Scene.getInstance().deltaTime * 0.25;
+
+    const lim = 0.04;
+    if (newPosition.z <= -lim) {
+      this.bouncingState = true;
+      newPosition.z = -lim;
+    }
+    if (newPosition.z >= lim) {
+      this.bouncingState = false;
+      newPosition.z = lim;
+    }
 
     if (Settings.isDevelopment) {
       this.savePosition();
