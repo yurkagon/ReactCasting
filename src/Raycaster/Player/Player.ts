@@ -11,6 +11,7 @@ class Player extends GameObject {
     rotation: -1.884955592153879,
     x: 372.6884332630978,
     y: 128.58201781700896,
+    z: 0,
   };
 
   public readonly walkSpeed = 50;
@@ -20,6 +21,8 @@ class Player extends GameObject {
 
   private readonly control: Control;
 
+  private bouncingState: boolean = true;
+
   private constructor() {
     super();
 
@@ -28,7 +31,7 @@ class Player extends GameObject {
     if (Settings.isDevelopment) {
       const positionFromStorage = localStorage.getItem("player-position");
 
-      if (positionFromStorage) this.position = JSON.parse(positionFromStorage);
+      // if (positionFromStorage) this.position = JSON.parse(positionFromStorage);
     }
   }
 
@@ -135,6 +138,10 @@ class Player extends GameObject {
     if (grid.handleCollision(newPosition)) return;
 
     this.position = newPosition;
+
+    newPosition.z +=
+      (this.bouncingState ? 1 : -1) * Scene.getInstance().deltaTime;
+    if (Math.abs(newPosition.z) >= 1) this.bouncingState = !this.bouncingState;
 
     if (Settings.isDevelopment) {
       this.savePosition();

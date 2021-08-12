@@ -50,7 +50,8 @@ const SpriteLayer = () => {
               top:
                 (viewport.height - spriteHeight) / 2 -
                 spriteHeight * 2 -
-                sprite.position.z * spriteHeight,
+                sprite.position.z * spriteHeight +
+                renderHeight * raycaster.player.position.z,
               left:
                 (viewport.width *
                   Angle.normalize(angleBetweenTarget - fovAngleStart)) /

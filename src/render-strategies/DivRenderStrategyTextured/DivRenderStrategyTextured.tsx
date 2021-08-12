@@ -73,7 +73,9 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
               width: stripWidth,
               height: ray.stripHeight,
               left: stripWidth * index,
-              top: (viewport.height - ray.stripHeight) / 2,
+              top:
+                (viewport.height - ray.stripHeight) / 2 +
+                ray.stripHeight * raycaster.player.position.z,
               zIndex: getZIndexByDistance(ray.hitDistance),
             }}
             key={index}
