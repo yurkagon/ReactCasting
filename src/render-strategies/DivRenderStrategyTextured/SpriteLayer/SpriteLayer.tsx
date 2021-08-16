@@ -1,7 +1,13 @@
 import { Fragment } from "react";
 import cn from "classnames";
 
-import { calculateDistance, useViewport, limit, Angle } from "../../../utils";
+import {
+  calculateDistance,
+  useViewport,
+  limit,
+  Angle,
+  minimum,
+} from "../../../utils";
 
 import Raycaster, {
   getZIndexByDistance,
@@ -40,15 +46,10 @@ const SpriteLayer = () => {
         const renderWidth =
           renderHeight * sprite.widthCoefficient * sprite.transform.width;
 
-        const brightness = raycaster.grid.getBrightness(sprite.position);
-
-        // console.log(
-        //   viewport.height,
-        //   spriteHeight,
-        //   sprite.position.y,
-        //   renderHeight,
-        //   raycaster.player.position.y
-        // );
+        const brightness = minimum(
+          raycaster.grid.getBrightness(sprite.position),
+          0.1
+        );
 
         return (
           <div

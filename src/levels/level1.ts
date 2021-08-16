@@ -84,6 +84,43 @@ const sprites: { name: SpriteName; position: Position }[] = [
     name: "lamp",
     position: { x: 48, z: 78 },
   },
+  {
+    name: "lamp",
+    position: { x: 420, z: 240 },
+  },
+
+  // armors
+  {
+    name: "armor",
+    position: { x: 238, z: 51 },
+  },
+  {
+    name: "armor",
+    position: { x: 238, z: 111 },
+  },
+
+  {
+    name: "armor",
+    position: { x: 176, z: 51 },
+  },
+  {
+    name: "armor",
+    position: { x: 176, z: 111 },
+  },
+
+  {
+    name: "armor",
+    position: { x: 367, z: 51 },
+  },
+  {
+    name: "armor",
+    position: { x: 367, z: 111 },
+  },
+
+  {
+    name: "armor",
+    position: { x: 51, z: 238 },
+  },
 ];
 
 export default {

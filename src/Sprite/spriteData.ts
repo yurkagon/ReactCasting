@@ -1,6 +1,7 @@
 import guardSprite from "./assets/guard.png";
 import cageSprite from "./assets/cage.png";
 import lampSprite from "./assets/lamp.png";
+import armorSprite from "./assets/armor.png";
 
 import { SpriteData } from "./types";
 
@@ -34,6 +35,20 @@ const spriteData: SpriteData = {
     },
     position: {
       y: 6,
+    },
+  },
+  armor: {
+    texture: armorSprite,
+    originalSize: {
+      width: 64,
+      height: 64,
+    },
+    transform: {
+      height: 1.3,
+      // width: 1.5,
+    },
+    position: {
+      y: 3,
     },
   },
 };

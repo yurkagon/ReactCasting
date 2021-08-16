@@ -7,7 +7,7 @@ const PlayerDebugger = () => {
   return (
     <div>
       <div>x: {Math.floor(player?.position.x)}</div>
-      <div>y: {Math.floor(player?.position.z)}</div>
+      <div>z: {Math.floor(player?.position.z)}</div>
       <div>angle: {Math.floor(Angle.toDeg(player?.position.rotation))}</div>
     </div>
   );
