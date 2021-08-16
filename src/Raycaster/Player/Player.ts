@@ -10,8 +10,8 @@ class Player extends GameObject {
   public position: Position = {
     rotation: -1.884955592153879,
     x: 372.6884332630978,
-    y: 128.58201781700896,
-    z: 0,
+    z: 128.58201781700896,
+    y: 0,
   };
 
   public readonly walkSpeed = 44;
@@ -54,13 +54,13 @@ class Player extends GameObject {
     if (toForward || toBack) {
       const multiplier = toForward ? 1 : -1;
 
-      const vector = {
+      const vector: Position = {
         x:
           Math.cos(this.position.rotation) *
           this.walkSpeed *
           multiplier *
           scene.deltaTime,
-        y:
+        z:
           Math.sin(this.position.rotation) *
           this.walkSpeed *
           multiplier *
@@ -74,8 +74,8 @@ class Player extends GameObject {
       const multiplier1 = toRight ? 1 : -1;
       const multiplier2 = toRight ? -1 : 1;
 
-      const vector = {
-        y:
+      const vector: Position = {
+        z:
           Math.cos(this.position.rotation) *
           this.walkSpeed *
           multiplier1 *
@@ -130,26 +130,26 @@ class Player extends GameObject {
   private moveBy(vector: Position): void {
     const grid = Grid.getInstance();
 
-    const newPosition = {
+    const newPosition: Position = {
       ...this.position,
       x: this.position.x + vector.x,
-      y: this.position.y + vector.y,
+      z: this.position.z + vector.z,
     };
 
     if (grid.handleCollision(newPosition)) return;
 
     this.position = newPosition;
 
-    newPosition.z +=
+    newPosition.y +=
       (this.bouncingState ? 1 : -1) * Scene.getInstance().deltaTime * 0.2;
 
-    if (newPosition.z <= -this.stepAmount) {
+    if (newPosition.y <= -this.stepAmount) {
       this.bouncingState = true;
-      newPosition.z = -this.stepAmount;
+      newPosition.y = -this.stepAmount;
     }
-    if (newPosition.z >= this.stepAmount) {
+    if (newPosition.y >= this.stepAmount) {
       this.bouncingState = false;
-      newPosition.z = this.stepAmount;
+      newPosition.y = this.stepAmount;
     }
 
     if (Settings.isDevelopment) {

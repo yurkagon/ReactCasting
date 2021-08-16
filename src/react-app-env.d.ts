@@ -16,8 +16,8 @@ declare type CellGrid = Cell[][];
 
 declare type Position = {
   x: number;
-  y: number;
-  z?: number;
+  z: number;
+  y?: number;
   rotation?: number;
 };
 

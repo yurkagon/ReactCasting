@@ -19,8 +19,14 @@ const RayHits = () => {
         return (
           <Line
             key={index}
-            from={{ x: player.position.x / 2, y: player.position.y / 2 }}
-            to={{ x: ray.collision.point.x / 2, y: ray.collision.point.y / 2 }}
+            from={{
+              x: player.position.x / 2,
+              z: player.position.z / 2,
+            }}
+            to={{
+              x: ray.collision.point.x / 2,
+              z: ray.collision.point.z / 2,
+            }}
           />
         );
       })}

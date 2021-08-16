@@ -11,9 +11,9 @@ class SpriteFactory {
   public static create(name: SpriteName, position: Position): Sprite {
     const config = spriteData[name];
 
-    const updatedPosition = {
+    const updatedPosition: Position = {
       ...position,
-      z: position?.z || config.position?.z || 0,
+      y: position?.y || config.position?.y || 0,
     };
 
     const sprite = new Sprite({ ...config, position: updatedPosition, name });

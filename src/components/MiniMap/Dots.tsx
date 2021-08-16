@@ -14,7 +14,7 @@ const RayHits = () => {
           key={j}
           style={{
             position: "absolute",
-            top: sprite.position.y / 2,
+            top: sprite.position.z / 2,
             left: sprite.position.x / 2,
             width: 3,
             height: 3,

@@ -23,21 +23,21 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
   const stripWidth = viewport.width / raycaster.raysCount;
 
   useEffect(() => {
-    SpriteFactory.create("guard", { x: 45, y: 50 });
-    SpriteFactory.create("guard", { x: 45, y: 60 });
+    SpriteFactory.create("guard", { x: 45, z: 50 });
+    SpriteFactory.create("guard", { x: 45, z: 60 });
 
-    SpriteFactory.create("guard", { x: 55, y: 60 });
-    SpriteFactory.create("guard", { x: 65, y: 50 });
+    SpriteFactory.create("guard", { x: 55, z: 60 });
+    SpriteFactory.create("guard", { x: 65, z: 50 });
 
-    SpriteFactory.create("cage", { x: 430, y: 45 });
-    SpriteFactory.create("cage", { x: 430, y: 65 });
+    SpriteFactory.create("cage", { x: 430, z: 45 });
+    SpriteFactory.create("cage", { x: 430, z: 65 });
 
-    SpriteFactory.create("lamp", { x: 144, y: 241 });
-    SpriteFactory.create("lamp", { x: 303, y: 177 });
-    SpriteFactory.create("lamp", { x: 303, y: 81 });
-    SpriteFactory.create("lamp", { x: 48, y: 109 });
-    SpriteFactory.create("lamp", { x: 48, y: 46 });
-    SpriteFactory.create("lamp", { x: 48, y: 78 });
+    SpriteFactory.create("lamp", { x: 144, z: 241 });
+    SpriteFactory.create("lamp", { x: 303, z: 177 });
+    SpriteFactory.create("lamp", { x: 303, z: 81 });
+    SpriteFactory.create("lamp", { x: 48, z: 109 });
+    SpriteFactory.create("lamp", { x: 48, z: 46 });
+    SpriteFactory.create("lamp", { x: 48, z: 78 });
 
     return () => SpriteFactory.removeAll();
   }, []);
@@ -63,7 +63,7 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
         const float =
           ray.collision.collisionSide === "left" ||
           ray.collision.collisionSide === "right"
-            ? ray.collision.floatPart.y
+            ? ray.collision.floatPart.z
             : ray.collision.floatPart.x;
 
         const textureSizeValue = 2;
@@ -84,7 +84,7 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
               left: stripWidth * index,
               top:
                 (viewport.height - ray.stripHeight) / 2 +
-                ray.stripHeight * raycaster.player.position.z,
+                ray.stripHeight * raycaster.player.position.y,
               zIndex: getZIndexByDistance(ray.hitDistance),
             }}
             key={index}

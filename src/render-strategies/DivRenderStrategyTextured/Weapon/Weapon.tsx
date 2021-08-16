@@ -21,7 +21,7 @@ const Weapon = () => {
         className="texture"
         style={{
           filter: `brightness(${brightness})`,
-          top: (player.position.z + player.stepAmount) * 1000,
+          top: (player.position.y + player.stepAmount) * 1000,
         }}
       />
     </div>

@@ -10,7 +10,7 @@ const PlayerMarker = () => {
     <div
       className="player-marker"
       style={{
-        top: player.position.y / 2,
+        top: player.position.z / 2,
         left: player.position.x / 2,
       }}
     >

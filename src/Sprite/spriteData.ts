@@ -19,7 +19,7 @@ const spriteData: SpriteData = {
       height: 64,
     },
     position: {
-      z: 3.5,
+      y: 3.5,
     },
   },
   lamp: {
@@ -33,7 +33,7 @@ const spriteData: SpriteData = {
       width: 1.5,
     },
     position: {
-      z: 6,
+      y: 6,
     },
   },
 };

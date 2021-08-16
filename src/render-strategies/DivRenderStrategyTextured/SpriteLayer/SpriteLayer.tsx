@@ -42,6 +42,14 @@ const SpriteLayer = () => {
 
         const brightness = raycaster.grid.getBrightness(sprite.position);
 
+        // console.log(
+        //   viewport.height,
+        //   spriteHeight,
+        //   sprite.position.y,
+        //   renderHeight,
+        //   raycaster.player.position.y
+        // );
+
         return (
           <div
             className={cn("sprite", sprite.name)}
@@ -51,8 +59,8 @@ const SpriteLayer = () => {
               top:
                 (viewport.height - spriteHeight) / 2 -
                 spriteHeight * 2 -
-                sprite.position.z * spriteHeight +
-                renderHeight * raycaster.player.position.z,
+                sprite.position.y * spriteHeight +
+                renderHeight * raycaster.player.position.y,
               left:
                 (viewport.width *
                   Angle.normalize(angleBetweenTarget - fovAngleStart)) /

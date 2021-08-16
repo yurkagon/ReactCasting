@@ -26,7 +26,7 @@ class Angle {
 
   public static getAngleBetween(pos1: Position, pos2: Position) {
     const dx = pos1.x - pos2.x;
-    const dz = pos2.y - pos1.y;
+    const dz = pos2.z - pos1.z;
 
     const angle = Math.atan2(dz, dx);
 

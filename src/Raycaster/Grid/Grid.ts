@@ -46,16 +46,19 @@ class Grid {
     const gridPosition = this.convertPositionToGridPosition(position);
 
     const x = Math.floor(gridPosition.x);
-    const y = Math.floor(gridPosition.y);
+    const z = Math.floor(gridPosition.z);
 
-    const cell = this.data?.[y]?.[x];
+    const cell = this.data?.[z]?.[x];
 
     const collisionExist = cell !== " ";
     if (!collisionExist) return null;
 
-    const floatPart = { x: gridPosition.x % 1, y: gridPosition.y % 1 };
+    const floatPart: Position = {
+      x: gridPosition.x % 1,
+      z: gridPosition.z % 1,
+    };
 
-    const distanceTop = floatPart.y;
+    const distanceTop = floatPart.z;
     const distanceBottom = 1 - distanceTop;
     const distanceLeft = floatPart.x;
     const distanceRight = 1 - distanceLeft;
@@ -74,7 +77,7 @@ class Grid {
       gridPosition,
       floatPart,
       cell,
-      wall: this.wallData?.[y]?.[x],
+      wall: this.wallData?.[z]?.[x],
       collisionSide: side,
     };
   }
@@ -82,24 +85,24 @@ class Grid {
     const gridPosition = this.convertPositionToGridPosition(position);
 
     const x = Math.floor(gridPosition.x);
-    const y = Math.floor(gridPosition.y);
+    const z = Math.floor(gridPosition.z);
 
-    return this.lightMap?.[y]?.[x] || 0;
+    return this.lightMap?.[z]?.[x] || 0;
   }
 
   private convertPositionToGridPosition(position: Position): Position {
     return {
       x: position.x / this.tileSize,
-      y: position.y / this.tileSize,
+      z: position.z / this.tileSize,
     };
   }
 
   private calculateLightMap() {
-    this.pointLightMap.forEach((row, y) =>
+    this.pointLightMap.forEach((row, z) =>
       row.forEach((intensity, x) => {
         if (!intensity) return;
 
-        this.calculateLightFromPoint({ x, y }, intensity);
+        this.calculateLightFromPoint({ x, z }, intensity);
       })
     );
   }
@@ -111,19 +114,19 @@ class Grid {
       let i = 1;
 
       while (true) {
-        const nextPoint = {
-          y: point.y + i * direction.y,
+        const nextPoint: Position = {
+          z: point.z + i * direction.z,
           x: point.x + i * direction.x,
         };
 
-        const space = this.wallData?.[nextPoint.y]?.[nextPoint.x];
+        const space = this.wallData?.[nextPoint.z]?.[nextPoint.x];
         if (space !== null) break;
 
         const nextIntensity = intensity - this.lightScattering * (i - 1);
         if (nextIntensity <= 0) break;
 
-        if (this.lightMap[nextPoint.y][nextPoint.x] < nextIntensity) {
-          this.lightMap[nextPoint.y][nextPoint.x] = nextIntensity;
+        if (this.lightMap[nextPoint.z][nextPoint.x] < nextIntensity) {
+          this.lightMap[nextPoint.z][nextPoint.x] = nextIntensity;
         }
 
         this.calculateLightFromPoint(
@@ -135,25 +138,25 @@ class Grid {
       }
     };
 
-    pushLight({ y: -1, x: 0 });
-    pushLight({ y: 1, x: 0 });
-    pushLight({ y: 0, x: 1 });
-    pushLight({ y: 0, x: -1 });
+    pushLight({ z: -1, x: 0 });
+    pushLight({ z: 1, x: 0 });
+    pushLight({ z: 0, x: 1 });
+    pushLight({ z: 0, x: -1 });
   }
 
   private calculateWallLights() {
-    this.lightMap.forEach((row, y) =>
+    this.lightMap.forEach((row, z) =>
       row.map((intensity, x) => {
         if (!intensity) return;
 
-        const topWall = this.wallData?.[y - 1]?.[x];
+        const topWall = this.wallData?.[z - 1]?.[x];
         if (topWall) topWall.addSideLight("top", intensity);
-        const bottomWall = this.wallData?.[y + 1]?.[x];
+        const bottomWall = this.wallData?.[z + 1]?.[x];
         if (bottomWall) bottomWall.addSideLight("bottom", intensity);
 
-        const leftWall = this.wallData?.[y]?.[x - 1];
+        const leftWall = this.wallData?.[z]?.[x - 1];
         if (leftWall) leftWall.addSideLight("left", intensity);
-        const rightWall = this.wallData?.[y]?.[x + 1];
+        const rightWall = this.wallData?.[z]?.[x + 1];
         if (rightWall) rightWall.addSideLight("right", intensity);
       })
     );
@@ -172,13 +175,13 @@ class Grid {
       let i = 1;
 
       while (true) {
-        const nextPoint = {
-          y: point.y + i * direction.y,
+        const nextPoint: Position = {
+          z: point.z + i * direction.z,
           x: point.x + i * direction.x,
         };
         if (find(calculatedPoints, nextPoint)) break;
 
-        const wall = this.wallData?.[nextPoint.y]?.[nextPoint.x];
+        const wall = this.wallData?.[nextPoint.z]?.[nextPoint.x];
 
         const nextIntensity = intensity - this.lightScattering * (i - 1);
         if (nextIntensity <= 0) break;
@@ -200,10 +203,10 @@ class Grid {
       }
     };
 
-    if (specifiedWay !== "top") pushLight({ y: -1, x: 0 }, "top");
-    if (specifiedWay !== "bottom") pushLight({ y: 1, x: 0 }, "bottom");
-    if (specifiedWay !== "right") pushLight({ y: 0, x: 1 }, "right");
-    if (specifiedWay !== "left") pushLight({ y: 0, x: -1 }, "left");
+    if (specifiedWay !== "top") pushLight({ z: -1, x: 0 }, "top");
+    if (specifiedWay !== "bottom") pushLight({ z: 1, x: 0 }, "bottom");
+    if (specifiedWay !== "right") pushLight({ z: 0, x: 1 }, "right");
+    if (specifiedWay !== "left") pushLight({ z: 0, x: -1 }, "left");
   }
 
   private static instance: Grid;

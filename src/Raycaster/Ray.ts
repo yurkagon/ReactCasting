@@ -71,13 +71,13 @@ class Ray {
     let yIntercept: number, xIntercept: number, yStep: number, xStep: number;
 
     yIntercept =
-      Math.floor(this.player.position.y / this.grid.tileSize) *
+      Math.floor(this.player.position.z / this.grid.tileSize) *
       this.grid.tileSize;
     yIntercept += this.isRayFacingDown ? this.grid.tileSize : 0;
 
     xIntercept =
       this.player.position.x +
-      (yIntercept - this.player.position.y) / Math.tan(this.angle);
+      (yIntercept - this.player.position.z) / Math.tan(this.angle);
 
     yStep = this.grid.tileSize;
     yStep *= this.isRayFacingUp ? -1 : 1;
@@ -97,7 +97,7 @@ class Ray {
     ) {
       const collision = this.grid.handleCollision({
         x: nextHorizontalTouchX,
-        y: nextHorizontalTouchY - (this.isRayFacingUp ? 1 : 0),
+        z: nextHorizontalTouchY - (this.isRayFacingUp ? 1 : 0),
       });
 
       if (collision) return collision;
@@ -116,7 +116,7 @@ class Ray {
     xIntercept += this.isRayFacingRight ? this.grid.tileSize : 0;
 
     yIntercept =
-      this.player.position.y +
+      this.player.position.z +
       (xIntercept - this.player.position.x) * Math.tan(this.angle);
 
     xStep = this.grid.tileSize;
@@ -137,7 +137,7 @@ class Ray {
     ) {
       const collision = this.grid.handleCollision({
         x: nextVerticalTouchX - (this.isRayFacingLeft ? 1 : 0),
-        y: nextVerticalTouchY,
+        z: nextVerticalTouchY,
       });
 
       if (collision) return collision;
@@ -158,12 +158,12 @@ class Ray {
     while (distance < this.maxDistance) {
       const vector: Position = {
         x: Math.cos(this.angle) * distance,
-        y: Math.sin(this.angle) * distance,
+        z: Math.sin(this.angle) * distance,
       };
 
       const rayPoint: Position = {
         x: this.point.x + vector.x,
-        y: this.point.y + vector.y,
+        z: this.point.z + vector.z,
       };
 
       const collision = this.grid.handleCollision(rayPoint);
