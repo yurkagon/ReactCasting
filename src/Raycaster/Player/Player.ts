@@ -22,7 +22,7 @@ class Player extends GameObject {
   private readonly control: Control;
 
   private bouncingState: boolean = true;
-  private stepAmount: number = 0.03;
+  public readonly stepAmount: number = 0.03;
 
   private constructor() {
     super();

@@ -6,7 +6,9 @@ import { range, useViewport } from "../../utils";
 import Raycaster, { getZIndexByDistance, useRays } from "../../Raycaster";
 
 import { SpriteFactory } from "../../Sprite";
+
 import SpriteLayer from "./SpriteLayer";
+import Weapon from "./Weapon";
 
 import { Props } from "./types";
 
@@ -97,6 +99,8 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
       })}
 
       <SpriteLayer />
+
+      <Weapon />
     </div>
   );
 };

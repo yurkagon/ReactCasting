@@ -1,0 +1,16 @@
+.weapon {
+  position: absolute;
+  z-index: 10000;
+
+  height: 40%;
+  left: 60%;
+  bottom: 0;
+
+  .texture {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    image-rendering: pixelated;
+  }
+}
