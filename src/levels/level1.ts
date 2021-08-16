@@ -121,6 +121,65 @@ const sprites: { name: SpriteName; position: Position }[] = [
     name: "armor",
     position: { x: 51, z: 238 },
   },
+
+  // plants
+  {
+    name: "plant",
+    position: { x: 280, z: 195 },
+  },
+  {
+    name: "plant",
+    position: { x: 280, z: 93 },
+  },
+
+  {
+    name: "plant",
+    position: { x: 328, z: 195 },
+  },
+  {
+    name: "plant",
+    position: { x: 328, z: 93 },
+  },
+
+  {
+    name: "plant",
+    position: { x: 208, z: 93 },
+  },
+  {
+    name: "plant",
+    position: { x: 208, z: 67 },
+  },
+
+  {
+    name: "plant",
+    position: { x: 67, z: 196 },
+  },
+  {
+    name: "plant",
+    position: { x: 67, z: 285 },
+  },
+  {
+    name: "plant",
+    position: { x: 445, z: 285 },
+  },
+
+  {
+    name: "plant",
+    position: { x: 92, z: 37 },
+  },
+  {
+    name: "plant",
+    position: { x: 92, z: 124 },
+  },
+
+  {
+    name: "plant",
+    position: { x: 35, z: 124 },
+  },
+  {
+    name: "plant",
+    position: { x: 35, z: 34 },
+  },
 ];
 
 export default {

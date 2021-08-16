@@ -2,6 +2,7 @@ import guardSprite from "./assets/guard.png";
 import cageSprite from "./assets/cage.png";
 import lampSprite from "./assets/lamp.png";
 import armorSprite from "./assets/armor.png";
+import plantSprite from "./assets/plant.png";
 
 import { SpriteData } from "./types";
 
@@ -45,10 +46,22 @@ const spriteData: SpriteData = {
     },
     transform: {
       height: 1.3,
-      // width: 1.5,
     },
     position: {
       y: 3,
+    },
+  },
+  plant: {
+    texture: plantSprite,
+    originalSize: {
+      width: 64,
+      height: 64,
+    },
+    transform: {
+      height: 1.3,
+    },
+    position: {
+      y: 3.3,
     },
   },
 };
