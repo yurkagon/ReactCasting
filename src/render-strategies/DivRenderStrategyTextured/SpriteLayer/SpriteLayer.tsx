@@ -36,8 +36,9 @@ const SpriteLayer = () => {
           1000 /
           (Math.cos(player.position.rotation - angleBetweenTarget) * distance);
 
-        const renderHeight = spriteHeight * 10;
-        const renderWidth = renderHeight * sprite.widthCoefficient;
+        const renderHeight = spriteHeight * 10 * sprite.transform.height;
+        const renderWidth =
+          renderHeight * sprite.widthCoefficient * sprite.transform.width;
 
         const brightness = raycaster.grid.getBrightness(sprite.position);
 

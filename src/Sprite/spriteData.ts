@@ -1,5 +1,6 @@
 import guardSprite from "./assets/guard.png";
 import cageSprite from "./assets/cage.png";
+import lampSprite from "./assets/lamp.png";
 
 import { SpriteData } from "./types";
 
@@ -19,6 +20,20 @@ const spriteData: SpriteData = {
     },
     position: {
       z: 3.5,
+    },
+  },
+  lamp: {
+    texture: lampSprite,
+    originalSize: {
+      width: 64,
+      height: 127,
+    },
+    transform: {
+      height: 1.7,
+      width: 1.5,
+    },
+    position: {
+      z: 6,
     },
   },
 };

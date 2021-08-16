@@ -32,6 +32,13 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
     SpriteFactory.create("cage", { x: 430, y: 45 });
     SpriteFactory.create("cage", { x: 430, y: 65 });
 
+    SpriteFactory.create("lamp", { x: 144, y: 241 });
+    SpriteFactory.create("lamp", { x: 303, y: 177 });
+    SpriteFactory.create("lamp", { x: 303, y: 81 });
+    SpriteFactory.create("lamp", { x: 48, y: 109 });
+    SpriteFactory.create("lamp", { x: 48, y: 46 });
+    SpriteFactory.create("lamp", { x: 48, y: 78 });
+
     return () => SpriteFactory.removeAll();
   }, []);
 

@@ -32,7 +32,7 @@ class Player extends GameObject {
     if (Settings.isDevelopment) {
       const positionFromStorage = localStorage.getItem("player-position");
 
-      // if (positionFromStorage) this.position = JSON.parse(positionFromStorage);
+      if (positionFromStorage) this.position = JSON.parse(positionFromStorage);
     }
   }
 
