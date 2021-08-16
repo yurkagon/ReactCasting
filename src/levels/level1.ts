@@ -1,3 +1,5 @@
+import { SpriteName } from "../Sprite/types";
+
 // prettier-ignore
 const grid: CellGrid = [
   ["w","w2","w2", "w", "s", "s", "s", "s", "s", "s", "s", "s", "g", "g2","g"],
@@ -28,7 +30,64 @@ const pointLightMap: number[][] = [
   [ 0,   0,  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0],
 ];
 
+const sprites: { name: SpriteName; position: Position }[] = [
+  // guards
+  {
+    name: "guard",
+    position: { x: 45, z: 50 },
+  },
+  {
+    name: "guard",
+    position: { x: 45, z: 60 },
+  },
+  {
+    name: "guard",
+    position: { x: 55, z: 60 },
+  },
+  {
+    name: "guard",
+    position: { x: 65, z: 50 },
+  },
+
+  // cages
+  {
+    name: "cage",
+    position: { x: 430, z: 45 },
+  },
+  {
+    name: "cage",
+    position: { x: 430, z: 65 },
+  },
+
+  // lamps
+  {
+    name: "lamp",
+    position: { x: 144, z: 241 },
+  },
+  {
+    name: "lamp",
+    position: { x: 303, z: 177 },
+  },
+  {
+    name: "lamp",
+    position: { x: 303, z: 81 },
+  },
+  {
+    name: "lamp",
+    position: { x: 48, z: 109 },
+  },
+  {
+    name: "lamp",
+    position: { x: 48, z: 46 },
+  },
+  {
+    name: "lamp",
+    position: { x: 48, z: 78 },
+  },
+];
+
 export default {
   grid,
   pointLightMap,
+  sprites,
 };

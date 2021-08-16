@@ -7,6 +7,7 @@ import Grid from "./Grid";
 import Ray from "./Ray";
 
 import { level1 } from "../levels";
+import { SpriteFactory } from "../Sprite";
 
 class Raycaster extends GameObject {
   public FOV: number = Angle.toRad(60);
@@ -20,7 +21,13 @@ class Raycaster extends GameObject {
   public start() {
     super.start();
 
-    this.grid.setData(level1);
+    const { sprites, ...levelData } = level1;
+
+    sprites.forEach((spriteConfig) =>
+      SpriteFactory.create(spriteConfig.name, spriteConfig.position)
+    );
+
+    this.grid.setData(levelData);
   }
 
   public update() {

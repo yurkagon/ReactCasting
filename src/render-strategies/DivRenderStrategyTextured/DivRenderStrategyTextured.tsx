@@ -5,8 +5,6 @@ import { range, useViewport } from "../../utils";
 
 import Raycaster, { getZIndexByDistance, useRays } from "../../Raycaster";
 
-import { SpriteFactory } from "../../Sprite";
-
 import SpriteLayer from "./SpriteLayer";
 import Weapon from "./Weapon";
 
@@ -21,26 +19,6 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
   const viewport = useViewport();
 
   const stripWidth = viewport.width / raycaster.raysCount;
-
-  useEffect(() => {
-    SpriteFactory.create("guard", { x: 45, z: 50 });
-    SpriteFactory.create("guard", { x: 45, z: 60 });
-
-    SpriteFactory.create("guard", { x: 55, z: 60 });
-    SpriteFactory.create("guard", { x: 65, z: 50 });
-
-    SpriteFactory.create("cage", { x: 430, z: 45 });
-    SpriteFactory.create("cage", { x: 430, z: 65 });
-
-    SpriteFactory.create("lamp", { x: 144, z: 241 });
-    SpriteFactory.create("lamp", { x: 303, z: 177 });
-    SpriteFactory.create("lamp", { x: 303, z: 81 });
-    SpriteFactory.create("lamp", { x: 48, z: 109 });
-    SpriteFactory.create("lamp", { x: 48, z: 46 });
-    SpriteFactory.create("lamp", { x: 48, z: 78 });
-
-    return () => SpriteFactory.removeAll();
-  }, []);
 
   return (
     <div
@@ -97,7 +75,6 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
                 width: ray.stripHeight,
                 backgroundSize: "cover",
                 backgroundPositionX: -textureMove,
-                // opacity: (ray.stripHeight * 2) / viewport.height,
                 opacity: lightLevel,
               }}
             />
