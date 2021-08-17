@@ -3,6 +3,7 @@ import cageSprite from "./assets/cage.png";
 import lampSprite from "./assets/lamp.png";
 import armorSprite from "./assets/armor.png";
 import plantSprite from "./assets/plant.png";
+import tableSprite from "./assets/table.png";
 
 import { SpriteData } from "./types";
 
@@ -62,6 +63,21 @@ const spriteData: SpriteData = {
     },
     position: {
       y: 3.3,
+    },
+  },
+
+  table: {
+    texture: tableSprite,
+    originalSize: {
+      width: 64,
+      height: 64,
+    },
+    transform: {
+      height: 1.2,
+      width: 1.2,
+    },
+    position: {
+      y: 3,
     },
   },
 };

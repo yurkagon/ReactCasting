@@ -1,4 +1,10 @@
-export type SpriteName = "guard" | "cage" | "lamp" | "armor" | "plant";
+export type SpriteName =
+  | "guard"
+  | "cage"
+  | "lamp"
+  | "armor"
+  | "plant"
+  | "table";
 
 export interface SpriteSize {
   width: number;

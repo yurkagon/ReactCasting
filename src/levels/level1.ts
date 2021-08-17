@@ -180,6 +180,16 @@ const sprites: { name: SpriteName; position: Position }[] = [
     name: "plant",
     position: { x: 35, z: 34 },
   },
+
+  // tables
+  {
+    name: "table",
+    position: { x: 63, z: 117 },
+  },
+  {
+    name: "table",
+    position: { x: 50, z: 76 },
+  },
 ];
 
 export default {
