@@ -13,6 +13,7 @@ class Settings {
 
   public static readonly viewPortSizeMultiplier: number = 0.9;
   public static readonly miniMapSizeMultiplier: number = 0.5;
+  public static readonly dimension = 16 / 9;
 
   public static readonly textRenderCharSpectre: string = ",,:;I&&00%$@@#";
   public static readonly viewportWidthToCharsScaleCoefficient = 0.33;

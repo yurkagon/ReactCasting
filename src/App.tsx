@@ -9,6 +9,7 @@ import Raycaster from "./Raycaster";
 
 import MiniMap from "./components/MiniMap";
 import PlayerDebugger from "./components/PlayerDebugger";
+import FPS from "./components/FPS";
 
 const App = () => {
   const raycaster = Raycaster.getInstance();
@@ -45,6 +46,19 @@ const App = () => {
   }, [renderStrategy, raycaster]);
 
   const { height, width } = useViewport();
+
+  // useEffect(() => {
+  //   //   // alert(width);
+
+  //   let fowNew = (width * Angle.toRad(60)) / 1300;
+  //   fowNew = fowNew + fowNew * 0.1;
+
+  //   //   // var distance = 68000;
+  //   //   // var diag = Math.sqrt(height * height + width * width);
+  //   //   // var fowNew = 2 * Math.atan(diag / (2 * distance)) * (180 / Math.PI);
+
+  //   setFov(fowNew);
+  // }, [height, width]);
 
   return (
     <div className="App">
@@ -141,6 +155,7 @@ const App = () => {
         <div className="settings-block">
           <div>WASD - to move</div>
           <div>Q and E - to rotate</div>
+          <FPS />
         </div>
 
         <div className="settings-block">

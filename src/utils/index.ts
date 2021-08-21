@@ -29,10 +29,10 @@ export const getCharByStripHeight = (
 export const useViewport = (): { width: number; height: number } => {
   const viewPort = useViewportCore();
 
-  return {
-    width: Math.round(viewPort.width * Settings.viewPortSizeMultiplier),
-    height: Math.round(viewPort.height * Settings.viewPortSizeMultiplier),
-  };
+  const height = Math.round(viewPort.height * Settings.viewPortSizeMultiplier);
+  const width = height * Settings.dimension;
+
+  return { width, height };
 };
 
 export const limit = (value: number, limit: number): number => {
@@ -53,12 +53,15 @@ export const range = (value: number, min: number, max: number): number => {
 
 export const useSceneUpdate = () => {
   const [updateCount, setUpdateCount] = useState(0);
+  const [deltaTime, setDeltaTime] = useState(0);
 
   const scene = Scene.getInstance();
 
   useEffect(() => {
     const subscriber = () => {
       setUpdateCount((prev) => prev + 1);
+
+      setDeltaTime(scene.deltaTime);
     };
     scene.subscribe(subscriber);
 
@@ -66,4 +69,6 @@ export const useSceneUpdate = () => {
       scene.unsubscribe(subscriber);
     };
   }, [scene]);
+
+  return { updateCount, deltaTime };
 };
