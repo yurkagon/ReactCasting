@@ -4,6 +4,8 @@ Raycasting algorithm that renders pseudo 3D scene in HTML using React (no canvas
 
 ![main](main.gif)
 
+[Live demo](https://yurkagon.github.io/ReactCasting/)
+
 ## Features
 
 - Textures
