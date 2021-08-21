@@ -8,9 +8,9 @@ import Control from "./Control";
 
 class Player extends GameObject {
   public position: Position = {
-    rotation: -1.884955592153879,
-    x: 372.6884332630978,
-    z: 128.58201781700896,
+    rotation: Angle.toRad(183),
+    x: 367,
+    z: 270,
     y: 0,
   };
 

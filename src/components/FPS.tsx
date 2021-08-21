@@ -13,7 +13,7 @@ const FPS = () => {
     setFps(calculatedFps);
   }, [updateCount % 10 === 0]);
 
-  return <div>{fps}</div>;
+  return <div>{fps} FPS</div>;
 };
 
 export default FPS;

@@ -6,6 +6,10 @@ Raycasting algorithm that renders pseudo 3D scene in HTML using React (no canvas
 
 [Live demo](https://yurkagon.github.io/ReactCasting/)
 
+WASD - to move
+
+QE - to rotate
+
 ## Features
 
 - Textures

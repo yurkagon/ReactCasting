@@ -9,7 +9,7 @@ class Settings {
   public static readonly isDevelopment: boolean =
     process.env.NODE_ENV === "development";
 
-  public static allowMouse: boolean = false;
+  public static allowMouse: boolean = true;
 
   public static readonly viewPortSizeMultiplier: number = 0.85;
   public static readonly miniMapSizeMultiplier: number = 0.5;
