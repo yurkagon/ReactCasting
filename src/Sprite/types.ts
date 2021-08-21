@@ -4,7 +4,8 @@ export type SpriteName =
   | "lamp"
   | "armor"
   | "plant"
-  | "table";
+  | "table"
+  | "column";
 
 export interface SpriteSize {
   width: number;

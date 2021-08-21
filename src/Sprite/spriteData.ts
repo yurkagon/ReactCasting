@@ -4,6 +4,7 @@ import lampSprite from "./assets/lamp.png";
 import armorSprite from "./assets/armor.png";
 import plantSprite from "./assets/plant.png";
 import tableSprite from "./assets/table.png";
+import columnSprite from "./assets/column.png";
 
 import { SpriteData } from "./types";
 
@@ -78,6 +79,20 @@ const spriteData: SpriteData = {
     },
     position: {
       y: 3,
+    },
+  },
+  column: {
+    texture: columnSprite,
+    originalSize: {
+      width: 48,
+      height: 70,
+    },
+    transform: {
+      height: 1.7,
+      width: 1,
+    },
+    position: {
+      y: 6,
     },
   },
 };

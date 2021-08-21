@@ -188,7 +188,30 @@ const sprites: { name: SpriteName; position: Position }[] = [
   },
   {
     name: "table",
-    position: { x: 50, z: 76 },
+    position: { x: 50, z: 80 },
+  },
+
+  // columns
+  {
+    name: "column",
+    position: { x: 37, z: 95 },
+  },
+  {
+    name: "column",
+    position: { x: 37, z: 65 },
+  },
+  {
+    name: "column",
+    position: { x: 287, z: 67 },
+  },
+  {
+    name: "column",
+    position: { x: 320, z: 67 },
+  },
+
+  {
+    name: "column",
+    position: { x: 291, z: 159 },
   },
 ];
 
