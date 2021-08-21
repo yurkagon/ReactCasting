@@ -70,7 +70,10 @@
     "raycasting",
     "react",
     "typescript",
-    "html",
-    "css"
+    "javascript",
+    "engine",
+    "textarea",
+    "console",
+    "html"
   ]
 }
