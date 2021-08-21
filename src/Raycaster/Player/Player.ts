@@ -1,6 +1,6 @@
 import Scene, { GameObject } from "../../Scene";
 import Settings from "../../Settings";
-import { Angle } from "../../utils";
+import { Angle, Vector } from "../../utils";
 import Grid from "../Grid";
 import Raycaster from "../Raycaster";
 
@@ -51,44 +51,52 @@ class Player extends GameObject {
       );
     }
 
+    let vectorToMove: Position = null;
+
     if (toForward || toBack) {
       const multiplier = toForward ? 1 : -1;
 
-      const vector: Position = {
+      const walkSpeedMultiplier = toRight || toLeft ? 0.8 : 1;
+
+      vectorToMove = Vector.add(vectorToMove, {
         x:
           Math.cos(this.position.rotation) *
           this.walkSpeed *
+          walkSpeedMultiplier *
           multiplier *
           scene.deltaTime,
         z:
           Math.sin(this.position.rotation) *
           this.walkSpeed *
+          walkSpeedMultiplier *
           multiplier *
           scene.deltaTime,
-      };
-
-      this.moveBy(vector);
+      });
     }
 
     if (toRight || toLeft) {
       const multiplier1 = toRight ? 1 : -1;
       const multiplier2 = toRight ? -1 : 1;
 
-      const vector: Position = {
+      const walkSpeedMultiplier = toForward || toBack ? 0.8 : 1;
+
+      vectorToMove = Vector.add(vectorToMove, {
         z:
           Math.cos(this.position.rotation) *
           this.walkSpeed *
+          walkSpeedMultiplier *
           multiplier1 *
           scene.deltaTime,
         x:
           Math.sin(this.position.rotation) *
           this.walkSpeed *
+          walkSpeedMultiplier *
           multiplier2 *
           scene.deltaTime,
-      };
-
-      this.moveBy(vector);
+      });
     }
+
+    if (vectorToMove) this.moveBy(vectorToMove);
   }
 
   public checkVisibility(target: GameObject): {

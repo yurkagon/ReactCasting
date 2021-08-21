@@ -21,6 +21,12 @@ declare type Position = {
   rotation?: number;
 };
 
+declare type VectorType = {
+  x: number;
+  z: number;
+  y?: number;
+};
+
 declare interface RenderStrategy {
   name: string;
   component: React.ComponentType<any>;
