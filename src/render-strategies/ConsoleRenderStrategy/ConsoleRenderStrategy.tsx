@@ -34,7 +34,7 @@ const ConsoleRenderStrategy = () => {
     if (!rays.length) return null;
 
     const charArray = rays.map((ray) => {
-      const stripHeightCoefficient = 480;
+      const stripHeightCoefficient = 350;
 
       const charHeight = Math.round(
         (ray.stripHeight / stripHeightCoefficient) * height
@@ -60,7 +60,7 @@ const ConsoleRenderStrategy = () => {
       return charArray;
     });
 
-    const rotatedCharArray = rotate(charArray, 270);
+    const rotatedCharArray: string[][] = rotate(charArray, 270);
 
     const str = rotatedCharArray.map((el) => el.join("")).join("\n");
 
@@ -68,7 +68,8 @@ const ConsoleRenderStrategy = () => {
   }, [rays]);
 
   useEffect(() => {
-    if (renderedString) console.log(renderedString);
+    if (renderedString)
+      console.log(`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n` + renderedString);
   }, [renderedString]);
 
   useEffect(() => {
