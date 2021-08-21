@@ -30,7 +30,7 @@ const DivRenderStrategy = () => {
         const backgroundColor = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
 
         return (
-          <button
+          <div
             className="strip"
             style={{
               width: stripWidth,

@@ -92,7 +92,7 @@ const spriteData: SpriteData = {
       width: 1,
     },
     position: {
-      y: 6,
+      y: 7,
     },
   },
 };

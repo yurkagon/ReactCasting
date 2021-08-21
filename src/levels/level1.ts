@@ -38,15 +38,27 @@ const sprites: { name: SpriteName; position: Position }[] = [
   },
   {
     name: "guard",
-    position: { x: 45, z: 60 },
-  },
-  {
-    name: "guard",
-    position: { x: 55, z: 60 },
-  },
-  {
-    name: "guard",
     position: { x: 65, z: 50 },
+  },
+  {
+    name: "guard",
+    position: { x: 266, z: 68 },
+  },
+  {
+    name: "guard",
+    position: { x: 399, z: 70 },
+  },
+  {
+    name: "guard",
+    position: { x: 326, z: 216 },
+  },
+  {
+    name: "guard",
+    position: { x: 135, z: 238 },
+  },
+  {
+    name: "guard",
+    position: { x: 432, z: 276 },
   },
 
   // cages
@@ -211,7 +223,74 @@ const sprites: { name: SpriteName; position: Position }[] = [
 
   {
     name: "column",
-    position: { x: 291, z: 159 },
+    position: { x: 292, z: 159 },
+  },
+  {
+    name: "column",
+    position: { x: 316, z: 159 },
+  },
+
+  {
+    name: "column",
+    position: { x: 219, z: 284 },
+  },
+  {
+    name: "column",
+    position: { x: 219, z: 258 },
+  },
+
+  {
+    name: "column",
+    position: { x: 219, z: 284 },
+  },
+  {
+    name: "column",
+    position: { x: 219, z: 258 },
+  },
+
+  {
+    name: "column",
+    position: { x: 359, z: 284 },
+  },
+  {
+    name: "column",
+    position: { x: 359, z: 258 },
+  },
+
+  {
+    name: "column",
+    position: { x: 120, z: 284 },
+  },
+  {
+    name: "column",
+    position: { x: 120, z: 258 },
+  },
+
+  {
+    name: "column",
+    position: { x: 219, z: 196 },
+  },
+  {
+    name: "column",
+    position: { x: 219, z: 221 },
+  },
+
+  {
+    name: "column",
+    position: { x: 359, z: 196 },
+  },
+  {
+    name: "column",
+    position: { x: 359, z: 221 },
+  },
+
+  {
+    name: "column",
+    position: { x: 120, z: 196 },
+  },
+  {
+    name: "column",
+    position: { x: 120, z: 221 },
   },
 ];
 
