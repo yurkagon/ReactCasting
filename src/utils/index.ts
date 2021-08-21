@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useViewport as useViewportCore } from "@toolz/use-viewport";
+import memoize from "lodash/memoize";
 
 import Settings from "../Settings";
 
@@ -26,13 +27,21 @@ export const getCharByStripHeight = (
   return charsSpectre[key];
 };
 
-export const useViewport = (): { width: number; height: number } => {
+const calculateViewport = memoize((width: number): Viewport => {
+  const viewportWidth = Math.round(width * Settings.viewPortSizeMultiplier);
+  const viewportHeight = Math.round(viewportWidth * (1 / Settings.dimension));
+
+  return { width: viewportWidth, height: viewportHeight };
+});
+
+export const getViewport = (): Viewport => {
+  return calculateViewport(window.innerWidth);
+};
+
+export const useViewport = (): Viewport => {
   const viewPort = useViewportCore();
 
-  const height = Math.round(viewPort.height * Settings.viewPortSizeMultiplier);
-  const width = height * Settings.dimension;
-
-  return { width, height };
+  return calculateViewport(viewPort.width);
 };
 
 export const limit = (value: number, limit: number): number => {

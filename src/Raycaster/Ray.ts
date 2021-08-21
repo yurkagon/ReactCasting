@@ -1,4 +1,4 @@
-import { calculateDistance, Angle } from "../utils";
+import { calculateDistance, Angle, getViewport } from "../utils";
 
 import Grid from "./Grid";
 import Player from "./Player";
@@ -60,9 +60,11 @@ class Ray {
       this.isVerticalCast = true;
     }
 
-    const wallCoefficient = 13000;
+    const viewport = getViewport();
+
+    const wallCoefficient = 21.2418300654;
     this.stripHeight =
-      wallCoefficient /
+      (wallCoefficient * viewport.height) /
       (Math.cos(Player.getInstance().position.rotation - this.angle) *
         this.hitDistance);
   }

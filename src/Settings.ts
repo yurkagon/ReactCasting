@@ -11,7 +11,7 @@ class Settings {
 
   public static allowMouse: boolean = false;
 
-  public static readonly viewPortSizeMultiplier: number = 0.9;
+  public static readonly viewPortSizeMultiplier: number = 0.85;
   public static readonly miniMapSizeMultiplier: number = 0.5;
   public static readonly dimension = 16 / 9;
 

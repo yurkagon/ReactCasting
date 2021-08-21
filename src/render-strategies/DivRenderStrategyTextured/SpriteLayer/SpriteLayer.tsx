@@ -38,8 +38,9 @@ const SpriteLayer = () => {
 
         const distance = calculateDistance(sprite.position, player.position);
 
+        const heightCoefficient = 1.6339869281;
         const spriteHeight =
-          1000 /
+          (viewport.height * heightCoefficient) /
           (Math.cos(player.position.rotation - angleBetweenTarget) * distance);
 
         const renderHeight = spriteHeight * 10 * sprite.transform.height;

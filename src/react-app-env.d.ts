@@ -27,3 +27,8 @@ declare interface RenderStrategy {
   raysCountChangeAvailable?: boolean;
   skybox?: { default: boolean };
 }
+
+declare interface Viewport {
+  width: number;
+  height: number;
+}
