@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ReactCasting/static/css/main.5074e837.chunk.css",
-    "main.js": "/ReactCasting/static/js/main.99c423e7.chunk.js",
-    "main.js.map": "/ReactCasting/static/js/main.99c423e7.chunk.js.map",
+    "main.js": "/ReactCasting/static/js/main.b24e1b21.chunk.js",
+    "main.js.map": "/ReactCasting/static/js/main.b24e1b21.chunk.js.map",
     "runtime-main.js": "/ReactCasting/static/js/runtime-main.a155ab70.js",
     "runtime-main.js.map": "/ReactCasting/static/js/runtime-main.a155ab70.js.map",
     "static/js/2.0d65e681.chunk.js": "/ReactCasting/static/js/2.0d65e681.chunk.js",
@@ -23,6 +23,7 @@
     "static/media/g3.30f68b00.jpg": "/ReactCasting/static/media/g3.30f68b00.jpg",
     "static/media/s.2598404c.jpg": "/ReactCasting/static/media/s.2598404c.jpg",
     "static/media/style.scss": "/ReactCasting/static/media/skybox.f686b2a6.jpg",
+    "static/media/tv.6e01c5fb.gif": "/ReactCasting/static/media/tv.6e01c5fb.gif",
     "static/media/w.c183bd8a.jpg": "/ReactCasting/static/media/w.c183bd8a.jpg",
     "static/media/w2.3d66fb1a.jpg": "/ReactCasting/static/media/w2.3d66fb1a.jpg"
   },
@@ -30,6 +31,6 @@
     "static/js/runtime-main.a155ab70.js",
     "static/js/2.0d65e681.chunk.js",
     "static/css/main.5074e837.chunk.css",
-    "static/js/main.99c423e7.chunk.js"
+    "static/js/main.b24e1b21.chunk.js"
   ]
 }
