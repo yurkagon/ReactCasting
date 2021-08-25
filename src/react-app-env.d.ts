@@ -10,7 +10,8 @@ declare type Cell =
   | "g3"
   | "b"
   | "b2"
-  | "b3";
+  | "b3"
+  | "tv";
 
 declare type CellGrid = Cell[][];
 

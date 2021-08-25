@@ -7,6 +7,7 @@ import g3 from "./assets/g3.jpg";
 import b from "./assets/b.jpg";
 import b2 from "./assets/b2.jpg";
 import b3 from "./assets/b3.jpg";
+import tv from "./assets/tv.gif";
 
 const texturesData: Partial<Record<Cell, string>> = {
   s,
@@ -18,6 +19,7 @@ const texturesData: Partial<Record<Cell, string>> = {
   b,
   b2,
   b3,
+  tv,
 };
 
 export default texturesData;
