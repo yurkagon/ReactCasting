@@ -37,4 +37,9 @@ Works correct only in Google Chrome
 ## Inspired by
 
 - [A first-person engine in 265 lines](https://www.playfuljs.com/a-first-person-engine-in-265-lines/)
-- [HTML5 raycasting demo using React](https://github.com/ahuth/raycast)
+
+## Contributors
+
+<a href="https://github.com/yurkagon/ReactCasting/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=yurkagon/ReactCasting" />
+</a>
