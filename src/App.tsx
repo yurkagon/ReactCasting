@@ -49,7 +49,15 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="game-view-port" style={{ width, height }}>
+      <div
+        className="game-view-port"
+        style={{ width, height }}
+        onClick={(event) => {
+          if (Settings.allowMouse) {
+            event.currentTarget.requestPointerLock();
+          }
+        }}
+      >
         {<renderStrategy.component skyboxEnabled={allowSkybox} />}
 
         {allowMinimap && <MiniMap />}
