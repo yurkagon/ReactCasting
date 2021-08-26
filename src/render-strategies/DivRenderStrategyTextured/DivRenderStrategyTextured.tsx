@@ -49,11 +49,11 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
             ? 1 - float
             : float;
 
-        const textureSizeValue = 2;
+        const textureSizeValue = 1;
         const textureMove = correctedFloat * ray.stripHeight * textureSizeValue;
 
         const lightLevel = range(
-          ray.collision.wall.sidesLight[ray.collision.collisionSide],
+          ray.collision.wall?.sidesLight[ray.collision.collisionSide],
           0.1,
           0.8
         );
@@ -78,7 +78,7 @@ const DivRenderStrategyTextured: FC<Props> = ({ skyboxEnabled }) => {
             <div
               className="texture"
               style={{
-                backgroundImage: `url(${ray.collision.wall.texture})`,
+                backgroundImage: `url(${ray.collision.wall?.texture})`,
                 height: ray.stripHeight,
                 width: ray.stripHeight,
                 backgroundSize: "cover",

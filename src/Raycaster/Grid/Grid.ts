@@ -13,7 +13,7 @@ class Grid {
   public pointLightMap: number[][] = null;
   public lightMap: number[][] = null;
 
-  public readonly tileSize: number = 32;
+  public readonly tileSize: number = 16;
 
   private lightScattering: number = 0.2;
 
@@ -69,6 +69,8 @@ class Grid {
       { side: "left", value: distanceLeft },
       { side: "right", value: distanceRight },
     ];
+
+    console.log(distanceData);
 
     const { side } = maxBy(distanceData, "value");
 
