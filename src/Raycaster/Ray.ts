@@ -97,10 +97,13 @@ class Ray {
       nextHorizontalTouchY >= 0 &&
       nextHorizontalTouchY <= 2000
     ) {
-      const collision = this.grid.handleCollision({
-        x: nextHorizontalTouchX,
-        z: nextHorizontalTouchY - (this.isRayFacingUp ? 1 : 0),
-      });
+      const collision = this.grid.handleCollision(
+        {
+          x: nextHorizontalTouchX,
+          z: nextHorizontalTouchY - (this.isRayFacingUp ? 1 : 0),
+        },
+        "horizontal"
+      );
 
       if (collision) return collision;
 
@@ -137,10 +140,13 @@ class Ray {
       nextVerticalTouchY >= 0 &&
       nextVerticalTouchY <= 2000
     ) {
-      const collision = this.grid.handleCollision({
-        x: nextVerticalTouchX - (this.isRayFacingLeft ? 1 : 0),
-        z: nextVerticalTouchY,
-      });
+      const collision = this.grid.handleCollision(
+        {
+          x: nextVerticalTouchX - (this.isRayFacingLeft ? 1 : 0),
+          z: nextVerticalTouchY,
+        },
+        "vertical"
+      );
 
       if (collision) return collision;
 
