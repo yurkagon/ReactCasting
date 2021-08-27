@@ -13,7 +13,7 @@ import tv2 from "./assets/tv2.gif";
 const texturesData: Partial<
   Record<Cell, { url: string; minimapColor?: string }>
 > = {
-  s: { url: s },
+  s: { url: s, minimapColor: "#A5A5A5" },
   w: { url: w },
   g: { url: g },
   g2: { url: g2 },
