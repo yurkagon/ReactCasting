@@ -11,7 +11,8 @@ declare type Cell =
   | "b"
   | "b2"
   | "b3"
-  | "tv";
+  | "tv1"
+  | "tv2";
 
 declare type CellGrid = Cell[][];
 

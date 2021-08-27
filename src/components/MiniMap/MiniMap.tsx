@@ -26,11 +26,11 @@ const MiniMap = () => {
       };
     }
 
-    if (wall.minimapColor) {
-      return {
-        backgroundColor: wall.minimapColor,
-      };
-    }
+    // if (wall.minimapColor) {
+    //   return {
+    //     backgroundColor: wall.minimapColor,
+    //   };
+    // }
 
     return { backgroundImage: `url(${wall.texture})` };
   };

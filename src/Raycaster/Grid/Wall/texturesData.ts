@@ -7,7 +7,8 @@ import g3 from "./assets/g3.jpg";
 import b from "./assets/b.jpg";
 import b2 from "./assets/b2.jpg";
 import b3 from "./assets/b3.jpg";
-import tv from "./assets/tv.gif";
+import tv1 from "./assets/tv1.gif";
+import tv2 from "./assets/tv2.gif";
 
 const texturesData: Partial<
   Record<Cell, { url: string; minimapColor?: string }>
@@ -21,7 +22,8 @@ const texturesData: Partial<
   b: { url: b },
   b2: { url: b2 },
   b3: { url: b3 },
-  tv: { url: tv, minimapColor: "#034451" },
+  tv1: { url: tv1, minimapColor: "#034451" },
+  tv2: { url: tv2, minimapColor: "#034451" },
 };
 
 export default texturesData;
