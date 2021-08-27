@@ -15,7 +15,7 @@ class Grid {
 
   public readonly tileSize: number = 16;
 
-  private lightScattering: number = 0.2;
+  private lightScattering: number = 0.1;
 
   private constructor() {}
 
@@ -142,6 +142,8 @@ class Grid {
 
         if (this.lightMap[nextPoint.z][nextPoint.x] < nextIntensity) {
           this.lightMap[nextPoint.z][nextPoint.x] = nextIntensity;
+        } else {
+          break;
         }
 
         this.calculateLightFromPoint(

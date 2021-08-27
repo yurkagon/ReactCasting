@@ -9,17 +9,19 @@ import b2 from "./assets/b2.jpg";
 import b3 from "./assets/b3.jpg";
 import tv from "./assets/tv.gif";
 
-const texturesData: Partial<Record<Cell, string>> = {
-  s,
-  w,
-  g,
-  g2,
-  g3,
-  w2,
-  b,
-  b2,
-  b3,
-  tv,
+const texturesData: Partial<
+  Record<Cell, { url: string; minimapColor?: string }>
+> = {
+  s: { url: s },
+  w: { url: w },
+  g: { url: g },
+  g2: { url: g2 },
+  g3: { url: g3 },
+  w2: { url: w2 },
+  b: { url: b },
+  b2: { url: b2 },
+  b3: { url: b3 },
+  tv: { url: tv, minimapColor: "#034451" },
 };
 
 export default texturesData;
