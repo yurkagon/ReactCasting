@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 
 import { useGrid } from "../../Raycaster";
+import Wall from "../../Raycaster/Grid/Wall";
 
 import PlayerMarker from "./PlayerMarker";
 import RayHits from "./RayHits";
@@ -18,6 +19,22 @@ const MiniMap = () => {
   const width = cols * tilesSize;
   const height = rows * tilesSize;
 
+  const getBackgroundData = (wall: Wall, lightValue: number) => {
+    if (!wall) {
+      return {
+        backgroundColor: `rgb(${lightValue},${lightValue},${lightValue})`,
+      };
+    }
+
+    if (wall.minimapColor) {
+      return {
+        backgroundColor: wall.minimapColor,
+      };
+    }
+
+    return { backgroundImage: `url(${wall.texture})` };
+  };
+
   return (
     <div className="ui-map">
       <div className="cell-wrapper" style={{ width, height }}>
@@ -28,11 +45,7 @@ const MiniMap = () => {
             {row.map((wall, j) => {
               const lightValue = grid.lightMap?.[i]?.[j] * 255;
 
-              const backgroundData = wall
-                ? { backgroundImage: `url(${wall.texture})` }
-                : {
-                    backgroundColor: `rgb(${lightValue},${lightValue},${lightValue})`,
-                  };
+              const backgroundData = getBackgroundData(wall, lightValue);
 
               return (
                 <div

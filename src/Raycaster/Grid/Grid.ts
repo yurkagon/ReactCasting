@@ -4,7 +4,7 @@ import cloneDeep from "lodash/cloneDeep";
 
 import Wall from "./Wall";
 
-import { Collision, Side } from "../types";
+import { Collision, CollisionType, Side } from "../types";
 import { GridConfig } from "./types";
 
 class Grid {
@@ -13,9 +13,9 @@ class Grid {
   public pointLightMap: number[][] = null;
   public lightMap: number[][] = null;
 
-  public readonly tileSize: number = 32;
+  public readonly tileSize: number = 16;
 
-  private lightScattering: number = 0.2;
+  private lightScattering: number = 0.1;
 
   private constructor() {}
 
@@ -35,14 +35,14 @@ class Grid {
 
     this.lightMap = cloneDeep(this.pointLightMap);
 
-    // @ts-ignore
-    window.wallData = this.wallData;
-
     this.calculateLightMap();
     this.calculateWallLights();
   }
 
-  public handleCollision(position: Position): Collision | null {
+  public handleCollision(
+    position: Position,
+    collisionType?: CollisionType
+  ): Collision | null {
     const gridPosition = this.convertPositionToGridPosition(position);
 
     const x = Math.floor(gridPosition.x);
@@ -63,12 +63,26 @@ class Grid {
     const distanceLeft = floatPart.x;
     const distanceRight = 1 - distanceLeft;
 
-    const distanceData: { side: Side; value: number }[] = [
-      { side: "top", value: distanceTop },
-      { side: "bottom", value: distanceBottom },
-      { side: "left", value: distanceLeft },
-      { side: "right", value: distanceRight },
-    ];
+    let distanceData: { side: Side; value: number }[];
+
+    if (collisionType === "horizontal") {
+      distanceData = [
+        { side: "top", value: distanceTop },
+        { side: "bottom", value: distanceBottom },
+      ];
+    } else if (collisionType === "vertical") {
+      distanceData = [
+        { side: "left", value: distanceLeft },
+        { side: "right", value: distanceRight },
+      ];
+    } else {
+      distanceData = [
+        { side: "top", value: distanceTop },
+        { side: "bottom", value: distanceBottom },
+        { side: "left", value: distanceLeft },
+        { side: "right", value: distanceRight },
+      ];
+    }
 
     const { side } = maxBy(distanceData, "value");
 
@@ -79,6 +93,7 @@ class Grid {
       cell,
       wall: this.wallData?.[z]?.[x],
       collisionSide: side,
+      collisionType,
     };
   }
   public getBrightness(position: Position): number {
@@ -127,6 +142,8 @@ class Grid {
 
         if (this.lightMap[nextPoint.z][nextPoint.x] < nextIntensity) {
           this.lightMap[nextPoint.z][nextPoint.x] = nextIntensity;
+        } else {
+          break;
         }
 
         this.calculateLightFromPoint(

@@ -34,7 +34,7 @@ const ConsoleRenderStrategy = () => {
     if (!rays.length) return null;
 
     const charArray = rays.map((ray) => {
-      const stripHeightCoefficient = 350;
+      const stripHeightCoefficient = 300;
 
       const charHeight = Math.round(
         (ray.stripHeight / stripHeightCoefficient) * height

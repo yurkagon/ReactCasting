@@ -5,6 +5,7 @@ import { Side } from "../../types";
 
 class Wall {
   public readonly texture: string;
+  public readonly minimapColor?: string;
 
   public sidesLight: Record<Side, number> = {
     top: 0,
@@ -14,7 +15,8 @@ class Wall {
   };
 
   public constructor(config: WallConfig) {
-    this.texture = texturesData[config.char];
+    this.texture = texturesData[config.char].url;
+    this.minimapColor = texturesData[config.char].minimapColor;
   }
 
   public setSideLight(side: Side, intensity: number) {
