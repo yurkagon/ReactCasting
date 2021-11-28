@@ -33,7 +33,10 @@ const DivRenderStrategy = () => {
           <div
             className="strip"
             style={{
-              width: stripWidth,
+              /*
+                HOTFIX: Adding 0.1 fixes transparent lines on the viewport
+              */
+              width: stripWidth + 0.1,
               height: ray.stripHeight,
               left: stripWidth * index,
               top: (viewport.height - ray.stripHeight) / 2,

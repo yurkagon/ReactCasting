@@ -17,15 +17,20 @@ export const getCharByStripHeight = (
   height: number,
   maxHeight: number
 ): string => {
-  const charsSpectre = ",,:;I&&00%$@@#";
+  let key = Math.round(
+    (height / maxHeight) * Settings.textRenderCharSpectre.length
+  );
 
-  let key = Math.round((height / maxHeight) * charsSpectre.length);
-  if (key < 0) key = 0;
-  if (key >= charsSpectre.length) key = charsSpectre.length - 1;
+  if (key < 0) {
+    key = 0;
+  }
+  if (key >= Settings.textRenderCharSpectre.length) {
+    key = Settings.textRenderCharSpectre.length - 1;
+  }
 
-  const char = charsSpectre[key];
+  const char = Settings.textRenderCharSpectre[key];
 
-  return charsSpectre[key];
+  return char;
 };
 
 const calculateViewport = memoize((width: number): Viewport => {
