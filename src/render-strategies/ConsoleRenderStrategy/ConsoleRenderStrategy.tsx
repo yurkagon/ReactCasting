@@ -34,7 +34,7 @@ const ConsoleRenderStrategy = () => {
     if (!rays.length) return null;
 
     const charArray = rays.map((ray) => {
-      const stripHeightCoefficient = 300;
+      const stripHeightCoefficient = 200;
 
       const charHeight = Math.round(
         (ray.stripHeight / stripHeightCoefficient) * height
@@ -53,6 +53,7 @@ const ConsoleRenderStrategy = () => {
       for (let i = 0; i < topEmptyCellsCount; i++) {
         charArray.push(" ");
       }
+
       for (let i = 0; i < bottomEmptyCellsCount; i++) {
         charArray.unshift("_");
       }
@@ -69,7 +70,7 @@ const ConsoleRenderStrategy = () => {
 
   useEffect(() => {
     if (renderedString)
-      console.log(`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n` + renderedString);
+    console.log(`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n` + renderedString);
   }, [renderedString]);
 
   useEffect(() => {
