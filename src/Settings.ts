@@ -2,6 +2,7 @@ import DivRenderStrategy from "./render-strategies/DivRenderStrategy";
 import DivRenderStrategyTextured from "./render-strategies/DivRenderStrategyTextured";
 import TextRenderStrategy from "./render-strategies/TextRenderStrategy";
 import ConsoleRenderStrategy from "./render-strategies/ConsoleRenderStrategy";
+import ConsoleColoredRenderStrategy from "./render-strategies/ConsoleColoredRenderStrategy";
 
 class Settings {
   public static readonly isProduction: boolean =
@@ -40,9 +41,14 @@ class Settings {
     },
     { name: "HTML <textarea> (Only chrome)", component: TextRenderStrategy, key: "textarea" },
     {
-      name: "Console in your Chrome (only) browser :D",
+      name: "Console in your Chrome",
       component: ConsoleRenderStrategy,
       key: "console",
+    },
+    {
+      name: "Colored Console in your Chrome",
+      component: ConsoleColoredRenderStrategy,
+      key: "console-colored",
     },
   ];
 

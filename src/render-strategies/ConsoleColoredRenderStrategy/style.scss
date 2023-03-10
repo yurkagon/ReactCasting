@@ -1,0 +1,15 @@
+.console-render-strategy {
+  width: 100%;
+  height: 100%;
+
+  .description {
+    @media screen and (max-width: 750px) {
+      display: none;
+    }
+
+    img {
+      width: 400px;
+      height: 200px;
+    }
+  }
+}
