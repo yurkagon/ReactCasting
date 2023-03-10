@@ -11,19 +11,19 @@ import tv1 from "./assets/tv1.gif";
 import tv2 from "./assets/tv2.gif";
 
 const texturesData: Partial<
-  Record<Cell, { url: string; minimapColor?: string }>
+  Record<Cell, { url: string; color: string }>
 > = {
-  s: { url: s, minimapColor: "#A5A5A5" },
-  w: { url: w },
-  g: { url: g },
-  g2: { url: g2 },
-  g3: { url: g3 },
-  w2: { url: w2 },
-  b: { url: b },
-  b2: { url: b2 },
-  b3: { url: b3 },
-  tv1: { url: tv1, minimapColor: "#034451" },
-  tv2: { url: tv2, minimapColor: "#034451" },
+  s: { url: s, color: "#A5A5A5" },
+  w: { url: w, color: "#744B23" },
+  g: { url: g, color: "#0000C2" },
+  g2: { url: g2, color: "#00009C" },
+  g3: { url: g3, color: "#0000C2" },
+  w2: { url: w2, color: "#81622F" },
+  b: { url: b, "color": "#BBBBBB"},
+  b2: { url: b2, color: "#949494" },
+  b3: { url: b3, color: "#9D0000" },
+  tv1: { url: tv1, color: "#034451" },
+  tv2: { url: tv2, color: "#034451" },
 };
 
 export default texturesData;

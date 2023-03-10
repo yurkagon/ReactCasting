@@ -1,1 +1,1 @@
-export { default } from "./ConsoleRenderStrategy";
+export { default } from "./ConsoleColoredRenderStrategy";

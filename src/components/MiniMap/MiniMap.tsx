@@ -26,9 +26,9 @@ const MiniMap = () => {
       };
     }
 
-    if (wall.minimapColor) {
+    if (wall.color) {
       return {
-        backgroundColor: wall.minimapColor,
+        backgroundColor: wall.color,
       };
     }
 

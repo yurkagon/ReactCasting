@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { rotate } from "2d-array-rotation";
 
-import { useViewport, getCharByStripHeight } from "../../utils";
+import { useViewport } from "../../utils";
 
 import Settings from "../../Settings";
 
@@ -42,8 +42,11 @@ const ConsoleColoredRenderStrategy = () => {
       const normalizedCharHeight = charHeight > height ? height : charHeight;
 
       const charArray = Array.from({ length: normalizedCharHeight }).fill(
-        "blue"
+        ray.collision.wall.color || "grey"
       );
+
+
+
 
       const emptyCellsCount = height - normalizedCharHeight;
 
@@ -51,11 +54,11 @@ const ConsoleColoredRenderStrategy = () => {
       const bottomEmptyCellsCount = emptyCellsCount - topEmptyCellsCount;
 
       for (let i = 0; i < topEmptyCellsCount; i++) {
-        charArray.push("green");
+        charArray.push("lightblue");
       }
 
       for (let i = 0; i < bottomEmptyCellsCount; i++) {
-        charArray.unshift("grey");
+        charArray.unshift("green");
       }
 
       return charArray;
