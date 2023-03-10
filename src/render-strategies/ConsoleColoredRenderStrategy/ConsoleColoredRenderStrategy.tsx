@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { rotate } from "2d-array-rotation";
+import Color from "color";
 
-import { useViewport } from "../../utils";
+import { useViewport, range, limit } from "../../utils";
 
 import Settings from "../../Settings";
 
@@ -18,7 +19,6 @@ const ConsoleColoredRenderStrategy = () => {
   const raycaster = Raycaster.getInstance();
 
   const viewport = useViewport();
-
 
   useEffect(() => {
     const previousRaysCount = raycaster.raysCount;
@@ -41,12 +41,15 @@ const ConsoleColoredRenderStrategy = () => {
       );
       const normalizedCharHeight = charHeight > height ? height : charHeight;
 
+      const isShadedSide =
+        ray.collision.collisionSide === "top" ||
+        ray.collision.collisionSide === "right";
+
       const charArray = Array.from({ length: normalizedCharHeight }).fill(
-        ray.collision.wall.color || "grey"
+        colorDarkness(ray.collision.wall.color, charHeight, {
+          max: isShadedSide ? 0.8 : 0.9,
+        })
       );
-
-
-
 
       const emptyCellsCount = height - normalizedCharHeight;
 
@@ -74,19 +77,25 @@ const ConsoleColoredRenderStrategy = () => {
 
     const consoleStyles = [];
 
+    const renderedString = renderedData
+      .map((arr) => {
+        return arr
+          .map((color, i, arr) => {
+            const isPreviousColorSame = arr[i - 1] === color;
+            if (isPreviousColorSame) return " ";
 
-    const renderedString = renderedData.map(arr => {
-      return arr.map((color, i, arr) => {
-        const isPreviousColorSame = arr[i - 1]  === color;
-        if (isPreviousColorSame) return " "
+            consoleStyles.push(`background: ${color}`);
 
-        consoleStyles.push(`background: ${color}`)
+            return `%c `;
+          })
+          .join("");
+      })
+      .join("\n");
 
-        return `%c `;
-      }).join("");
-    }).join("\n");
-
-    console.log(`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n` + renderedString, ...consoleStyles);
+    console.log(
+      `\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n` + renderedString,
+      ...consoleStyles
+    );
   }, [renderedData]);
 
   useEffect(() => {
@@ -101,6 +110,17 @@ const ConsoleColoredRenderStrategy = () => {
       </div>
     </div>
   );
+};
+
+const colorDarkness = (
+  color: string,
+  charHeight: number,
+  { min = 0.3, max = 0.9 } = {}
+) => {
+  const lightLevel =
+    1 - range((charHeight / Settings.consoleHeight) * 2, min, max);
+
+  return Color(color).darken(+lightLevel.toFixed(2)).string();
 };
 
 export default ConsoleColoredRenderStrategy;
