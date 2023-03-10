@@ -42,7 +42,7 @@ const ConsoleColoredRenderStrategy = () => {
       const normalizedCharHeight = charHeight > height ? height : charHeight;
 
       const charArray = Array.from({ length: normalizedCharHeight }).fill(
-        getCharByStripHeight(normalizedCharHeight, height) + "blue"
+        "blue"
       );
 
       const emptyCellsCount = height - normalizedCharHeight;
@@ -51,19 +51,17 @@ const ConsoleColoredRenderStrategy = () => {
       const bottomEmptyCellsCount = emptyCellsCount - topEmptyCellsCount;
 
       for (let i = 0; i < topEmptyCellsCount; i++) {
-        charArray.push(" green");
+        charArray.push("green");
       }
 
       for (let i = 0; i < bottomEmptyCellsCount; i++) {
-        charArray.unshift("_grey");
+        charArray.unshift("grey");
       }
 
       return charArray;
     });
 
     const rotatedCharArray: string[][] = rotate(charArray, 270);
-
-    // const str = rotatedCharArray.map((el) => el.join("")).join("\n");
 
     setRenderedData(rotatedCharArray);
   }, [rays]);
@@ -75,16 +73,9 @@ const ConsoleColoredRenderStrategy = () => {
 
 
     const renderedString = renderedData.map(arr => {
-      return arr.map((charData, i, arr) => {
-        const char =  charData.slice(0, 1);
-        const color = charData.slice(1);
-
-        const prev = arr[i - 1];
-        if (prev === charData) {
-          return " ";
-        }
-
-
+      return arr.map((color, i, arr) => {
+        const isPreviousColorSame = arr[i - 1]  === color;
+        if (isPreviousColorSame) return " "
 
         consoleStyles.push(`background: ${color}`)
 
