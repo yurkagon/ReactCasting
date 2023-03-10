@@ -26,7 +26,7 @@ const MiniMap = () => {
       };
     }
 
-    if (wall.color) {
+    if (wall.renderColorOnMinimap) {
       return {
         backgroundColor: wall.color,
       };
