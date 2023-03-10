@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { rotate } from "2d-array-rotation";
 
-import { getCharByStripHeight } from "../../utils";
+import { useViewport, getCharByStripHeight } from "../../utils";
 
 import Settings from "../../Settings";
 
 import Raycaster, { useRays } from "../../Raycaster";
-import { useViewport } from "../../utils";
 
 import devtoolsImg from "./devtools.jpeg";
 
@@ -19,6 +18,7 @@ const ConsoleRenderStrategy = () => {
   const raycaster = Raycaster.getInstance();
 
   const viewport = useViewport();
+
 
   useEffect(() => {
     const previousRaysCount = raycaster.raysCount;

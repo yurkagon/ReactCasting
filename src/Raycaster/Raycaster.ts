@@ -10,7 +10,7 @@ import { level1 } from "../levels";
 import { SpriteFactory } from "../Sprite";
 
 class Raycaster extends GameObject {
-  public FOV: number = Angle.toRad(60);
+  public fov: number = Angle.toRad(60);
   public raysCount: number = 160;
 
   public player: Player = Player.getInstance();
@@ -33,9 +33,9 @@ class Raycaster extends GameObject {
   public update() {
     this.rays = [];
 
-    const anglePerRay = this.FOV / this.raysCount;
+    const anglePerRay = this.fov / this.raysCount;
 
-    const startAngle = this.player.position.rotation - this.FOV / 2;
+    const startAngle = this.player.position.rotation - this.fov / 2;
 
     for (let columnId = 0; columnId < this.raysCount; columnId++) {
       const angle = startAngle + anglePerRay * columnId;

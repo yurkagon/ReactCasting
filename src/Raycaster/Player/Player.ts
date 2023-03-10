@@ -112,10 +112,10 @@ class Player extends GameObject {
     );
 
     const fovAngleStart = Angle.normalize(
-      this.position.rotation - raycaster.FOV / 2
+      this.position.rotation - raycaster.fov / 2
     );
     const fovAngleEnd = Angle.normalize(
-      this.position.rotation + raycaster.FOV / 2
+      this.position.rotation + raycaster.fov / 2
     );
 
     if (

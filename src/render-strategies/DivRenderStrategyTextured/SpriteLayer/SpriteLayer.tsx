@@ -66,7 +66,7 @@ const SpriteLayer = () => {
               left:
                 (viewport.width *
                   Angle.normalize(angleBetweenTarget - fovAngleStart)) /
-                raycaster.FOV,
+                raycaster.fov,
               zIndex: getZIndexByDistance(distance),
             }}
             key={index}

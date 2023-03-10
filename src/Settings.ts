@@ -27,19 +27,22 @@ class Settings {
   public static readonly renderingStrategies: RenderStrategy[] = [
     {
       name: "HTML <div> Textured",
+      key: "div-textured",
       component: DivRenderStrategyTextured,
       raysCountChangeAvailable: true,
       skybox: { default: false },
     },
     {
       name: "HTML <div> Shaded",
+      key: "div-shaded",
       component: DivRenderStrategy,
       raysCountChangeAvailable: true,
     },
-    { name: "HTML <textarea> (Only chrome)", component: TextRenderStrategy },
+    { name: "HTML <textarea> (Only chrome)", component: TextRenderStrategy, key: "textarea" },
     {
       name: "Console in your Chrome (only) browser :D",
       component: ConsoleRenderStrategy,
+      key: "console",
     },
   ];
 

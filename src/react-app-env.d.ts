@@ -31,6 +31,7 @@ declare type VectorType = {
 
 declare interface RenderStrategy {
   name: string;
+  key: string;
   component: React.ComponentType<any>;
   raysCountChangeAvailable?: boolean;
   skybox?: { default: boolean };

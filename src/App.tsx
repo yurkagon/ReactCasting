@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import head from "lodash/head";
+import find from "lodash/find";
 
 import { useViewport, Angle } from "./utils";
 
@@ -14,26 +16,30 @@ import FPS from "./components/FPS";
 const App = () => {
   const raycaster = Raycaster.getInstance();
 
-  const [fov, setFov] = useState<number>(raycaster.FOV);
-  const [rays, setRays] = useState<number>(raycaster.raysCount);
+  const [isInitialized, setInitialized] = useState(false);
 
+  const [fov, setFov] = useState<number>(raycaster.fov);
+  const [rays, setRays] = useState<number>(raycaster.raysCount);
+  const { height, width } = useViewport();
+
+  const hashValue = window.location.hash.replace("#", "");
+  const hashStrategy = find(Settings.renderingStrategies, { key: hashValue });
+  const defaultStrategy = head(Settings.renderingStrategies);
   const [renderStrategy, setRenderStrategy] = useState<RenderStrategy>(
-    Settings.renderingStrategies[0]
+    hashStrategy || defaultStrategy
   );
 
   const [allowMouse, setAllowMouse] = useState<boolean>(Settings.allowMouse);
   const [allowMinimap, setAllowMinimap] = useState<boolean>(true);
   const [allowSkybox, setAllowSkybox] = useState<boolean>(
-    Settings.renderingStrategies[0].skybox.default
+    head(Settings.renderingStrategies).skybox.default
   );
 
   useEffect(() => {
-    const scene = Scene.getInstance();
-
-    scene.init();
-  }, []);
+    window.location.hash = renderStrategy.key;
+  }, [renderStrategy]);
   useEffect(() => {
-    raycaster.FOV = fov;
+    raycaster.fov = fov;
   }, [fov]);
   useEffect(() => {
     Settings.allowMouse = allowMouse;
@@ -44,8 +50,17 @@ const App = () => {
   useEffect(() => {
     setRays(raycaster.raysCount);
   }, [renderStrategy, raycaster]);
+  useEffect(() => {
+    const scene = Scene.getInstance();
 
-  const { height, width } = useViewport();
+    scene.init();
+
+    setInitialized(true);
+  }, []);
+
+
+
+  if (!isInitialized) return null;
 
   return (
     <div className="App">
@@ -86,7 +101,7 @@ const App = () => {
           </div>
 
           <div>
-            FOV:{"  "}
+            fov:{"  "}
             <input
               type="range"
               min="20"
