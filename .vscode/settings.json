@@ -1,3 +1,10 @@
 {
-  "cSpell.words": ["WASD", "raycaster", "raycasting", "skybox", "toolz"]
+  "cSpell.words": [
+    "colord",
+    "raycaster",
+    "raycasting",
+    "skybox",
+    "toolz",
+    "WASD"
+  ]
 }

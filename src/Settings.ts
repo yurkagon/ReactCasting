@@ -20,7 +20,7 @@ class Settings {
   public static readonly viewportWidthToCharsScaleCoefficient = 0.33;
   public static readonly viewportHeightToCharsScaleCoefficient = 0.166;
 
-  public static readonly consoleRaysCount: number = 110;
+  public static readonly consoleRaysCount: number = 100;
   public static readonly consoleHeight: number = 45;
 
   public static readonly mouseSensitivity: number = 0.1;

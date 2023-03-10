@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import { colord } from "colord";
 import { rotate } from "2d-array-rotation";
-import Color from "color";
 
-import { useViewport, range, limit } from "../../utils";
+import { useViewport, range } from "../../utils";
 
 import Settings from "../../Settings";
 
@@ -46,6 +46,7 @@ const ConsoleColoredRenderStrategy = () => {
         ray.collision.collisionSide === "right";
 
       const charArray = Array.from({ length: normalizedCharHeight }).fill(
+        // "gray",
         colorDarkness(ray.collision.wall.color, charHeight, {
           max: isShadedSide ? 0.8 : 0.9,
         })
@@ -57,11 +58,11 @@ const ConsoleColoredRenderStrategy = () => {
       const bottomEmptyCellsCount = emptyCellsCount - topEmptyCellsCount;
 
       for (let i = 0; i < topEmptyCellsCount; i++) {
-        charArray.push("lightblue");
+        charArray.push("#212121");
       }
 
       for (let i = 0; i < bottomEmptyCellsCount; i++) {
-        charArray.unshift("green");
+        charArray.unshift("#212121");
       }
 
       return charArray;
@@ -117,10 +118,13 @@ const colorDarkness = (
   charHeight: number,
   { min = 0.3, max = 0.9 } = {}
 ) => {
-  const lightLevel =
-    1 - range((charHeight / Settings.consoleHeight) * 2, min, max);
 
-  return Color(color).darken(+lightLevel.toFixed(2)).string();
+  const lightLevel =
+    1 - range(charHeight / Settings.consoleHeight / 2 + 0.3, min, max);
+
+    // console.log(lightLevel)
+
+  return colord(color).mix("black", +lightLevel.toFixed(1)).toHex();
 };
 
 export default ConsoleColoredRenderStrategy;
