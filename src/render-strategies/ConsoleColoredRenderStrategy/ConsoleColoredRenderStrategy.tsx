@@ -8,7 +8,7 @@ import Settings from "../../Settings";
 
 import Raycaster, { useRays } from "../../Raycaster";
 
-import devtoolsImg from "./devtools.jpeg";
+import devtoolsImg from "./devtools.png";
 
 import "./style.scss";
 
@@ -46,9 +46,8 @@ const ConsoleColoredRenderStrategy = () => {
         ray.collision.collisionSide === "right";
 
       const charArray = Array.from({ length: normalizedCharHeight }).fill(
-        // "gray",
-        colorDarkness(ray.collision.wall.color, charHeight, {
-          max: isShadedSide ? 0.8 : 0.9,
+        generateColorWithShade(ray.collision.wall.color, charHeight, {
+          max: isShadedSide ? 0.7 : 0.9,
         })
       );
 
@@ -62,7 +61,7 @@ const ConsoleColoredRenderStrategy = () => {
       }
 
       for (let i = 0; i < bottomEmptyCellsCount; i++) {
-        charArray.unshift("#212121");
+        charArray.unshift("#110d1a");
       }
 
       return charArray;
@@ -113,16 +112,13 @@ const ConsoleColoredRenderStrategy = () => {
   );
 };
 
-const colorDarkness = (
+const generateColorWithShade = (
   color: string,
   charHeight: number,
-  { min = 0.3, max = 0.9 } = {}
+  { min = 0.1, max = 0.9, addition = 0.3 } = {}
 ) => {
-
   const lightLevel =
-    1 - range(charHeight / Settings.consoleHeight / 2 + 0.3, min, max);
-
-    // console.log(lightLevel)
+    1 - range(charHeight / Settings.consoleHeight + addition, min, max);
 
   return colord(color).mix("black", +lightLevel.toFixed(1)).toHex();
 };

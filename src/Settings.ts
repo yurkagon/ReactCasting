@@ -20,7 +20,7 @@ class Settings {
   public static readonly viewportWidthToCharsScaleCoefficient = 0.33;
   public static readonly viewportHeightToCharsScaleCoefficient = 0.166;
 
-  public static readonly consoleRaysCount: number = 100;
+  public static readonly consoleRaysCount: number = 120;
   public static readonly consoleHeight: number = 45;
 
   public static readonly mouseSensitivity: number = 0.1;
@@ -34,22 +34,23 @@ class Settings {
       skybox: { default: false },
     },
     {
+      name: "Chrome Console colored",
+      component: ConsoleColoredRenderStrategy,
+      key: "console-colored",
+    },
+    { name: "HTML <textarea>", component: TextRenderStrategy, key: "textarea" },
+    {
+      name: "Chrome Console using chars",
+      component: ConsoleRenderStrategy,
+      key: "console",
+    },
+    {
       name: "HTML <div> Shaded",
       key: "div-shaded",
       component: DivRenderStrategy,
       raysCountChangeAvailable: true,
     },
-    { name: "HTML <textarea> (Only chrome)", component: TextRenderStrategy, key: "textarea" },
-    {
-      name: "Console in your Chrome",
-      component: ConsoleRenderStrategy,
-      key: "console",
-    },
-    {
-      name: "Colored Console in your Chrome",
-      component: ConsoleColoredRenderStrategy,
-      key: "console-colored",
-    },
+
   ];
 
   private constructor() {}
