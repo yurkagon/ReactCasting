@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import head from "lodash/head";
 import find from "lodash/find";
+import { extend } from "colord";
+import mixPlugin from "colord/plugins/mix";
 
 import { useViewport, Angle } from "./utils";
 
@@ -12,6 +14,8 @@ import Raycaster from "./Raycaster";
 import MiniMap from "./components/MiniMap";
 import PlayerDebugger from "./components/PlayerDebugger";
 import FPS from "./components/FPS";
+
+extend([mixPlugin]);
 
 const App = () => {
   const raycaster = Raycaster.getInstance();
@@ -57,8 +61,6 @@ const App = () => {
 
     setInitialized(true);
   }, []);
-
-
 
   if (!isInitialized) return null;
 

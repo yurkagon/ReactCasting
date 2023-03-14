@@ -28,11 +28,20 @@ Everything you see is built by HTML5 \<div> using React
 
 ![div-example](textarea-example.gif)
 
-### Rendering scene as text inside browser console
+### Rendering scene inside Chrome console 🥲
+Works correct only in Google Chrome
 
+![div-example](console-colored-example.gif)
+
+### Rendering scene as text inside browser console
 Works correct only in Google Chrome
 
 ![div-example](console-example.gif)
+
+
+## Also
+
+- [Check my HTML based 3D Shooter implemented without Canvas](https://github.com/yurkagon/Doom-Nukem-CSS)
 
 ## Inspired by
 

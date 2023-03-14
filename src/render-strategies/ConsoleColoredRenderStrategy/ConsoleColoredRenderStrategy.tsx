@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
+import { colord } from "colord";
 import { rotate } from "2d-array-rotation";
 
-import { useViewport, getCharByStripHeight } from "../../utils";
+import { useViewport, range } from "../../utils";
 
 import Settings from "../../Settings";
 
 import Raycaster, { useRays } from "../../Raycaster";
 
-import devtoolsImg from "./devtools.jpeg";
+import devtoolsImg from "./devtools.png";
 
 import "./style.scss";
 
-const ConsoleRenderStrategy = () => {
-  const [renderedString, setRenderedString] = useState<string>(null);
+const ConsoleColoredRenderStrategy = () => {
+  const [renderedData, setRenderedData] = useState<string[][]>(null);
 
   const rays = useRays();
   const raycaster = Raycaster.getInstance();
@@ -42,8 +43,14 @@ const ConsoleRenderStrategy = () => {
           ? Settings.consoleHeight
           : charHeight;
 
+      const isShadedSide =
+        ray.collision.collisionSide === "top" ||
+        ray.collision.collisionSide === "right";
+
       const charArray = Array.from({ length: normalizedCharHeight }).fill(
-        getCharByStripHeight(normalizedCharHeight, Settings.consoleHeight)
+        generateColorWithShade(ray.collision.wall.color, charHeight, {
+          max: isShadedSide ? 0.7 : 0.9,
+        })
       );
 
       const emptyCellsCount = Settings.consoleHeight - normalizedCharHeight;
@@ -52,11 +59,11 @@ const ConsoleRenderStrategy = () => {
       const bottomEmptyCellsCount = emptyCellsCount - topEmptyCellsCount;
 
       for (let i = 0; i < topEmptyCellsCount; i++) {
-        charArray.push(" ");
+        charArray.push("#212121");
       }
 
       for (let i = 0; i < bottomEmptyCellsCount; i++) {
-        charArray.unshift("_");
+        charArray.unshift("#110d1a");
       }
 
       return charArray;
@@ -64,15 +71,34 @@ const ConsoleRenderStrategy = () => {
 
     const rotatedCharArray: string[][] = rotate(charArray, 270);
 
-    const str = rotatedCharArray.map((el) => el.join("")).join("\n");
-
-    setRenderedString(str);
+    setRenderedData(rotatedCharArray);
   }, [rays]);
 
   useEffect(() => {
-    if (renderedString)
-      console.log(`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n` + renderedString);
-  }, [renderedString]);
+    if (!renderedData) return;
+
+    const consoleStyles = [];
+
+    const renderedString = renderedData
+      .map((arr) => {
+        return arr
+          .map((color, i, arr) => {
+            const isPreviousColorSame = arr[i - 1] === color;
+            if (isPreviousColorSame) return " ";
+
+            consoleStyles.push(`background: ${color}`);
+
+            return `%c `;
+          })
+          .join("");
+      })
+      .join("\n");
+
+    console.log(
+      `\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n` + renderedString,
+      ...consoleStyles
+    );
+  }, [renderedData]);
 
   useEffect(() => {
     return () => console.clear();
@@ -88,4 +114,15 @@ const ConsoleRenderStrategy = () => {
   );
 };
 
-export default ConsoleRenderStrategy;
+const generateColorWithShade = (
+  color: string,
+  charHeight: number,
+  { min = 0.1, max = 0.9, addition = 0.3 } = {}
+) => {
+  const lightLevel =
+    1 - range(charHeight / Settings.consoleHeight + addition, min, max);
+
+  return colord(color).mix("black", +lightLevel.toFixed(1)).toHex();
+};
+
+export default ConsoleColoredRenderStrategy;

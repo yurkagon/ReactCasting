@@ -2,6 +2,7 @@ import DivRenderStrategy from "./render-strategies/DivRenderStrategy";
 import DivRenderStrategyTextured from "./render-strategies/DivRenderStrategyTextured";
 import TextRenderStrategy from "./render-strategies/TextRenderStrategy";
 import ConsoleRenderStrategy from "./render-strategies/ConsoleRenderStrategy";
+import ConsoleColoredRenderStrategy from "./render-strategies/ConsoleColoredRenderStrategy";
 
 class Settings {
   public static readonly isProduction: boolean =
@@ -19,7 +20,7 @@ class Settings {
   public static readonly viewportWidthToCharsScaleCoefficient = 0.33;
   public static readonly viewportHeightToCharsScaleCoefficient = 0.166;
 
-  public static readonly consoleRaysCount: number = 110;
+  public static readonly consoleRaysCount: number = 120;
   public static readonly consoleHeight: number = 45;
 
   public static readonly mouseSensitivity: number = 0.1;
@@ -38,9 +39,14 @@ class Settings {
       component: DivRenderStrategy,
       raysCountChangeAvailable: true,
     },
-    { name: "HTML <textarea> (Only chrome)", component: TextRenderStrategy, key: "textarea" },
+    { name: "HTML <textarea>", component: TextRenderStrategy, key: "textarea" },
     {
-      name: "Console in your Chrome (only) browser :D",
+      name: "Chrome Console colored",
+      component: ConsoleColoredRenderStrategy,
+      key: "console-colored",
+    },
+    {
+      name: "Chrome Console using chars",
       component: ConsoleRenderStrategy,
       key: "console",
     },
