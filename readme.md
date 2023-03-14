@@ -26,19 +26,23 @@ Everything you see is built by HTML5 \<div> using React
 
 ### Rendering scene as text inside \<textarea>
 
-![div-example](textarea-example.gif)
+![textarea-example](textarea-example.gif)
+
+[Link](https://yurkagon.github.io/ReactCasting/#textarea)
 
 ### Rendering scene inside Chrome console 🥲
 Works correct only in Google Chrome
 
-![div-example](console-colored-example.gif)
+![console-colored-example](console-colored-example.gif)
+
+[Link](https://yurkagon.github.io/ReactCasting/#console-colored)
 
 ### Rendering scene as text inside browser console
 Works correct only in Google Chrome
 
-![div-example](console-example.gif)
+![console-example](console-example.gif)
 
-
+[Link](https://yurkagon.github.io/ReactCasting/#console)
 ## Also
 
 - [Check my HTML based 3D Shooter implemented without Canvas](https://github.com/yurkagon/Doom-Nukem-CSS)
