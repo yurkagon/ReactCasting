@@ -28,8 +28,6 @@ const ConsoleColoredRenderStrategy = () => {
     return () => raycaster.setRaysCount(previousRaysCount);
   }, []);
 
-  const height = Math.floor(Settings.consoleHeight);
-
   useEffect(() => {
     if (!rays.length) return null;
 
@@ -37,9 +35,13 @@ const ConsoleColoredRenderStrategy = () => {
       const stripHeightCoefficient = 200;
 
       const charHeight = Math.round(
-        (ray.stripHeight / stripHeightCoefficient) * height
+        (ray.stripHeight_CONSOLE / stripHeightCoefficient) *
+          Settings.consoleHeight
       );
-      const normalizedCharHeight = charHeight > height ? height : charHeight;
+      const normalizedCharHeight =
+        charHeight > Settings.consoleHeight
+          ? Settings.consoleHeight
+          : charHeight;
 
       const isShadedSide =
         ray.collision.collisionSide === "top" ||
@@ -51,7 +53,7 @@ const ConsoleColoredRenderStrategy = () => {
         })
       );
 
-      const emptyCellsCount = height - normalizedCharHeight;
+      const emptyCellsCount = Settings.consoleHeight - normalizedCharHeight;
 
       const topEmptyCellsCount = Math.ceil(emptyCellsCount / 2);
       const bottomEmptyCellsCount = emptyCellsCount - topEmptyCellsCount;

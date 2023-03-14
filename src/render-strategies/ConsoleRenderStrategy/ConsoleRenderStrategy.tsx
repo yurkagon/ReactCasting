@@ -19,7 +19,6 @@ const ConsoleRenderStrategy = () => {
 
   const viewport = useViewport();
 
-
   useEffect(() => {
     const previousRaysCount = raycaster.raysCount;
 
@@ -28,8 +27,6 @@ const ConsoleRenderStrategy = () => {
     return () => raycaster.setRaysCount(previousRaysCount);
   }, []);
 
-  const height = Math.floor(Settings.consoleHeight);
-
   useEffect(() => {
     if (!rays.length) return null;
 
@@ -37,15 +34,19 @@ const ConsoleRenderStrategy = () => {
       const stripHeightCoefficient = 200;
 
       const charHeight = Math.round(
-        (ray.stripHeight / stripHeightCoefficient) * height
+        (ray.stripHeight_CONSOLE / stripHeightCoefficient) *
+          Settings.consoleHeight
       );
-      const normalizedCharHeight = charHeight > height ? height : charHeight;
+      const normalizedCharHeight =
+        charHeight > Settings.consoleHeight
+          ? Settings.consoleHeight
+          : charHeight;
 
       const charArray = Array.from({ length: normalizedCharHeight }).fill(
-        getCharByStripHeight(normalizedCharHeight, height)
+        getCharByStripHeight(normalizedCharHeight, Settings.consoleHeight)
       );
 
-      const emptyCellsCount = height - normalizedCharHeight;
+      const emptyCellsCount = Settings.consoleHeight - normalizedCharHeight;
 
       const topEmptyCellsCount = Math.ceil(emptyCellsCount / 2);
       const bottomEmptyCellsCount = emptyCellsCount - topEmptyCellsCount;
@@ -70,7 +71,7 @@ const ConsoleRenderStrategy = () => {
 
   useEffect(() => {
     if (renderedString)
-    console.log(`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n` + renderedString);
+      console.log(`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n` + renderedString);
   }, [renderedString]);
 
   useEffect(() => {

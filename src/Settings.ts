@@ -34,23 +34,22 @@ class Settings {
       skybox: { default: false },
     },
     {
-      name: "Chrome Console colored",
-      component: ConsoleColoredRenderStrategy,
-      key: "console-colored",
-    },
-    { name: "HTML <textarea>", component: TextRenderStrategy, key: "textarea" },
-    {
-      name: "Chrome Console using chars",
-      component: ConsoleRenderStrategy,
-      key: "console",
-    },
-    {
       name: "HTML <div> Shaded",
       key: "div-shaded",
       component: DivRenderStrategy,
       raysCountChangeAvailable: true,
     },
-
+    { name: "HTML <textarea>", component: TextRenderStrategy, key: "textarea" },
+    {
+      name: "Chrome Console colored",
+      component: ConsoleColoredRenderStrategy,
+      key: "console-colored",
+    },
+    {
+      name: "Chrome Console using chars",
+      component: ConsoleRenderStrategy,
+      key: "console",
+    },
   ];
 
   private constructor() {}

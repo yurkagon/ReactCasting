@@ -19,6 +19,7 @@ class Ray {
   public isVerticalCast: boolean = false;
   public isHorizontalCast: boolean = false;
   public stripHeight: number = 0;
+  public stripHeight_CONSOLE: number = 0;
 
   public readonly maxDistance: number = 300;
 
@@ -67,6 +68,9 @@ class Ray {
       (wallCoefficient * viewport.height) /
       (Math.cos(Player.getInstance().position.rotation - this.angle) *
         this.hitDistance);
+
+    const consoleHeightMultiplier = 220;
+    this.stripHeight_CONSOLE = this.stripHeight / viewport.height * consoleHeightMultiplier;
   }
 
   private castHorizontal(): Collision {
