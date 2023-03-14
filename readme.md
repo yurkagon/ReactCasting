@@ -31,7 +31,7 @@ Everything you see is built by HTML5 \<div> using React
 [Link](https://yurkagon.github.io/ReactCasting/#textarea)
 
 ### Rendering scene inside Chrome console 🥲
-Works correct only in Google Chrome
+Works correct only in Google Chrome. Resize devtools console to see full scene. Use CMD(or CNTRL) + "-" on devtools to zoom out console if you see white lines
 
 ![console-colored-example](console-colored-example.gif)
 
